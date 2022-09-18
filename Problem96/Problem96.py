@@ -120,7 +120,7 @@ def find_cell_with_least_available_numbers(sudoku, available_numbers):
 def solve_sudoku(sudoku):
     min_number_of_available_numbers = 1
     # check if sudoku is solved or is any aviable number
-    while min_number_of_available_numbers == 1:
+    while min_number_of_available_numbers == 1 or not is_solved(sudoku):
         available_numbers = determine_available_numbers(sudoku)
         print(
             f'available_numbers: {np.count_nonzero(available_numbers)} remaining zeros: {np.count_nonzero(sudoku == 0)} \n {sudoku}')
@@ -141,9 +141,10 @@ def solve_sudoku(sudoku):
         for number in available_numbers[min_i, min_j, :]:
             if number != 0:
                 print(f'guessing on: {min_i} {min_j} {number}')
-                sudoku[min_i, min_j] = number
-                temp_sudoku = solve_sudoku(sudoku)
-                if temp_sudoku is not False:
+                temp_sudoku = sudoku.copy()
+                temp_sudoku[min_i, min_j] = number
+                temp_sudoku = solve_sudoku(temp_sudoku)
+                if temp_sudoku is not False and is_solved(temp_sudoku):
                         return temp_sudoku
     return sudoku
 
@@ -155,7 +156,7 @@ def solution():
     result = 0
     # 3. Solve the sudoku:
 
-    for sudoku in sudoku_array[0:2]:
+    for sudoku in sudoku_array[1:2]:
         sudoku = solve_sudoku(sudoku)
         print('##############################################')
         print('solved sudoku: \n', sudoku)
