@@ -53,6 +53,7 @@ def is_solved(sudoku):
                 square = sudoku[3 * i : 3 * i + 3, 3 * j : 3 * j + 3]
                 if len(np.unique(square)) != 9:
                     return None
+    print('sudoku is solved')
     return True
 
 
@@ -92,6 +93,7 @@ def fill_cells_with_one_available_number(sudoku, available_numbers):
                 sudoku[i, j] = available_numbers[i, j, :][
                     available_numbers[i, j, :] != 0
                 ]
+                break
     return sudoku
 
 
@@ -143,15 +145,14 @@ def solve_sudoku(sudoku):
     if min_number_of_available_numbers == 0:
         return False
 
-    elif not is_solved(sudoku):
-        # try to solve sudoku with each aviable number
-        for number in available_numbers[min_i, min_j, :]:
-            if number != 0:
-                temp_sudoku = sudoku.copy()
-                temp_sudoku[min_i, min_j] = number
-                temp_sudoku = solve_sudoku(temp_sudoku)
-                if is_solved(temp_sudoku):
-                    return temp_sudoku
+    # try to solve sudoku with each aviable number
+    for number in available_numbers[min_i, min_j, :]:
+        if number != 0:
+            temp_sudoku = sudoku.copy()
+            temp_sudoku[min_i, min_j] = number
+            temp_sudoku = solve_sudoku(temp_sudoku)
+            if temp_sudoku is not False and 0 not in temp_sudoku:
+                return temp_sudoku
     return sudoku
 
 
@@ -163,9 +164,9 @@ def solution():
     # 3. Solve the sudoku:
     for i, sudoku in enumerate(sudoku_array):
         sudoku = solve_sudoku(sudoku)
-        print("##############################################")
+        """print("##############################################")
         print(f"solved sudoku nr: {i}\n{sudoku}")
-        print("##############################################")
+        print("##############################################")"""
         result += sudoku[0, 0] * 100 + sudoku[0, 1] * 10 + sudoku[0, 2]
     # 4. Return the sum of the 3-digit numbers found in the top left corner of each solved sudoku
     return result
