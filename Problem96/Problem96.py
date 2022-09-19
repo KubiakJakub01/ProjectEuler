@@ -110,8 +110,6 @@ def find_cell_with_least_available_numbers(sudoku, available_numbers):
                 )
                 min_i = i
                 min_j = j
-
-    # print('min number of available numbers: ', min_number_of_available_numbers)
     return min_i, min_j, min_number_of_available_numbers
 
 
@@ -165,9 +163,9 @@ def solution():
     # 3. Solve the sudoku:
     for i, sudoku in enumerate(sudoku_array):
         sudoku = solve_sudoku(sudoku)
-        '''print("##############################################")
+        print("##############################################")
         print(f"solved sudoku nr: {i}\n{sudoku}")
-        print("##############################################")'''
+        print("##############################################")
         result += sudoku[0, 0] * 100 + sudoku[0, 1] * 10 + sudoku[0, 2]
     # 4. Return the sum of the 3-digit numbers found in the top left corner of each solved sudoku
     return result
