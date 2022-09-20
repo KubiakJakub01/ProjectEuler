@@ -41,21 +41,24 @@ def read_file():
 def is_solved(sudoku):
     if sudoku is False or 0 in sudoku:
         return False
-    else:
-        # check if sudo is valid
-        for i in range(9):
-            if len(np.unique(sudoku[i, :])) != 9:
-                return None
-            if len(np.unique(sudoku[:, i])) != 9:
-                return None
-        for i in range(3):
-            for j in range(3):
-                square = sudoku[3 * i : 3 * i + 3, 3 * j : 3 * j + 3]
-                if len(np.unique(square)) != 9:
-                    return None
-    print('sudoku is solved')
     return True
 
+# function to redetermine available numbers for each cell
+def redetermine_available_numbers(sudoku, available_numbers, i, j):
+    number = sudoku[i, j]
+    # check row and column
+    for x in range(9):
+        if sudoku[i, x] == 0:
+            available_numbers[i, x, number - 1] = 0
+        if sudoku[x, j] == 0:
+            available_numbers[x, j, number - 1] = 0
+    # check square
+    square = sudoku[3 * (i // 3) : 3 * (i // 3) + 3, 3 * (j // 3) : 3 * (j // 3) + 3]
+    for x in range(3):
+        for y in range(3):
+            if square[x, y] == 0:
+                available_numbers[3 * (i // 3) + x, 3 * (j // 3) + y, number - 1] = 0
+    return available_numbers
 
 # function to determine available numbers for each cell
 def determine_available_numbers_for_cell(sudoku, i, j):
@@ -93,8 +96,8 @@ def fill_cells_with_one_available_number(sudoku, available_numbers):
                 sudoku[i, j] = available_numbers[i, j, :][
                     available_numbers[i, j, :] != 0
                 ]
-                break
-    return sudoku
+                available_numbers = redetermine_available_numbers(sudoku, available_numbers, i, j)
+    return sudoku, available_numbers
 
 
 # function to find the cell with least aviable number
@@ -116,27 +119,22 @@ def find_cell_with_least_available_numbers(sudoku, available_numbers):
 
 
 # function to solve the sudoku
-def solve_sudoku(sudoku):
-    min_number_of_available_numbers = 1
+def solve_sudoku(sudoku, available_numbers):
+    (
+        min_i,
+        min_j,
+        min_number_of_available_numbers,
+    ) = find_cell_with_least_available_numbers(sudoku, available_numbers)
 
     if is_solved(sudoku):
         return sudoku
 
     # check if sudoku is solved or is any aviable number
     while min_number_of_available_numbers == 1:
-        available_numbers = determine_available_numbers(sudoku)
-        sudoku = fill_cells_with_one_available_number(sudoku, available_numbers)
-        # check if sudoku is solved
-        is_solved_or_valid = is_solved(sudoku)
-        # if solved
-        if is_solved_or_valid is True:
+        sudoku, available_numbers = fill_cells_with_one_available_number(sudoku, available_numbers)
+        if is_solved(sudoku):
             return sudoku
-        # if solved but not valid
-        elif is_solved_or_valid is None:
-            return False
-        # if not solved but valid
         else:
-            available_numbers = determine_available_numbers(sudoku)
             (
                 min_i,
                 min_j,
@@ -150,8 +148,12 @@ def solve_sudoku(sudoku):
         if number != 0:
             temp_sudoku = sudoku.copy()
             temp_sudoku[min_i, min_j] = number
-            temp_sudoku = solve_sudoku(temp_sudoku)
-            if temp_sudoku is not False and 0 not in temp_sudoku:
+            temp_available_numbers = available_numbers.copy()
+            temp_available_numbers = redetermine_available_numbers(
+                temp_sudoku, temp_available_numbers, min_i, min_j
+            )
+            temp_sudoku = solve_sudoku(temp_sudoku, temp_available_numbers)
+            if is_solved(temp_sudoku):
                 return temp_sudoku
     return sudoku
 
@@ -163,10 +165,10 @@ def solution():
     result = 0
     # 3. Solve the sudoku:
     for i, sudoku in enumerate(sudoku_array):
-        sudoku = solve_sudoku(sudoku)
-        """print("##############################################")
+        sudoku = solve_sudoku(sudoku, determine_available_numbers(sudoku))
+        '''print("##############################################")
         print(f"solved sudoku nr: {i}\n{sudoku}")
-        print("##############################################")"""
+        print("##############################################")'''
         result += sudoku[0, 0] * 100 + sudoku[0, 1] * 10 + sudoku[0, 2]
     # 4. Return the sum of the 3-digit numbers found in the top left corner of each solved sudoku
     return result
@@ -177,3 +179,6 @@ if __name__ == "__main__":
     print(solution())
     print("--- %s seconds ---" % (time.time() - start_time))
 
+'''
+--- 1.5330686569213867 seconds ---
+'''
