@@ -7,12 +7,13 @@ https://projecteuler.net/problem=90
 
 @author: Jakub
 
-Algoritm description draft:
-    1. Create a list of all possible combinations of 6 dice
-    2. Determine all numbers which has to be on the dice
-    3. Create a list of all possible combinations of two dice
-        which meet the condition
-    4. Check if the combination of two dice is valid
+Algoritm description:
+    1. Create a list of all possible combinations of 6 dice:
+        with 6 and 9 as one number
+    2. Create a list of all possible combinations of two dice
+        which meet the condition of separate pairs
+    3. Check if the combination of two dice is valid
+    4. END
 """
 
 # import libraries
