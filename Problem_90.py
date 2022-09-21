@@ -48,17 +48,23 @@ def is_valid_dice_pair(dice_pair):
 
 # function to create a list of all possible combinations of two dice
 def create_dice_pairs_list(dice_list):
+    count_dice_pairs = 0
     for dice_pair in list(combinations(dice_list, 2)):
         if is_valid_dice_pair(dice_pair):
-            yield dice_pair
+            count_dice_pairs += 1
+    return count_dice_pairs
 
 # main solution function
 def solution():
     dice_list = create_dice_list()
-    dice_pairs_list = create_dice_pairs_list(dice_list)
-    print(len([x for x in dice_pairs_list]))
+    count_dice_pairs = create_dice_pairs_list(dice_list)
+    print(count_dice_pairs)
 
 if __name__ == "__main__":
     start_time = time.time()
     solution()
     print("--- %s seconds ---" % (time.time() - start_time))
+
+'''
+--- 0.032662153244018555 seconds ---
+'''
