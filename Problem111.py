@@ -16,7 +16,7 @@ Algoritm description [draft]:
 
 # import libraries
 import time
-from itertools import permutations
+from itertools import permutations, combinations
 
 n = 10
 N = 10**11
@@ -33,19 +33,24 @@ def sieve_of_eratosthenes(n):
     return primes
 
 
-# function to define all possible numbers
+# function to define possible arragements of numbers
 def define_numbers():
     all_possible_numbers = []
-    template_number = ['x'] * (n-1) + ['y'] * 1
+    template_number = ['x'] * (n-2) + ['y'] * 2
+    double_number_combs = list(combinations(range(0,10), 2))
     # define all permutations of template_number
-    for permutation in list(permutations(template_number)):
+    for permutation in set(permutations(template_number)):
         permutation = ''.join(permutation)
-        print(permutation)
         # provide numbers into template_number
-        for d in range(1,10):
+        for d in range(0,10):
             # define all possible numbers
-            temp_num = permutation.replace('x', str(d))
-            all_possible_numbers.append([temp_num.replace('y', str(y)) for y in range(10)])
+            template_number = permutation.replace('x', str(d))
+            #all_possible_numbers.append([temp_num.replace('y', str(y)) for y in range(10)])
+            # insert all combination of double numbers to temp_num
+            for comb in double_number_combs:
+                temp_num = template_number
+                all_possible_numbers.append(temp_num.replace('y', str(comb[0]), 1).replace('y', str(comb[1]), 1))
+                all_possible_numbers.append(temp_num.replace('y', str(comb[1]), 1).replace('y', str(comb[0]), 1))
     return all_possible_numbers
 
 
@@ -57,7 +62,7 @@ def solution():
     #print(sum(primes))
     # define all possible numbers
     all_possible_numbers = define_numbers()
-    print(len(all_possible_numbers))
+    print(all_possible_numbers[:100])
 
 
 if __name__ == "__main__":
