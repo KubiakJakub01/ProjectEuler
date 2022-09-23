@@ -16,6 +16,7 @@ Algoritm description [draft]:
 
 # import libraries
 import time
+import collections
 from itertools import permutations, combinations
 
 n = 10
@@ -45,24 +46,47 @@ def define_numbers():
         for d in range(0,10):
             # define all possible numbers
             template_number = permutation.replace('x', str(d))
-            #all_possible_numbers.append([temp_num.replace('y', str(y)) for y in range(10)])
-            # insert all combination of double numbers to temp_num
+            #all_possible_numbers.append([temp_str.replace('y', str(y)) for y in range(10)])
+            # insert all combination of double numbers to template_number
             for comb in double_number_combs:
-                temp_num = template_number
-                all_possible_numbers.append(temp_num.replace('y', str(comb[0]), 1).replace('y', str(comb[1]), 1))
-                all_possible_numbers.append(temp_num.replace('y', str(comb[1]), 1).replace('y', str(comb[0]), 1))
+                for i in range(0, 2):
+                    temp_str = template_number.replace('y', str(comb[i]), 1).replace('y', str(comb[(i+1)%2]), 1)
+                    if temp_str[0] != '0':
+                        all_possible_numbers.append(int(temp_str))
     return all_possible_numbers
+
+# function to check which numbers are primes
+def check_primes(primes, all_possible_numbers):
+    # divide all possible numbers by primes
+    for i in range(2, len(primes)):
+        if primes[i]:
+            for number in all_possible_numbers:
+                if number % i == 0:
+                    all_possible_numbers.remove(number)
+    return all_possible_numbers
+
+# function to define d (biggest number of occurences fory every digits)
+def define_d_and_sum(possible_primes):
+    d = 0
+    sum = 0
+    for number in possible_primes:
+        number = str(number)
+        for i in range(0, 10):
+            if number.count(str(i)) > d:
+                d = number.count(str(i))
+                sum += int(number)
+    return d, sum
 
 
 # main solution function
 def solution():
     # get primes numbers below sqrt(N)
-    #primes = sieve_of_eratosthenes(int(N**0.5))
-    # print len of true primes
-    #print(sum(primes))
+    primes = sieve_of_eratosthenes(int(N**0.5))
     # define all possible numbers
     all_possible_numbers = define_numbers()
-    print(all_possible_numbers[:100])
+    # check which numbers are primes
+    possible_primes = check_primes(primes, all_possible_numbers)
+    print(len(possible_primes))
 
 
 if __name__ == "__main__":
