@@ -16,7 +16,7 @@ Algoritm description [draft]:
 
 # import libraries
 import time
-import collections
+from collections import defaultdict, Counter
 from itertools import permutations, combinations
 
 n = 10
@@ -67,14 +67,10 @@ def check_primes(primes, all_possible_numbers):
 
 # function to define d (biggest number of occurences fory every digits)
 def define_d_and_sum(possible_primes):
-    d = 0
-    sum = 0
+    digits_sum_dict = defaultdict([int, int])
     for number in possible_primes:
         number = str(number)
-        for i in range(0, 10):
-            if number.count(str(i)) > d:
-                d = number.count(str(i))
-                sum += int(number)
+        most_common_digit = Counter(number).most_common(1)[0]
     return d, sum
 
 
