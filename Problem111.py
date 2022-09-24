@@ -5,13 +5,14 @@ Created on 22-09-2022 21:52
 Problem 111: Primes with runs
 https://projecteuler.net/problem=111
 
-Algoritm description [draft]:
-    1. Found all primes numbers below sqrt(10^10) using Sieve of Eratosthenes
-    2. Define all possible numbers where: 
-        - one digit d occurs n times for n in (8,9,10) and d in (0,1,...,9)
-        - other digits occur 10-n times
-    3. Make a list of all possible combinations of those numbers
-    4. Check which numbers are primes using list of primes from step 1
+Algoritm description:
+    1. Found all primes numbers below sqrt(10^11) using Sieve of Eratosthenes
+    2. Define all 10-digit numbers where one digit d occurs at least 8 times
+    3. Check which numbers are primes using primes from step 1
+    4. Define final result as it is defined in the task:
+        - M(10, d) is the maximum number of repeated digits for a prime where d is the repeated digit
+        - S(10, d) is the sum of all primes that have M(10, d) repeated digits
+        - Result is the sum of S(10, d) for all 0 ≤ d ≤ 9
 """
 
 # import libraries
@@ -97,7 +98,7 @@ def solution():
     digits_quantity_sum_dict = define_results(possible_primes)
     result = 0
     for digit, quantity_sum in digits_quantity_sum_dict.items():
-        print(f'Digit: {digit}, quantity: {quantity_sum[0]}, sum: {quantity_sum[1]}')
+        print(f"Digit: {digit}, quantity: {quantity_sum[0]}, sum: {quantity_sum[1]}")
         result += quantity_sum[1]
     print("Result: {}".format(result))
 
