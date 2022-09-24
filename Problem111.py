@@ -17,7 +17,7 @@ Algoritm description [draft]:
 # import libraries
 import time
 from collections import defaultdict, Counter
-from itertools import permutations, combinations
+from itertools import permutations, combinations, combinations_with_replacement
 
 n = 10
 N = 10**11
@@ -38,7 +38,7 @@ def sieve_of_eratosthenes(n):
 def define_numbers():
     all_possible_numbers = []
     template_number = ['x'] * (n-2) + ['y'] * 2
-    double_number_combs = list(combinations(range(0,10), 2))
+    double_number_combs = list(combinations_with_replacement(range(0,10), 2))
     # define all permutations of template_number
     for permutation in set(permutations(template_number)):
         permutation = ''.join(permutation)
@@ -46,32 +46,37 @@ def define_numbers():
         for d in range(0,10):
             # define all possible numbers
             template_number = permutation.replace('x', str(d))
-            #all_possible_numbers.append([temp_str.replace('y', str(y)) for y in range(10)])
             # insert all combination of double numbers to template_number
             for comb in double_number_combs:
-                for i in range(0, 2):
-                    temp_str = template_number.replace('y', str(comb[i]), 1).replace('y', str(comb[(i+1)%2]), 1)
+                temp_str = template_number.replace('y', str(comb[0]), 1).replace('y', str(comb[1]), 1)
+                if temp_str[0] != '0':
+                    all_possible_numbers.append(int(temp_str))
+                if comb[0] != comb[1]:
+                    temp_str = template_number.replace('y', str(comb[1]), 1).replace('y', str(comb[0]), 1)
                     if temp_str[0] != '0':
                         all_possible_numbers.append(int(temp_str))
-    return all_possible_numbers
+    return set(all_possible_numbers)
 
 # function to check which numbers are primes
 def check_primes(primes, all_possible_numbers):
     # divide all possible numbers by primes
     for i in range(2, len(primes)):
         if primes[i]:
-            for number in all_possible_numbers:
-                if number % i == 0:
-                    all_possible_numbers.remove(number)
-    return all_possible_numbers
+            all_possible_numbers = [number for number in all_possible_numbers if number % i != 0]
+    return set(all_possible_numbers)
 
 # function to define d (biggest number of occurences fory every digits)
 def define_d_and_sum(possible_primes):
-    digits_sum_dict = defaultdict([int, int])
+    digits_quantity_sum_dict = defaultdict(lambda: [0, 0])
     for number in possible_primes:
-        number = str(number)
-        most_common_digit = Counter(number).most_common(1)[0]
-    return d, sum
+        number_str = str(number)
+        digit, occurency = Counter(number_str).most_common(1)[0]
+        if occurency > digits_quantity_sum_dict[digit][0]:
+            digits_quantity_sum_dict[digit] = [occurency, number]
+        elif occurency == digits_quantity_sum_dict[digit][0]:
+            digits_quantity_sum_dict[digit][1] += number
+    return digits_quantity_sum_dict
+
 
 
 # main solution function
@@ -83,9 +88,19 @@ def solution():
     # check which numbers are primes
     possible_primes = check_primes(primes, all_possible_numbers)
     print(len(possible_primes))
+    digits_quantity_sum_dict = define_d_and_sum(possible_primes)
+    result = 0
+    for digit, quantity_sum in digits_quantity_sum_dict.items():
+        #print(f'Digit: {digit}, quantity: {quantity_sum[0]}, sum: {quantity_sum[1]}')
+        result += quantity_sum[1]
+    print('Result: {}'.format(result))
 
 
 if __name__ == "__main__":
-    #start_time = time.time()
+    start_time = time.time()
     solution()
-    #print("--- %s seconds ---" % (time.time() - start_time))
+    print("--- %s seconds ---" % (time.time() - start_time))
+
+"""
+--- 7.870972633361816 seconds ---
+"""
