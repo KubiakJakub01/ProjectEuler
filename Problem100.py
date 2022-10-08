@@ -39,28 +39,19 @@ def solution():
     
 #solution()
 
-k = 2
-nr = 7
-stala = (k+1)*nr
-rozmiar = 10+k
-inc = 12
-start = 100+nr
-tab1 = [start]
-tab2 = []
-suma1 = 0
-suma2 = 0 
-
-for i in range(1,rozmiar):   
-    tab1.append((tab1[-1]+inc)) 
+import numpy as np
+symbols = ['0', '#']
+def generate_maze(X,Y):
+    rate = 0.25 #the probability of the appearance of a wall
+    temp_maze = np.random.choice(symbols,(X,Y),p=[1-rate,rate])
+    temp_maze[0][0] = '*'
     
-[tab2.append(x+stala) for x in tab1]
-
-suma1 = sum(tab1)
-suma2 = sum(tab2)
-
-print("tab1: {} i suma: {}".format(tab1, suma1))
-print("tab2: {} i suma: {}".format(tab2, suma2))
-print("roznica: {} iloczyn: {}".format(suma2-suma1, rozmiar*stala))
+    maze = []
+    for m in temp_maze:        
+        maze.append(''.join(m))
+    return maze
+    
+generate_maze(5,5)
 
 
     
