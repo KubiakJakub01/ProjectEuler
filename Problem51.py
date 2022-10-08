@@ -1,59 +1,83 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon May 11 19:27:40 2020
+Created on Thu Feb 18 15:44:15 2021
 
 Problem 51: Prime digit replacements
-By replacing the 1st digit of the 2-digit number *3, 
-it turns out that six of the nine possible values: 13, 23, 43, 53, 73, and 83, are all prime.
-By replacing the 3rd and 4th digits of 56**3 with the same digit, 
-this 5-digit number is the first example having seven primes among the ten generated numbers, 
-yielding the family: 56003, 56113, 56333, 56443, 56663, 56773, and 56993. 
-Consequently 56003, being the first member of this family, is the smallest prime with this property.
-Find the smallest prime which, by replacing part of the number (not necessarily adjacent digits) with the same digit, 
-is part of an eight prime value family.
+https://projecteuler.net/problem=51
 
-@author: Admin
+@author: kuba
 """
 
-'''NIE SKONCZONE'''
+import itertools 
+import numpy as np
+import time
 
 def is_prime(n):
-    for i in range(2,int(n**(1/2)+1)):
-        if n%i==0: return False
-    
+    for i in range(2, int(n**(1/2))+1):
+        if n%i == 0:
+            return False
     return True
 
 
-def generate_prime_number(start, end):
-    prime_numbers = []
-    for num in range(start, end, 2):
-        if is_prime(num): 
-            prime_numbers.append(num)
-        
-    return prime_numbers
-
-
 def solution():
-    prime_numbers = []
-    
-    prime_numbers = generate_prime_number(101,1000)
-    k = 3
-    
-    position = []
-    for x in range(0,k):
-        p = [str(num)[x] for num in prime_numbers]
-        position.append(p)
-        
-    
-    for j, tab in enumerate(position):  
-        #print(tab)
-        new_tab = [int(x) for x in tab]
-        for i in range(0,10):
-            count = new_tab.count(i)
-            print('i= {} count= {}'.format(i,count))
-            if count == 8:
-                print('liczba: {} miejsce: {}'.format(i,j+1))
-                
+    prime_list = []
+    SEARCHING_LEN = 8
+    space = np.arange(0,6)
+    combination_list = []
 
     
+     
+    for r in space[1:-1]:
+        temp_comb = [x for x in itertools.combinations(space, r+1)]
+        combination_list += temp_comb
+            
+    
+        
+    for i in range(10**5+1, 10**6,2):
+        if is_prime(i):
+            prime_list.append(str(i))
+            
+    const_num = []    
+    for comb in combination_list:
+        temp_list = {}
+        #print('comb: {}'.format(comb))
+        for i, num in enumerate(prime_list):
+            #print(num)
+            temp_val = [num[j] for j in comb]
+            temp_val = ''.join(temp_val)
+            temp_list[i] = temp_val
+        
+        const_num.append(temp_list)
+            
+    for i, nums in enumerate(const_num):
+        previous_num = []
+        current_comb = list(set(space) - set(combination_list[i]))
+        for val in nums.values():
+            count = 0
+            family_number = []
+            if previous_num.count(val) == 0:
+                previous_num.append(val)
+                current_prime = [prime_list[key] for key, x in nums.items() if x==val]
+                #print(current_prime)
+                if len(current_prime)>=SEARCHING_LEN:
+                    #print('Prime list: {}'.format(current_prime))
+                    for prime in current_prime:
+                        temp_prime = [prime[x] for x in current_comb]
+                        if len(set(temp_prime)) == 1:
+                            count += 1
+                            family_number.append(prime)
+                    #print(count)
+                    if count == SEARCHING_LEN:
+                        print('comb: {}'.format(current_comb))
+                        print(family_number)
+                        return 0
+                
+                
+    
+    
+start_time = time.time()
 solution()
+print("--- %s seconds ---" % (time.time() - start_time))
+
+
+
