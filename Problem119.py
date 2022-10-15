@@ -7,7 +7,14 @@ https://projecteuler.net/problem=119
 
 @author: Jakub
 
-Algoritm description [Draft]:
+Algoritm description:
+    1. Loop through numbers from 2 to 100
+    2. Loop through powers from 2 to 15
+    3. Calculate number to power
+    4. Check if sum of digits is equal to number
+    5. If yes, add number to list
+    6. Sort list and return 30th element
+    7. END
 """
 
 # import libraries
