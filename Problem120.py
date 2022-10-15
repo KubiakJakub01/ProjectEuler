@@ -8,6 +8,10 @@ https://projecteuler.net/problem=120
 @author: Jakub
 
 Algoritm description:
+    1. Loop through numbers from 3 to 1000
+    2. If number is even, add (a-2)*a to result
+    3. If number is odd, add (a-1)*a to result
+    4. END
 """
 
 # import libraries
@@ -27,3 +31,7 @@ if __name__ == "__main__":
     start_time = time.time()
     print(solution())
     print(f"Solution found in {time.time() - start_time} seconds")
+
+"""
+Solution found in 0.0001780986785888672 seconds
+"""
