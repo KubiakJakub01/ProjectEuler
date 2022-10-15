@@ -22,10 +22,11 @@ def solution():
     result = 0
     for a in range(3, 1001):
         if a % 2 == 0:
-            result += (a-2) * a
+            result += (a - 2) * a
         else:
-            result += (a-1) * a
+            result += (a - 1) * a
     return result
+
 
 if __name__ == "__main__":
     start_time = time.time()
