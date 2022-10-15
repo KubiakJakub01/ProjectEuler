@@ -11,14 +11,19 @@ Algoritm description:
 """
 
 # import libraries
-from math import remainder
 import time
 
 # main solution function
 def solution():
-    pass
+    result = 0
+    for a in range(3, 1001):
+        if a % 2 == 0:
+            result += (a-2) * a
+        else:
+            result += (a-1) * a
+    return result
 
 if __name__ == "__main__":
-    # start_time = time.time()
-    solution()
-    # print(f"Solution found in {time.time() - start_time} seconds")
+    start_time = time.time()
+    print(solution())
+    print(f"Solution found in {time.time() - start_time} seconds")
