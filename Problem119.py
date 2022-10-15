@@ -19,21 +19,19 @@ Algoritm description:
 
 # import libraries
 import time
-import math
 
 # main solution function
 def solution():
-    n = 1
+    power_number = 1
     number_list = []
     # for every number in (2, 50) generate power if (2, 10)
     for i in range(2, 100):
         for j in range(2, 15):
-            n = i**j
-            if sum([int(x) for x in str(n)]) == i:
-                number_list.append(n)
+            power_number = i**j
+            if sum([int(x) for x in str(power_number)]) == i:
+                number_list.append(power_number)
     return sorted(number_list)[29]
-                
-                
+
 
 if __name__ == "__main__":
     start_time = time.time()
