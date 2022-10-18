@@ -11,26 +11,31 @@ Algoritm description [draft]:
 import time
 from collections import defaultdict
 
+NUMBER_RANGE = set(range(1,201))
+
 # main solution function
-def solution():
+def solution() -> int:
     # init variables
-    level_dict = defaultdict(list)
-    level_dict[0] = [1]
-    level_dict[1] = [2]
+    result = 1
+    level_dict = defaultdict(set)
+    level_dict[0] = set([1])
+    level_dict[1] = set([2])
     nubmers_list = [1, 2]
+    previosu_layers_number_list = [1]
     # main loop
-    for i in range(10):
-        current_level = len(level_dict) + 1
-        # numbers in current level are sum of number in previous level and number in levels before previous
-        for number in level_dict[current_level - 1]:
-            new_numbers = [x + number for level_number in range(0, current_level - 1) for x in level_dict[level_number]  if x + number not in nubmers_list]
-            print(new_numbers)
-            level_dict[current_level].extend(new_numbers)
-            nubmers_list += new_numbers
-        print(current_level, level_dict[current_level])
-    # final result is sum of level_number*number_of_numbers_in_level
-    result = sum([level_number*len(level_dict[level_number]) for level_number in level_dict])
-    #print(level_dict)
+    while len(nubmers_list) < 200:
+        current_level_number_list = level_dict[len(level_dict)-1]
+        # define new level by making all possible combinations of previous layers with current level
+        next_level_number_list = set([x+y for x in current_level_number_list for y in previosu_layers_number_list+[x] if x+y not in nubmers_list and x+y <= 200]) 
+        # add new level to dictionary
+        level_dict[len(level_dict)] = next_level_number_list
+        # update previous layers list and numbers list
+        previosu_layers_number_list += current_level_number_list
+        nubmers_list += next_level_number_list
+        # print(f"Level {len(level_dict)}: {next_level_number_list} number_list: {nubmers_list} previous_layers: {previosu_layers_number_list}")
+        # result is sum of level*len(level)
+        result += len(level_dict)*len(next_level_number_list)
+    print(level_dict)
     return result
 
 if __name__ == "__main__":
