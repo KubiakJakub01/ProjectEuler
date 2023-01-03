@@ -10,9 +10,18 @@ https://projecteuler.net/problem=125
 # import libraries
 import time
 
+N = 10**8
 
 def solution():
-    pass
+    # Create a list of powers of 2 where the sum of all numbers is less than N
+    power_list = []
+    suma = 0
+    i = 1
+    while suma < N:
+        power = i**2
+        i += 1
+        suma += power
+        power_list.append(power)
 
 if __name__ == "__main__":
     start_time = time.time()
