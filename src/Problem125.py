@@ -5,6 +5,15 @@ Problem 125: Palindromic sums
 https://projecteuler.net/problem=125
 
 @author: KubiakJakub01
+
+Algorithm description:
+    1. Create a list of powers of 2 where the sum of last two numbers is less than N
+    2. Create nested loop where the first loop iterates over the list of powers of 2 
+        and the second loop iterates over the list of powers of 2 starting from the first loop index
+    3. Check if the sum of all numbers is palindromic
+    4. Remove duplicates
+    5. Print the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares
+    6. END
 """
 
 # import libraries
