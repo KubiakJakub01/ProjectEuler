@@ -7,6 +7,7 @@ My struggles with https://projecteuler.net/
 ## 2023:
 
 ### January:
+- [Problem127](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem127.py) Radical of a product :work_in_progress:
 - [Problem125](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem125.py) Palindromic sums :white_check_mark:
 - [Problem124](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem124.py) Ordered radicals :white_check_mark:
 ## 2022:
