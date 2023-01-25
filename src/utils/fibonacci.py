@@ -26,3 +26,7 @@ def fib(n: int) -> int:
         for _ in range(n - 1):
             a, b = b, a + b
         return b
+
+if __name__ == "__main__":
+    n = 10
+    print(f"The {n}th Fibonacci number is {fib(n)}")
