@@ -30,21 +30,21 @@ Problem 25: 1000-digit Fibonacci number
 """
 
 
-'''def fib(n):
+"""def fib(n):
     if n == 0 or n == 1: return 1
-    else: return fib(n-2)+fib(n-1)'''
-    
+    else: return fib(n-2)+fib(n-1)"""
+
 
 def solution():
-    fibo_tab = [1,1]
-    
-    for i in range(0,10000):
-        n = fibo_tab[-1]+fibo_tab[-2]
-        fibo_tab.append(n)
-        
-        if len(str(n))==1000:
-            print('fib_{} {} len: {}'.format(len(fibo_tab),n,1000))
-            break
-        
-solution()
+    fibo_tab = [1, 1]
 
+    for i in range(0, 10000):
+        n = fibo_tab[-1] + fibo_tab[-2]
+        fibo_tab.append(n)
+
+        if len(str(n)) == 1000:
+            print("fib_{} {} len: {}".format(len(fibo_tab), n, 1000))
+            break
+
+
+solution()

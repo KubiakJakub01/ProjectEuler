@@ -11,14 +11,17 @@ How many n-digit positive integers exist which are also an nth power?
 @author: Admin
 """
 
+
 def solution():
     tab = []
-    for i in range(1,22):
-        for j in range(1,10):
-            potega = pow(j,i)
-            if len(str(potega)) == i: tab.append(potega)
-                
-    #print(tab)
-    print('wynik: {}'.format(len(tab)))
-    
+    for i in range(1, 22):
+        for j in range(1, 10):
+            potega = pow(j, i)
+            if len(str(potega)) == i:
+                tab.append(potega)
+
+    # print(tab)
+    print("wynik: {}".format(len(tab)))
+
+
 solution()

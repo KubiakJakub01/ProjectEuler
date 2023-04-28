@@ -19,9 +19,11 @@ def is_prime(n):
         k += 2
     return True
 
+
 def enumerate_primes(n):
     """Return a list of prime numbers less than n"""
     return [x for x in range(n) if is_prime(x)]
+
 
 def eratos(n):
     """Return a list of prime numbers less than n"""
@@ -47,6 +49,7 @@ def eratos(n):
         p += 1
     return [p for p in range(2, n) if prime[p]]
 
+
 def prime_factors(n):
     """Return a list of prime factors of n"""
     # https://en.wikipedia.org/wiki/Prime_factor
@@ -64,6 +67,7 @@ def prime_factors(n):
             return [k] + prime_factors(n // k)
         k += 2
     return [n]
+
 
 def get_rad(n):
     """Return the rad of n"""

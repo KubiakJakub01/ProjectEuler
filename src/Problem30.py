@@ -17,32 +17,29 @@ Find the sum of all the numbers that can be written as the sum of fifth powers o
 """
 
 
-
-
-
 def solution():
-    
+
     wynik = 0
     numbers = []
-    power_lib = [pow(x,5) for x in range(0,10)]
-    zakres = pow(10,5)*3
-    
-    for i in range(10,zakres):
+    power_lib = [pow(x, 5) for x in range(0, 10)]
+    zakres = pow(10, 5) * 3
+
+    for i in range(10, zakres):
         n = sorted(str(i))
         if numbers.count(n) == 0:
             numbers.append(n)
-        
-    #print(numbers)
-            
+
+    # print(numbers)
+
     for num in numbers:
-        #print(num)
+        # print(num)
         suma = [power_lib[int(y)] for y in num]
         liczba = sorted(str(sum(suma)))
         if liczba == num:
             wynik += sum(suma)
-            
+
     print(wynik)
-    #print(numbers)
-    
-           
+    # print(numbers)
+
+
 solution()

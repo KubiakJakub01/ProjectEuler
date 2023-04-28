@@ -43,6 +43,7 @@ def is_solved(sudoku):
         return False
     return True
 
+
 # function to redetermine available numbers for each cell
 def redetermine_available_numbers(sudoku, available_numbers, i, j):
     number = sudoku[i, j]
@@ -59,6 +60,7 @@ def redetermine_available_numbers(sudoku, available_numbers, i, j):
             if square[x, y] == 0:
                 available_numbers[3 * (i // 3) + x, 3 * (j // 3) + y, number - 1] = 0
     return available_numbers
+
 
 # function to determine available numbers for each cell
 def determine_available_numbers_for_cell(sudoku, i, j):
@@ -96,7 +98,9 @@ def fill_cells_with_one_available_number(sudoku, available_numbers):
                 sudoku[i, j] = available_numbers[i, j, :][
                     available_numbers[i, j, :] != 0
                 ]
-                available_numbers = redetermine_available_numbers(sudoku, available_numbers, i, j)
+                available_numbers = redetermine_available_numbers(
+                    sudoku, available_numbers, i, j
+                )
     return sudoku, available_numbers
 
 
@@ -131,7 +135,9 @@ def solve_sudoku(sudoku, available_numbers):
 
     # check if sudoku is solved or is any aviable number
     while min_number_of_available_numbers == 1:
-        sudoku, available_numbers = fill_cells_with_one_available_number(sudoku, available_numbers)
+        sudoku, available_numbers = fill_cells_with_one_available_number(
+            sudoku, available_numbers
+        )
         if is_solved(sudoku):
             return sudoku
         else:
@@ -166,9 +172,9 @@ def solution():
     # 3. Solve the sudoku:
     for i, sudoku in enumerate(sudoku_array):
         sudoku = solve_sudoku(sudoku, determine_available_numbers(sudoku))
-        '''print("##############################################")
+        """print("##############################################")
         print(f"solved sudoku nr: {i}\n{sudoku}")
-        print("##############################################")'''
+        print("##############################################")"""
         result += sudoku[0, 0] * 100 + sudoku[0, 1] * 10 + sudoku[0, 2]
     # 4. Return the sum of the 3-digit numbers found in the top left corner of each solved sudoku
     return result
@@ -179,6 +185,6 @@ if __name__ == "__main__":
     print(solution())
     print("--- %s seconds ---" % (time.time() - start_time))
 
-'''
+"""
 --- 1.5330686569213867 seconds ---
-'''
+"""

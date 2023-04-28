@@ -9,18 +9,18 @@ https://projecteuler.net/problem=91
 """
 
 
-
 import math
 
+
 def solution():
-    size = 50;
-    result = size*size*3;
-    for x in range(1, size+1):
-        for y in range(1,size+1):
-            fact = math.gcd(x, y);
-            result += min(int(y*fact /x), int((size - x)*fact /y)) * 2;
-            
+    size = 50
+    result = size * size * 3
+    for x in range(1, size + 1):
+        for y in range(1, size + 1):
+            fact = math.gcd(x, y)
+            result += min(int(y * fact / x), int((size - x) * fact / y)) * 2
+
     print(result)
-    
+
 
 solution()

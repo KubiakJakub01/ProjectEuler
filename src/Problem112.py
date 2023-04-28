@@ -8,7 +8,7 @@ https://projecteuler.net/problem=112
 @author: kuba
 """
 
-'''
+"""
 SOLUTION IDEA:
 Krok 1:
     Wyznaczenie wszystkich 'non bouncy numbers'(nbn) mniejszych od danego N (N jest potęgą 10) 
@@ -30,57 +30,59 @@ Output:
 
 Stopień trudnosci: 15%
     
-'''
+"""
 
 import time
+
 
 def solution():
     percent = 0.99
     current_percent = 0
     N = 100
-    
-    non_bouncy_nums = list(range(1,10))
+
+    non_bouncy_nums = list(range(1, 10))
     increasing_nums = non_bouncy_nums.copy()
     decreasing_nums = non_bouncy_nums.copy()
-    
+
     while current_percent < percent:
         temp_nums = []
         for n in increasing_nums:
-            for i in range(n%10, 10):
-                num = n*10+i
+            for i in range(n % 10, 10):
+                num = n * 10 + i
                 temp_nums.append(num)
-        
+
         increasing_nums = temp_nums
         non_bouncy_nums += temp_nums
-        
+
         temp_nums = []
         for n in decreasing_nums:
-            for i in range(n%10, -1, -1):
-                num = n*10+i
+            for i in range(n % 10, -1, -1):
+                num = n * 10 + i
                 temp_nums.append(num)
-                
+
         decreasing_nums = temp_nums
         non_bouncy_nums += temp_nums
         non_bouncy_nums = list(set(non_bouncy_nums))
-        current_percent = 1-(len(non_bouncy_nums)/N)
+        current_percent = 1 - (len(non_bouncy_nums) / N)
         N *= 10
-    
+
     l = 0
     non_bouncy_nums = sorted(non_bouncy_nums)
     prev_num = 0
     for i in non_bouncy_nums:
         l += 1
-        current_percent = 1-(l/i) 
+        current_percent = 1 - (l / i)
         if current_percent >= percent:
             l -= 1
             for n in range(prev_num, i):
-                current_percent = 1-(l/n)
+                current_percent = 1 - (l / n)
                 if current_percent >= percent:
-                    print('per: {} n: {}'.format(current_percent, n)) 
+                    print("per: {} n: {}".format(current_percent, n))
                     break
-            break            
+            break
         prev_num = i
-        
+
+
 start_time = time.time()
 solution()
 print("--- %s seconds ---" % (time.time() - start_time))

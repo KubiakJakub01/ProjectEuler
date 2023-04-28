@@ -14,39 +14,42 @@ for which φ(n) is a permutation of n and the ratio n/φ(n) produces a minimum.
 
 import math
 
+
 def solution():
     min_ = math.inf
     n = 0
-    #for i in range(pow(10,5), pow(10,6)):
-    for i in range(pow(10,6),pow(10,7)):
+    # for i in range(pow(10,5), pow(10,6)):
+    for i in range(pow(10, 6), pow(10, 7)):
         produce = int(phi(i))
-        #print('produce: {}'.format(produce))
-        if sorted(str(i)) == sorted(str(produce)):   
-            print('Trueee')
-            if min_ > i/produce:
-                min_ = i/produce
+        # print('produce: {}'.format(produce))
+        if sorted(str(i)) == sorted(str(produce)):
+            print("Trueee")
+            if min_ > i / produce:
+                min_ = i / produce
                 n = i
     print("Wynik: {} dla: {}".format(min_, n))
-    
-    
+
+
 def phi(n=1):
     if is_prime(n):
-        return n-1
-    
+        return n - 1
+
     result = n
-    for i in range(2, int(math.sqrt(n)+1)):
-        if n%i==0:
-            while n%i==0:
+    for i in range(2, int(math.sqrt(n) + 1)):
+        if n % i == 0:
+            while n % i == 0:
                 n /= i
-            result -= result/i
+            result -= result / i
     if n > 1:
         result -= result / n
     return result
-    
+
+
 def is_prime(number):
-    for i in range(2, int(math.sqrt(number))+1):
-        if number%i==0:
+    for i in range(2, int(math.sqrt(number)) + 1):
+        if number % i == 0:
             return False
     return True
+
 
 solution()

@@ -2,12 +2,13 @@
 Module for Fibonacci sequence
 """
 
+
 def fib(n: int) -> int:
     """Return the nth Fibonacci number:
-    
+
     Args:
         n (int): The index of the Fibonacci number to return
-    
+
     Returns:
         int: The nth Fibonacci number"""
     if n < 0:
@@ -26,6 +27,7 @@ def fib(n: int) -> int:
         for _ in range(n - 1):
             a, b = b, a + b
         return b
+
 
 if __name__ == "__main__":
     n = 10

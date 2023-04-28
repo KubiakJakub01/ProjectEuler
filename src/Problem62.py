@@ -8,20 +8,21 @@ which are also cube.
 Find the smallest cube for which exactly five permutations of its digits are cube.
 """
 
+
 def solution():
-    #tab = [2]
+    # tab = [2]
     cube_list = []
     flag = True
     number = 1
     while flag:
         cube = pow(number, 3)
-        number+=1
-        #print('Cube: {}'.format(cube))
+        number += 1
+        # print('Cube: {}'.format(cube))
         if cube_list:
-            #print('Wielkosc cube_list: {}'.format(len(cube_list)))
+            # print('Wielkosc cube_list: {}'.format(len(cube_list)))
             for i in range(0, len(cube_list)):
                 if sorted(str(cube)) == sorted(str(cube_list[i][0])):
-                    cube_list[i][1]+=1
+                    cube_list[i][1] += 1
                     print("Cos sie ruszylo {}".format(cube_list[i][1]))
                     if cube_list[i][1] == 5:
                         print("Wynik: {}".format(cube_list[i][0]))
@@ -30,12 +31,12 @@ def solution():
                     break
             else:
                 tab = [cube, 1]
-                #print('Cube: {}'.format(cube))
+                # print('Cube: {}'.format(cube))
                 cube_list.append(tab)
         else:
-            #print("1 iteracja")
+            # print("1 iteracja")
             tab = [cube, 1]
             cube_list.append(tab)
-        
+
+
 solution()
-        

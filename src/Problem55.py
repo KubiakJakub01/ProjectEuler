@@ -21,19 +21,22 @@ How many Lychrel numbers are there below ten-thousand?
 NOTE: Wording was modified slightly on 24 April 2007 to emphasise the theoretical nature of Lychrel numbers.
 """
 
+
 def solution():
     wynik = 0
     for i in range(1, 10000):
-        for j in range(1,50):
+        for j in range(1, 50):
             i += revers(i)
             if i == revers(i):
                 break
         else:
             wynik += 1
     print("Wynik: {}".format(wynik))
-        
+
+
 def revers(number):
     s = str(number)
-    return int (s[::-1])
+    return int(s[::-1])
+
 
 solution()

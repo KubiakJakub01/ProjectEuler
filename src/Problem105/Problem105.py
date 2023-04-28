@@ -8,7 +8,7 @@ https://projecteuler.net/problem=105
 @author: kuba
 """
 
-'''
+"""
 SOLUTION IDEA:
 Krok 1:
     Wczytanie danych do listy w postaci: każdy set to osobna lista intów
@@ -43,7 +43,7 @@ Output:
 
 Stopień trudnosci: 45%
 
-'''
+"""
 
 from itertools import combinations
 from math import floor
@@ -51,58 +51,59 @@ import time
 
 sets = []
 temp_sets = []
-with open('sets.txt') as file:
+with open("sets.txt") as file:
     temp_sets = file.readlines()
-    
-temp_sets = [x.strip().split(',') for x in temp_sets]
+
+temp_sets = [x.strip().split(",") for x in temp_sets]
 
 for s in temp_sets:
     sets.append(sorted([int(x) for x in s]))
 
 temp_sets.clear()
 
+
 def solution():
     result = 0
     combination_dict = {}
-    for n in range(7,13):
+    for n in range(7, 13):
         comb = []
-        for i in range(1,n):
+        for i in range(1, n):
             comb += list(combinations(range(n), i))
         combination_dict[n] = comb
-    
+
     for A in sets:
         flaga = True
         comb = combination_dict[len(A)]
         sumy = []
-        
+
         for c in comb:
             suma = sum([A[x] for x in c])
             if sumy.count(suma):
                 flaga = False
-                break                
+                break
             sumy.append(suma)
-            
+
         if flaga:
             index = 0
             flaga_2 = True
-            
+
             A = sorted(A)
-            if len(A)%2:
-                index = floor(len(A)/2)+1
+            if len(A) % 2:
+                index = floor(len(A) / 2) + 1
             else:
-                index = floor(len(A)/2)
-            
+                index = floor(len(A) / 2)
+
             for i in range(1, index):
-                if sum(A[:i+1]) <= sum(A[-i:]):
+                if sum(A[: i + 1]) <= sum(A[-i:]):
                     flaga_2 = False
                     break
             if flaga_2:
-                #print("Wynik: {}".format(A))
+                # print("Wynik: {}".format(A))
                 result += sum(A)
-                
-    print('Wynik: {}'.format(result))
-  
+
+    print("Wynik: {}".format(result))
+
+
 start_time = time.time()
 solution()
 print("--- %s seconds ---" % (time.time() - start_time))
-
