@@ -46,15 +46,22 @@ def group_numbers(int_nums):
 
 def valid_grouped_nums(grouped_nums):
     def _valid_group(group):
-        if len(group) > 3:
+        group_len_list = list((map(len, group)))
+        group_num_with_frequency = {x: group.count(x) for x in group}
+        group_string = "".join(group)
+        if len(group) == 1:
             return True
-        else:
+        if group_string.count("5") > 1:
             return False
-    valid_grouped_nums = []
-    for group in grouped_nums:
-        if len(group) > 3:
-            valid_grouped_nums.append(group)
-    return valid_grouped_nums
+        if max(group_len_list) == min(group_len_list):
+            # Get the most frequent element
+            if max(group_num_with_frequency.values()) >= 4 and max(group_num_with_frequency.keys()) != "1000":
+                return False
+            return True
+        if group_len_list[-2] == str(min(group_len_list)) and group_string.count(min(group_len_list)) == 1:
+            return True
+        return True
+    return list(map(_valid_group, grouped_nums))
 
 
 def int_to_roman(int_num):
@@ -72,7 +79,7 @@ def solution():
     int_nums_list = list(map(roman_to_int, roman_nums))
     grouped_int_nums_list = list(map(group_numbers, int_nums_list))
     for numer, grouped_int_nums in zip(roman_nums, grouped_int_nums_list):
-        print(f"orginal: {numer} grouped: {grouped_int_nums}")
+        print(f"orginal: {numer} grouped: {grouped_int_nums} valid: {valid_grouped_nums(grouped_int_nums)}")
     # for roman, int_num, converted_roman in zip(roman_nums, int_nums_sum_list, converted_roman_nums):
     #     print(f"orginal: {roman} int: {int_num} converted: {converted_roman}")
 
