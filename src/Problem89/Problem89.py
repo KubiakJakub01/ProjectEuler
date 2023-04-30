@@ -73,6 +73,12 @@ def int_to_roman(int_num):
     return roman_num
 
 
+def get_saved_chars(roman_num):
+    int_num = int("".join(roman_num))
+    converted_roman_num = int_to_roman(int_num)
+    return len(roman_num) - len(converted_roman_num)
+
+
 def solution():
     file_path = Path(__file__).parent / "roman.txt"
     roman_nums = load_file(file_path)
@@ -80,8 +86,6 @@ def solution():
     grouped_int_nums_list = list(map(group_numbers, int_nums_list))
     for numer, grouped_int_nums in zip(roman_nums, grouped_int_nums_list):
         print(f"orginal: {numer} grouped: {grouped_int_nums} valid: {valid_grouped_nums(grouped_int_nums)}")
-    # for roman, int_num, converted_roman in zip(roman_nums, int_nums_sum_list, converted_roman_nums):
-    #     print(f"orginal: {roman} int: {int_num} converted: {converted_roman}")
 
 
 if __name__ == "__main__":
