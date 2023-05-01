@@ -38,9 +38,9 @@ def group_numbers(int_nums):
     for element in sorted(set(len_int_nums), reverse=True):
         if element in len_int_nums:
             last_element = len(len_int_nums) - 1 - len_int_nums[::-1].index(element)
-            grouped_nums.append(int_nums[:last_element + 1])
-            int_nums = int_nums[last_element + 1:]
-            len_int_nums = len_int_nums[last_element + 1:]
+            grouped_nums.append(int_nums[: last_element + 1])
+            int_nums = int_nums[last_element + 1 :]
+            len_int_nums = len_int_nums[last_element + 1 :]
     return grouped_nums
 
 
@@ -55,19 +55,26 @@ def valid_grouped_nums(grouped_nums):
             return False
         if max(group_len_list) == min(group_len_list):
             # Get the most frequent element
-            if max(group_num_with_frequency.values()) >= 4 and max(group_num_with_frequency.keys()) != "1000":
+            if (
+                max(group_num_with_frequency.values()) >= 4
+                and max(group_num_with_frequency.keys()) != "1000"
+            ):
                 return False
             return True
-        if group_len_list[-2] == str(min(group_len_list)) and group_string.count(min(group_len_list)) == 1:
+        if (
+            group_len_list[-2] == str(min(group_len_list))
+            and group_string.count(min(group_len_list)) == 1
+        ):
             return True
         return True
+
     return list(map(_valid_group, grouped_nums))
 
 
 def int_to_roman(int_num):
     roman_num = ""
     for key, value in roman_dictonary.items():
-        while int_num >= value: 
+        while int_num >= value:
             roman_num += key
             int_num -= value
     return roman_num
@@ -89,7 +96,9 @@ def solution():
     int_nums_list = list(map(roman_to_int, roman_nums))
     grouped_int_nums_list = list(map(group_numbers, int_nums_list))
     for numer, grouped_int_nums in zip(roman_nums, grouped_int_nums_list):
-        print(f"orginal: {numer} grouped: {grouped_int_nums} valid: {valid_grouped_nums(grouped_int_nums)}")
+        print(
+            f"orginal: {numer} grouped: {grouped_int_nums} valid: {valid_grouped_nums(grouped_int_nums)}"
+        )
 
 
 if __name__ == "__main__":
