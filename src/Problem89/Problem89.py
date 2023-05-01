@@ -20,11 +20,23 @@ replacements = [
 ]
 
 
+def load_file(file_path):
+    with open(file_path, "r") as f:
+        return f.read().splitlines()
+
 def solution():
-    pass
+    file_path = Path(__file__).parent / "roman.txt"
+    roman_nums = load_file(file_path)
+    saved_chars = 0
+    for roman_num in roman_nums:
+        saved_chars += len(roman_num)
+        for old, new in replacements:
+            roman_num = roman_num.replace(old, new)
+        saved_chars -= len(roman_num)
+    return saved_chars
+
 
 if __name__ == "__main__":
     start_time = time.time()
-    solution()
     print("Solution:", solution())
     print("Time:", time.time() - start_time)
