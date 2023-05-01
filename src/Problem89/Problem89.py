@@ -24,6 +24,7 @@ def load_file(file_path):
     with open(file_path, "r") as f:
         return f.read().splitlines()
 
+
 def solution():
     file_path = Path(__file__).parent / "roman.txt"
     roman_nums = load_file(file_path)
