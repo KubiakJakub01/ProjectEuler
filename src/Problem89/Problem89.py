@@ -79,6 +79,10 @@ def get_saved_chars(roman_num):
     return len(roman_num) - len(converted_roman_num)
 
 
+def get_saved_chars_list(grouped_int_nums):
+    return list(map(get_saved_chars, grouped_int_nums))
+
+
 def solution():
     file_path = Path(__file__).parent / "roman.txt"
     roman_nums = load_file(file_path)
