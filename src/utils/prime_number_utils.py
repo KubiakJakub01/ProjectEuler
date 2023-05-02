@@ -75,3 +75,14 @@ def get_rad(n):
     # https://www.geeksforgeeks.org/radical-of-an-integer/
     # https://www.youtube.com/watch?v=3QnQOYxqRqg
     return np.prod(list(set(prime_factors(n))))
+
+
+def get_rad_dict(n):
+    """Return a dictionary of rad values for all numbers less than n"""
+    # https://en.wikipedia.org/wiki/Radical_of_an_integer
+    # https://www.geeksforgeeks.org/radical-of-an-integer/
+    # https://www.youtube.com/watch?v=3QnQOYxqRqg
+    rad_dict = {1: 1}
+    for i in range(2, n):
+        rad_dict[i] = get_rad(i)
+    return rad_dict
