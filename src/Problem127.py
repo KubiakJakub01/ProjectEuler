@@ -9,7 +9,6 @@ author: KubiakJakub01
 
 # import libraries
 import time
-
 # import default dictionary
 from collections import defaultdict
 
@@ -66,7 +65,6 @@ def solution():
             # check if sum of relatively prime number and current number is in relatively prime list
             c = number + relatively_prime_number
             if c in relatively_prime_list:
-                # print(f"before 4 condition: {number}, {relatively_prime_number}, {c}")
                 multiplication = (
                     prime_factor_rad[1]
                     * number_prime_factor_rad_dict[relatively_prime_number][1]
