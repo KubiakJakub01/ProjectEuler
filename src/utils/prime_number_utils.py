@@ -86,3 +86,14 @@ def get_rad_dict(n):
     for i in range(2, n):
         rad_dict[i] = get_rad(i)
     return rad_dict
+
+
+def get_rad_list(n):
+    """Return a list of rad values for all numbers less than n"""
+    # https://en.wikipedia.org/wiki/Radical_of_an_integer
+    # https://www.geeksforgeeks.org/radical-of-an-integer/
+    # https://www.youtube.com/watch?v=3QnQOYxqRqg
+    rad_list = [1]
+    for i in range(2, n):
+        rad_list.append(get_rad(i))
+    return rad_list
