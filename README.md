@@ -9,7 +9,7 @@ My struggles with https://projecteuler.net/
 ### May:
 - [Problem89](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem89/Problem89.py) Roman numerals :white_check_mark:
 ### January:
-- [Problem127](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem127.py) Radical of a product :hammer:
+- [Problem127](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem127.py) Radical of a product :white_check_mark:
 - [Problem125](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem125.py) Palindromic sums :white_check_mark:
 - [Problem124](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem124.py) Ordered radicals :white_check_mark:
 ## 2022:
