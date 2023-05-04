@@ -39,5 +39,5 @@ def solution():
 
 if __name__ == "__main__":
     start_time = time.time()
-    solution()
+    print(solution())
     print("--- %s seconds ---" % (time.time() - start_time))
