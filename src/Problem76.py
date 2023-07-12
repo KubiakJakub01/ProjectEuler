@@ -22,25 +22,26 @@ How many different ways can one hundred be written as a sum of at least two posi
 K = 100
 
 
-
 def rek(num, n, ilosc=0):
-    for x in range(1,n+1):
-        new_n = num-x
+    for x in range(1, n + 1):
+        new_n = num - x
         if new_n == 0:
-            #print('+1')
+            # print('+1')
             ilosc += 1
             return ilosc
         else:
-            ilosc = rek(new_n,x, ilosc=ilosc)
-            
+            ilosc = rek(new_n, x, ilosc=ilosc)
+
     return ilosc
+
 
 def solution():
     count = 0
-    for x in range(K-1,0,-1):
-        temp = rek(K-x,x)
+    for x in range(K - 1, 0, -1):
+        temp = rek(K - x, x)
         count += temp
-        
+
     print(count)
-        
+
+
 solution()

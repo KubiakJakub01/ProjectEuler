@@ -10,19 +10,19 @@ https://projecteuler.net/problem=72
 
 import numpy as np
 
+
 def solution():
     limit = 1000000
-    phi = np.arange(0,limit+1)
+    phi = np.arange(0, limit + 1)
     result = 0
-    
-    for i in range(2,limit+1):
+
+    for i in range(2, limit + 1):
         if phi[i] == i:
-            for j in range(i,limit+1, i):
-                phi[j] = phi[j] / i * (i-1)
+            for j in range(i, limit + 1, i):
+                phi[j] = phi[j] / i * (i - 1)
         result += phi[i]
-        
+
     print(result)
 
-        
-solution()
 
+solution()

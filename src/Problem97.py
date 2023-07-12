@@ -12,16 +12,18 @@ https://projecteuler.net/problem=97
 def solution():
     num = 2
     result = 0
-    n = 7830457+1
+    n = 7830457 + 1
     bufor = 10**10
-    #temp_num = num
-    for i in range(2,n):
+    # temp_num = num
+    for i in range(2, n):
         num *= 2
         num %= bufor
-        
-    #print('{}'.format(num))
-    
-    result = num*28433+1
+
+    # print('{}'.format(num))
+
+    result = num * 28433 + 1
     result %= bufor
-    print('wynik: {}'.format(result))
+    print("wynik: {}".format(result))
+
+
 solution()

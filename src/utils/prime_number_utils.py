@@ -19,9 +19,11 @@ def is_prime(n):
         k += 2
     return True
 
+
 def enumerate_primes(n):
     """Return a list of prime numbers less than n"""
     return [x for x in range(n) if is_prime(x)]
+
 
 def eratos(n):
     """Return a list of prime numbers less than n"""
@@ -47,6 +49,7 @@ def eratos(n):
         p += 1
     return [p for p in range(2, n) if prime[p]]
 
+
 def prime_factors(n):
     """Return a list of prime factors of n"""
     # https://en.wikipedia.org/wiki/Prime_factor
@@ -65,9 +68,32 @@ def prime_factors(n):
         k += 2
     return [n]
 
+
 def get_rad(n):
     """Return the rad of n"""
     # https://en.wikipedia.org/wiki/Radical_of_an_integer
     # https://www.geeksforgeeks.org/radical-of-an-integer/
     # https://www.youtube.com/watch?v=3QnQOYxqRqg
     return np.prod(list(set(prime_factors(n))))
+
+
+def get_rad_dict(n):
+    """Return a dictionary of rad values for all numbers less than n"""
+    # https://en.wikipedia.org/wiki/Radical_of_an_integer
+    # https://www.geeksforgeeks.org/radical-of-an-integer/
+    # https://www.youtube.com/watch?v=3QnQOYxqRqg
+    rad_dict = {1: 1}
+    for i in range(2, n):
+        rad_dict[i] = get_rad(i)
+    return rad_dict
+
+
+def get_rad_list(n):
+    """Return a list of rad values for all numbers less than n"""
+    # https://en.wikipedia.org/wiki/Radical_of_an_integer
+    # https://www.geeksforgeeks.org/radical-of-an-integer/
+    # https://www.youtube.com/watch?v=3QnQOYxqRqg
+    rad_list = [1]
+    for i in range(2, n):
+        rad_list.append(get_rad(i))
+    return rad_list

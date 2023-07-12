@@ -28,11 +28,10 @@ How many chains, with a starting number below one million, contain exactly sixty
 """
 
 factorials = [1]
-    
-for i in range(1,10):
-    j = factorials[i-1]*i
+
+for i in range(1, 10):
+    j = factorials[i - 1] * i
     factorials.append(j)
-    
 
 
 def new_factor(num):
@@ -40,23 +39,23 @@ def new_factor(num):
     temp_num = str(num)
     for x in temp_num:
         new_f += factorials[int(x)]
-        
+
     return new_f
 
 
 def solution():
-    
+
     len_tab = []
-    for number in range(1,1000000):
+    for number in range(1, 1000000):
         num_list = [number]
         new_num = new_factor(number)
-        
+
         while new_num not in num_list:
             num_list.append(new_num)
             new_num = new_factor(new_num)
-            
+
         len_tab.append(len(num_list))
     print(len_tab.count(60))
-            
- 
+
+
 solution()

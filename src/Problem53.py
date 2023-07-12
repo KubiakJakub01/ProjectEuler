@@ -17,21 +17,23 @@ How many, not necessarily distinct, values of  nCr, for 1 ≤ n ≤ 100, are gre
 
 """
 
+
 def solution():
-    c = 0   
+    c = 0
     wynik = 0
-    for n in range(1,101):
+    for n in range(1, 101):
         for r in range(1, n):
-            c = silnia(n)/(silnia(r)*silnia(n-r))
+            c = silnia(n) / (silnia(r) * silnia(n - r))
             if c > 1000000:
                 wynik += 1
     print("Wynik: {}".format(wynik))
-        
-        
+
+
 def silnia(number):
     if number == 0:
         return 1
     else:
-        return number * silnia(number -1)
-    
+        return number * silnia(number - 1)
+
+
 solution()

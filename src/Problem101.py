@@ -39,16 +39,16 @@ def polynomial(x, coefficients):
 # main solution function
 def solution():
     b = []
-    BOP = []    
-    for x in range(1, N+1):
+    BOP = []
+    for x in range(1, N + 1):
         coefficients_metrix = []
-        for n in range(1, x+1):
-            coefficients_metrix.append([n ** m for m in range(0, x)])
+        for n in range(1, x + 1):
+            coefficients_metrix.append([n**m for m in range(0, x)])
         a = np.array(coefficients_metrix)
-        b.append(polynomial(x, TEST_COEFFICIENTS))        
+        b.append(polynomial(x, TEST_COEFFICIENTS))
         X = np.linalg.solve(a, b)
         print(X)
-        BOP.append(int(polynomial(x+1, X)))
+        BOP.append(int(polynomial(x + 1, X)))
     return BOP
 
 

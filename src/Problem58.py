@@ -25,32 +25,34 @@ the ratio of primes along both diagonals first falls below 10%?
 
 import math
 
+
 def solution():
     wynik = 1
     wielkosc_spirali = 3
     prime_on_corner = 3
     loop = 1
     corner_number = 5
-    
+
     while wynik > 0.1:
-    #for j in range(0, 3):
-        wielkosc_spirali+=2
-        for i in range(pow(wielkosc_spirali-2, 2)+1, pow(wielkosc_spirali, 2)+1):
-            if loop%(wielkosc_spirali-1)==0:
-                corner_number+=1
+        # for j in range(0, 3):
+        wielkosc_spirali += 2
+        for i in range(pow(wielkosc_spirali - 2, 2) + 1, pow(wielkosc_spirali, 2) + 1):
+            if loop % (wielkosc_spirali - 1) == 0:
+                corner_number += 1
                 if is_prime(i):
-                    #print("Pierwsza na cornerze: {}".format(i))
-                    prime_on_corner+=1
-            loop+=1
-        wynik = prime_on_corner/corner_number
-        loop=1           
+                    # print("Pierwsza na cornerze: {}".format(i))
+                    prime_on_corner += 1
+            loop += 1
+        wynik = prime_on_corner / corner_number
+        loop = 1
     print("Wynik: {} {}".format(wielkosc_spirali, wynik))
-            
+
+
 def is_prime(number):
-    for i in range(2, int(math.sqrt(number))+1):
-        if number%i==0:
+    for i in range(2, int(math.sqrt(number)) + 1):
+        if number % i == 0:
             return False
     return True
-        
+
+
 solution()
-            

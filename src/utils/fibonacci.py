@@ -2,12 +2,13 @@
 Module for Fibonacci sequence
 """
 
+
 def fib(n: int) -> int:
     """Return the nth Fibonacci number:
-    
+
     Args:
         n (int): The index of the Fibonacci number to return
-    
+
     Returns:
         int: The nth Fibonacci number"""
     if n < 0:
@@ -52,6 +53,7 @@ def fib_recursive(n: int, result_dict: dict = None) -> int:
     else:
         result_dict[n] = fib_recursive(n - 1, result_dict) + fib_recursive(n - 2, result_dict)
         return result_dict[n]
+
 
 if __name__ == "__main__":
     n = 10

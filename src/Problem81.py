@@ -11,4 +11,3 @@ https://projecteuler.net/problem=81
 
 def solution():
     pass
-

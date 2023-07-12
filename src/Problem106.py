@@ -10,12 +10,14 @@ https://projecteuler.net/problem=106
 
 from itertools import combinations
 
+
 def solution():
-    n=4
+    n = 4
     comb = []
-    for i in range(1,n):
-            comb += list(combinations(range(n), i))
+    for i in range(1, n):
+        comb += list(combinations(range(n), i))
     print(comb)
     print(len(comb))
-    
+
+
 solution()
