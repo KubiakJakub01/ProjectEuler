@@ -46,3 +46,29 @@ def create_tree_from_list_of_values(values: typing.List[typing.Any]) -> TreeNode
         if 2 * i + 2 < len(tree_node_list):
             tree_node.right = tree_node_list[2 * i + 2]
     return tree_node_list[0]
+
+
+def create_list_of_values_from_tree(root: TreeNode) -> typing.List[typing.Any]:
+    """Create a list of values from a tree
+
+    Args:
+        root (TreeNode): The root of the tree
+
+    Returns:
+        typing.List[typing.Any]: The list of values
+    """
+    if not root:
+        return []
+    value_list = []
+    queue = collections.deque([root])
+    while queue:
+        tree_node = queue.popleft()
+        if tree_node:
+            value_list.append(tree_node.val)
+            queue.append(tree_node.left)
+            queue.append(tree_node.right)
+        else:
+            value_list.append(None)
+    while value_list[-1] is None:
+        value_list.pop()
+    return value_list
