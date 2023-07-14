@@ -1,0 +1,232 @@
+"""Module with binary tree implementation."""
+import collections
+from typing import Any, Optional, Tuple
+
+from node.tree_node import BinaryNode
+
+
+class BinaryTree:
+    """A binary tree implementation."""
+
+    def __init__(self, root: Optional[BinaryNode] = None) -> None:
+        """Initialize a binary tree.
+
+        Args:
+            root (Optional[BinaryNode], optional): The root node of the tree. Defaults to None.
+        """
+        self.root = root
+
+    def __repr__(self) -> str:
+        """Return a string representation of the tree.
+
+        Returns:
+            str: A string representation of the tree.
+        """
+        return f"BinaryTree(root={self.root})"
+
+    def __str__(self) -> str:
+        """Return a string representation of the tree.
+
+        Returns:
+            str: A string representation of the tree.
+        """
+        return f"BinaryTree(root={self.root})"
+
+    def __eq__(self, other: Any) -> bool:
+        """Return whether two trees are equal.
+
+        Args:
+            other (Any): The other tree to compare to.
+
+        Returns:
+            bool: Whether the two trees are equal.
+        """
+        if not isinstance(other, BinaryTree):
+            return False
+        return self.root == other.root
+
+    def __ne__(self, other: Any) -> bool:
+        """Return whether two trees are not equal.
+
+        Args:
+            other (Any): The other tree to compare to.
+
+        Returns:
+            bool: Whether the two trees are not equal.
+        """
+        return not self.__eq__(other)
+
+    def __bool__(self) -> bool:
+        """Return whether the tree is not empty.
+
+        Returns:
+            bool: Whether the tree is not empty.
+        """
+        return bool(self.root)
+
+    def __len__(self) -> int:
+        """Return the number of nodes in the tree.
+
+        Returns:
+            int: The number of nodes in the tree.
+        """
+        return self.size()
+
+    def __contains__(self, item: Any) -> bool:
+        """Return whether the tree contains a node with the given value.
+
+        Args:
+            item (Any): The value to search for.
+
+        Returns:
+            bool: Whether the tree contains a node with the given value.
+        """
+        return self.contains(item)
+
+    def size(self) -> int:
+        """Return the number of nodes in the tree.
+
+        Returns:
+            int: The number of nodes in the tree.
+        """
+        return self._size(self.root)
+
+    def _size(self, node: Optional[BinaryNode], count: int = 0) -> int:
+        """Return the number of nodes in the tree.
+
+        Args:
+            node (Optional): The current node.
+            count (int, optional): The current count. Defaults to 0.
+
+        Returns:
+            int: The number of nodes in the tree.
+        """
+        if node is None:
+            return count
+        count += 1
+        count = self._size(node.left, count)
+        count = self._size(node.right, count)
+        return count
+    
+    def contains(self, item: Any) -> bool:
+        """Return whether the tree contains a node with the given value.
+
+        Args:
+            item (Any): The value to search for.
+
+        Returns:
+            bool: Whether the tree contains a node with the given value.
+        """
+        return self._contains(self.root, item)
+    
+    def _contains(self, node: Optional[BinaryNode], item: Any) -> bool:
+        """Return whether the tree contains a node with the given value.
+
+        Args:
+            node (Optional): The current node.
+            item (Any): The value to search for.
+
+        Returns:
+            bool: Whether the tree contains a node with the given value.
+        """
+        if node is None:
+            return False
+        if node.value == item:
+            return True
+        return self._contains(node.left, item) or self._contains(node.right, item)
+    
+    def height(self) -> int:
+        """Return the height of the tree.
+
+        Returns:
+            int: The height of the tree.
+        """
+        return self._height(self.root)
+    
+    def _height(self, node: Optional[BinaryNode]) -> int:
+        """Return the height of the tree.
+
+        Args:
+            node (Optional): The current node.
+
+        Returns:
+            int: The height of the tree.
+        """
+        if node is None:
+            return 0
+        return 1 + max(self._height(node.left), self._height(node.right))
+    
+    def is_balanced(self) -> bool:
+        """Return whether the tree is balanced.
+
+        Returns:
+            bool: Whether the tree is balanced.
+        """
+        return self._is_balanced(self.root)
+    
+    def _is_balanced(self, node: Optional[BinaryNode]) -> bool:
+        """Return whether the tree is balanced.
+
+        Args:
+            node (Optional): The current node.
+
+        Returns:
+            bool: Whether the tree is balanced.
+        """
+        if node is None:
+            return True
+        left_height = self._height(node.left)
+        right_height = self._height(node.right)
+        if abs(left_height - right_height) > 1:
+            return False
+        return self._is_balanced(node.left) and self._is_balanced(node.right)
+    
+    def is_full(self) -> bool:
+        """Return whether the tree is full.
+
+        Returns:
+            bool: Whether the tree is full.
+        """
+        return self._is_full(self.root)
+    
+    def _is_full(self, node: Optional[BinaryNode]) -> bool:
+        """Return whether the tree is full.
+
+        Args:
+            node (Optional): The current node.
+
+        Returns:
+            bool: Whether the tree is full.
+        """
+        if node is None:
+            return True
+        if node.left is None and node.right is None:
+            return True
+        if node.left is not None and node.right is not None:
+            return self._is_full(node.left) and self._is_full(node.right)
+        return False
+    
+    def is_perfect(self) -> bool:
+        """Return whether the tree is perfect.
+
+        Returns:
+            bool: Whether the tree is perfect.
+        """
+        return self._is_perfect(self.root)
+    
+    def _is_perfect(self, node: Optional[BinaryNode]) -> bool:
+        """Return whether the tree is perfect.
+
+        Args:
+            node (Optional): The current node.
+
+        Returns:
+            bool: Whether the tree is perfect.
+        """
+        if node is None:
+            return True
+        if node.left is None and node.right is None:
+            return True
+        if node.left is not None and node.right is not None:
+            return self._is_perfect(node.left) and self._is_perfect(node.right)
+        return False
