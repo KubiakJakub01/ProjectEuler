@@ -136,6 +136,40 @@ class BinaryTree:
                 node.right = BinaryNode(item)
             else:
                 self._add(item, node.right)
+
+    def remove(self, item: Any) -> None:
+        """Remove a node with the given value from the tree.
+
+        Args:
+            item (Any): The value of the node to remove.
+        """
+        self.root = self._remove(item, self.root)
+
+    def _remove(self, item: Any, node: BinaryNode) -> Optional[BinaryNode]:
+        """Remove a node with the given value from the tree.
+
+        Args:
+            item (Any): The value of the node to remove.
+            node (BinaryNode): The current node.
+
+        Returns:
+            Optional[BinaryNode]: The new root node of the tree.
+        """
+        if node is None:
+            return None
+        if item < node.value:
+            node.left = self._remove(item, node.left)
+            return node
+        if item > node.value:
+            node.right = self._remove(item, node.right)
+            return node
+        if node.left is None:
+            return node.right
+        if node.right is None:
+            return node.left
+        temp = self._find_min(node.right)
+        node.value = temp.value
+        node.right = self._remove(temp.value, node.right)
     
     def contains(self, item: Any) -> bool:
         """Return whether the tree contains a node with the given value.
