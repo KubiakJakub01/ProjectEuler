@@ -91,7 +91,7 @@ class BinaryTree:
         """
         return self._size(self.root)
 
-    def _size(self, node: Optional[BinaryNode], count: int = 0) -> int:
+    def _size(self, node: Optional[BinaryNode] = None, count: int = 0) -> int:
         """Return the number of nodes in the tree.
 
         Args:
@@ -108,6 +108,35 @@ class BinaryTree:
         count = self._size(node.right, count)
         return count
     
+    def add(self, item: Any) -> None:
+        """Add a node with the given value to the tree.
+
+        Args:
+            item (Any): The value of the node to add.
+        """
+        if self.root is None:
+            self.root = BinaryNode(item)
+        else:
+            self._add(item, self.root)
+
+    def _add(self, item: Any, node: BinaryNode) -> None:
+        """Add a node with the given value to the tree.
+
+        Args:
+            item (Any): The value of the node to add.
+            node (BinaryNode): The current node.
+        """
+        if item < node.value:
+            if node.left is None:
+                node.left = BinaryNode(item)
+            else:
+                self._add(item, node.left)
+        else:
+            if node.right is None:
+                node.right = BinaryNode(item)
+            else:
+                self._add(item, node.right)
+    
     def contains(self, item: Any) -> bool:
         """Return whether the tree contains a node with the given value.
 
@@ -119,7 +148,7 @@ class BinaryTree:
         """
         return self._contains(self.root, item)
     
-    def _contains(self, node: Optional[BinaryNode], item: Any) -> bool:
+    def _contains(self, item: Any, node: Optional[BinaryNode]) -> bool:
         """Return whether the tree contains a node with the given value.
 
         Args:
@@ -143,7 +172,7 @@ class BinaryTree:
         """
         return self._height(self.root)
     
-    def _height(self, node: Optional[BinaryNode]) -> int:
+    def _height(self, node: Optional[BinaryNode]= None) -> int:
         """Return the height of the tree.
 
         Args:
@@ -164,7 +193,7 @@ class BinaryTree:
         """
         return self._is_balanced(self.root)
     
-    def _is_balanced(self, node: Optional[BinaryNode]) -> bool:
+    def _is_balanced(self, node: Optional[BinaryNode] = None) -> bool:
         """Return whether the tree is balanced.
 
         Args:
@@ -189,7 +218,7 @@ class BinaryTree:
         """
         return self._is_full(self.root)
     
-    def _is_full(self, node: Optional[BinaryNode]) -> bool:
+    def _is_full(self, node: Optional[BinaryNode] = None) -> bool:
         """Return whether the tree is full.
 
         Args:
@@ -214,7 +243,7 @@ class BinaryTree:
         """
         return self._is_perfect(self.root)
     
-    def _is_perfect(self, node: Optional[BinaryNode]) -> bool:
+    def _is_perfect(self, node: Optional[BinaryNode]= None) -> bool:
         """Return whether the tree is perfect.
 
         Args:
