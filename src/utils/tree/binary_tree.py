@@ -336,3 +336,27 @@ class BinaryTree:
             return False
         return False
 
+    def is_degenerate(self) -> bool:
+        """Return whether the tree is degenerate.
+
+        Returns:
+            bool: Whether the tree is degenerate.
+        """
+        return self._is_degenerate(self.root)
+    
+    def _is_degenerate(self, node: Optional[BinaryNode] = None) -> bool:
+        """Return whether the tree is degenerate.
+
+        Args:
+            node (Optional): The current node.
+
+        Returns:
+            bool: Whether the tree is degenerate.
+        """
+        if node is None:
+            return True
+        if node.left is None and node.right is None:
+            return True
+        if node.left is not None and node.right is not None:
+            return False
+        return self._is_degenerate(node.left) or self._is_degenerate(node.right)
