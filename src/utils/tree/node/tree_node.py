@@ -5,7 +5,7 @@ import typing
 class TreeNode:
     """Class representing a tree node"""
 
-    def __init__(self, val: typing.Any, left: typing.Optional["TreeNode"] = None,
+    def __init__(self, value: typing.Any, left: typing.Optional["TreeNode"] = None,
                  right: typing.Optional["TreeNode"] = None):
         """Initialize a tree node
 
@@ -14,7 +14,7 @@ class TreeNode:
             left (typing.Optional["TreeNode"], optional): The left child of the node. Defaults to None.
             right (typing.Optional["TreeNode"], optional): The right child of the node. Defaults to None.
         """
-        self.val = val
+        self.value = value
         self.left = left
         self.right = right
 
@@ -24,7 +24,7 @@ class TreeNode:
         Returns:
             str: The string representation of the tree node
         """
-        return f"TreeNode({self.val}, {self.left}, {self.right})"
+        return f"TreeNode({self.value}, {self.left}, {self.right})"
 
     def __str__(self) -> str:
         """Return a string representation of the tree node
@@ -32,13 +32,13 @@ class TreeNode:
         Returns:
             str: The string representation of the tree node
         """
-        return f"TreeNode({self.val}, {self.left}, {self.right})"
+        return f"TreeNode({self.value}, {self.left}, {self.right})"
 
 
 class BinaryNode(TreeNode):
     """Class representing a binary tree node"""
 
-    def __init__(self, val: typing.Any, left: typing.Optional["BinaryNode"] = None,
+    def __init__(self, value: typing.Any, left: typing.Optional["BinaryNode"] = None,
                  right: typing.Optional["BinaryNode"] = None):
         """Initialize a binary tree node
 
@@ -47,7 +47,7 @@ class BinaryNode(TreeNode):
             left (typing.Optional["BinaryNode"], optional): The left child of the node. Defaults to None.
             right (typing.Optional["BinaryNode"], optional): The right child of the node. Defaults to None.
         """
-        super().__init__(val, left, right)
+        super().__init__(value, left, right)
 
     def __repr__(self) -> str:
         """Return a string representation of the binary tree node
@@ -55,7 +55,7 @@ class BinaryNode(TreeNode):
         Returns:
             str: The string representation of the binary tree node
         """
-        return f"BinaryNode({self.val}, {self.left}, {self.right})"
+        return f"BinaryNode({self.value}, {self.left}, {self.right})"
 
     def __str__(self) -> str:
         """Return a string representation of the binary tree node
@@ -63,4 +63,4 @@ class BinaryNode(TreeNode):
         Returns:
             str: The string representation of the binary tree node
         """
-        return f"BinaryNode({self.val}, {self.left}, {self.right})"
+        return f"BinaryNode({self.value}, {self.left}, {self.right})"
