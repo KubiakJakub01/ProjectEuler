@@ -3,7 +3,7 @@ import typing
 import functools
 import collections
 
-from .tree_node import TreeNode
+from node.tree_node import TreeNode
 
 
 def create_tree_node_list_from_list_of_values(values: typing.List[typing.Any]) -> typing.List[TreeNode]:
@@ -72,3 +72,16 @@ def create_list_of_values_from_tree(root: TreeNode) -> typing.List[typing.Any]:
     while value_list[-1] is None:
         value_list.pop()
     return value_list
+
+
+def printTree(node: TreeNode, level=0):
+    """Print the tree.
+    Args:
+        node (BinaryNode): The current node.
+    Returns:
+        str: A string representation of the tree.
+    """
+    if node != None:
+        printTree(node.left, level + 1)
+        print(' ' * 4 * level + '-> ' + str(node.value))
+        printTree(node.right, level + 1)

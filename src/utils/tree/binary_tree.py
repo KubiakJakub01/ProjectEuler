@@ -3,6 +3,7 @@ import collections
 from typing import Any, Optional, Tuple
 
 from node.tree_node import BinaryNode
+from tree_utils import printTree
 
 
 class BinaryTree:
@@ -82,7 +83,7 @@ class BinaryTree:
             bool: Whether the tree contains a node with the given value.
         """
         return self.contains(item)
-
+    
     def size(self) -> int:
         """Return the number of nodes in the tree.
 
@@ -195,7 +196,7 @@ class BinaryTree:
         """
         return self._contains(self.root, item)
     
-    def _contains(self, item: Any, node: Optional[BinaryNode]) -> bool:
+    def _contains(self, node: Optional[BinaryNode], item: Any) -> bool:
         """Return whether the tree contains a node with the given value.
 
         Args:
@@ -360,3 +361,32 @@ class BinaryTree:
         if node.left is not None and node.right is not None:
             return False
         return self._is_degenerate(node.left) or self._is_degenerate(node.right)
+
+
+if __name__ == "__main__":
+    # Create a binary tree
+    tree = BinaryTree()
+
+    # Add nodes to the tree
+    tree.add(5)
+    tree.add(3)
+    tree.add(7)
+    tree.add(2)
+    tree.add(4)
+    tree.add(6)
+    tree.add(8)
+
+    # Print the tree
+    print(tree)
+
+    # Print the size of the tree
+    print(f"Size: {tree.size()}")
+
+    # Print whether the tree contains a node with the given value
+    print(f"Contains 5: {tree.contains(5)}")
+
+    # Print the height of the tree
+    print(f"Height: {tree.height()}")
+
+    # Plot the tree
+    printTree(tree.root)
