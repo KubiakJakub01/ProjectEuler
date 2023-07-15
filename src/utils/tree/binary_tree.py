@@ -306,3 +306,33 @@ class BinaryTree:
         if node.left is not None and node.right is not None:
             return self._is_perfect(node.left) and self._is_perfect(node.right)
         return False
+
+    def is_complete(self) -> bool:
+        """Return whether the tree is complete.
+
+        Returns:
+            bool: Whether the tree is complete.
+        """
+        return self._is_complete(self.root)
+    
+    def _is_complete(self, node: Optional[BinaryNode] = None) -> bool:
+        """Return whether the tree is complete.
+
+        Args:
+            node (Optional): The current node.
+
+        Returns:
+            bool: Whether the tree is complete.
+        """
+        if node is None:
+            return True
+        if node.left is None and node.right is None:
+            return True
+        if node.left is not None and node.right is not None:
+            return self._is_complete(node.left) and self._is_complete(node.right)
+        if node.left is not None and node.right is None:
+            return False
+        if node.left is None and node.right is not None:
+            return False
+        return False
+
