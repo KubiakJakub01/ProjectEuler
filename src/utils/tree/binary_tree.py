@@ -170,6 +170,19 @@ class BinaryTree:
         temp = self._find_min(node.right)
         node.value = temp.value
         node.right = self._remove(temp.value, node.right)
+
+    def _find_min(self, node: BinaryNode) -> BinaryNode:
+        """Return the minimum node in the tree.
+
+        Args:
+            node (BinaryNode): The current node.
+
+        Returns:
+            BinaryNode: The minimum node in the tree.
+        """
+        while node.left is not None:
+            node = node.left
+        return node
     
     def contains(self, item: Any) -> bool:
         """Return whether the tree contains a node with the given value.
