@@ -4,9 +4,10 @@ from typing import Any, Optional, Tuple
 
 from node.tree_node import BinaryNode
 from tree_utils import printTree
+from tree import Tree
 
 
-class BinaryTree:
+class BinaryTree(Tree):
     """A binary tree implementation."""
 
     def __init__(self, root: Optional[BinaryNode] = None) -> None:
