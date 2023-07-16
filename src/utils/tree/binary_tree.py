@@ -362,6 +362,10 @@ class BinaryTree(Tree):
         if node.left is not None and node.right is not None:
             return False
         return self._is_degenerate(node.left) or self._is_degenerate(node.right)
+    
+    def clear(self) -> None:
+        """Clear the tree."""
+        self.root = None
 
 
 if __name__ == "__main__":
