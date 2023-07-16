@@ -111,3 +111,8 @@ class Tree(ABC):
             value (Any): The value to remove
         """
         pass
+
+    @abstractmethod
+    def clear(self) -> None:
+        """Clear the tree"""
+        pass
