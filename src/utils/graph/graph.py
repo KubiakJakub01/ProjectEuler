@@ -133,3 +133,28 @@ class Graph:
                 ):
                     return True
         return False
+
+    def _is_bipartite_util(
+        self, vertex: int, color: Dict[int, int]
+    ) -> bool:
+        for adjacent_vertex in self._adjacency_list[vertex]:
+            if adjacent_vertex not in color:
+                color[adjacent_vertex] = 1 - color[vertex]
+                if not self._is_bipartite_util(
+                    adjacent_vertex, color
+                ):
+                    return False
+            elif color[adjacent_vertex] == color[vertex]:
+                return False
+        return True
+    
+    def is_bipartite(self) -> bool:
+        """Check if graph is bipartite.
+
+        Returns:
+            True if graph is bipartite, False otherwise.
+        """
+        color = {self._vertices[0]: 0}
+        return self._is_bipartite_util(
+            self._vertices[0], color
+        )
