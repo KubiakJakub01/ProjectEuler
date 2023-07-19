@@ -75,3 +75,29 @@ class Graph:
                 visited.append(vertex)
                 stack.extend(self._adjacency_list[vertex])
         return visited
+
+    def _topological_sort_util(
+        self, vertex: int, visited: Set[int], stack: List[int]
+    ):
+        visited.add(vertex)
+        for adjacent_vertex in self._adjacency_list[vertex]:
+            if adjacent_vertex not in visited:
+                self._topological_sort_util(
+                    adjacent_vertex, visited, stack
+                )
+        stack.insert(0, vertex)
+
+    def topological_sort(self) -> Optional[List[int]]:
+        """Topological sort algorithm.
+
+        Returns:
+            list of sorted vertices.
+        """
+        visited = set()
+        stack = []
+        for vertex in self._vertices:
+            if vertex not in visited:
+                self._topological_sort_util(
+                    vertex, visited, stack
+                )
+        return stack[::-1]
