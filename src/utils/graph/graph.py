@@ -101,3 +101,35 @@ class Graph:
                     vertex, visited, stack
                 )
         return stack[::-1]
+    
+    def _is_cyclic_util(
+        self, vertex: int, visited: Set[int], stack: Set[int]
+    ) -> bool:
+        visited.add(vertex)
+        stack.add(vertex)
+        for adjacent_vertex in self._adjacency_list[vertex]:
+            if adjacent_vertex not in visited:
+                if self._is_cyclic_util(
+                    adjacent_vertex, visited, stack
+                ):
+                    return True
+            elif adjacent_vertex in stack:
+                return True
+        stack.remove(vertex)
+        return False
+    
+    def is_cyclic(self) -> bool:
+        """Check if graph is cyclic.
+
+        Returns:
+            True if graph is cyclic, False otherwise.
+        """
+        visited = set()
+        stack = set()
+        for vertex in self._vertices:
+            if vertex not in visited:
+                if self._is_cyclic_util(
+                    vertex, visited, stack
+                ):
+                    return True
+        return False
