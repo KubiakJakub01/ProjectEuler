@@ -158,3 +158,25 @@ class Graph:
         return self._is_bipartite_util(
             self._vertices[0], color
         )
+
+    def dijkstra(self, start: int) -> Tuple[Dict[int, int], Dict[int, int]]:
+        """Dijkstra algorithm.
+
+        Args:
+            start: start vertex.
+
+        Returns:
+            tuple with distance and parent dictionaries.
+        """
+        distance = {vertex: np.inf for vertex in self._vertices}
+        parent = {vertex: None for vertex in self._vertices}
+        distance[start] = 0
+        queue = [start]
+        while queue:
+            vertex = queue.pop(0)
+            for adjacent_vertex in self._adjacency_list[vertex]:
+                if distance[adjacent_vertex] > distance[vertex] + 1:
+                    distance[adjacent_vertex] = distance[vertex] + 1
+                    parent[adjacent_vertex] = vertex
+                    queue.append(adjacent_vertex)
+        return distance, parent
