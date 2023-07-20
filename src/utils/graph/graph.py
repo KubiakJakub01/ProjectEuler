@@ -199,3 +199,21 @@ class Graph:
                     distance[edge[1]] = distance[edge[0]] + 1
                     parent[edge[1]] = edge[0]
         return distance, parent
+    
+    def __str__(self) -> str:
+        return str(self._adjacency_list)
+
+
+if __name__ == "__main__":
+    graph = Graph(
+        [0, 1, 2, 3, 4, 5],
+        [(0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (3, 4), (4, 5)]
+    )
+    print(graph)
+    print(graph.breadth_first_search(0))
+    print(graph.depth_first_search(0))
+    print(graph.topological_sort())
+    print(graph.is_cyclic())
+    print(graph.is_bipartite())
+    print(graph.dijkstra(0))
+    print(graph.bellman_ford(0))
