@@ -180,3 +180,22 @@ class Graph:
                     parent[adjacent_vertex] = vertex
                     queue.append(adjacent_vertex)
         return distance, parent
+
+    def bellman_ford(self, start: int) -> Tuple[Dict[int, int], Dict[int, int]]:
+        """Bellman-Ford algorithm.
+
+        Args:
+            start: start vertex.
+
+        Returns:
+            tuple with distance and parent dictionaries.
+        """
+        distance = {vertex: np.inf for vertex in self._vertices}
+        parent = {vertex: None for vertex in self._vertices}
+        distance[start] = 0
+        for _ in range(len(self._vertices) - 1):
+            for edge in self._edges:
+                if distance[edge[0]] + 1 < distance[edge[1]]:
+                    distance[edge[1]] = distance[edge[0]] + 1
+                    parent[edge[1]] = edge[0]
+        return distance, parent
