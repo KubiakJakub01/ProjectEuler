@@ -159,27 +159,35 @@ class Graph:
             self._vertices[0], color
         )
 
-    def dijkstra(self, start: int) -> Tuple[Dict[int, int], Dict[int, int]]:
+    def dijkstra(self, start: int, end: int) -> List[int]:
         """Dijkstra algorithm.
 
         Args:
             start: start vertex.
+            end: end vertex.
 
         Returns:
-            tuple with distance and parent dictionaries.
+            list with shortest path.
         """
         distance = {vertex: np.inf for vertex in self._vertices}
         parent = {vertex: None for vertex in self._vertices}
         distance[start] = 0
-        queue = [start]
+        queue = self._vertices.copy()
         while queue:
-            vertex = queue.pop(0)
+            vertex = min(queue, key=lambda vertex: distance[vertex])
+            queue.remove(vertex)
             for adjacent_vertex in self._adjacency_list[vertex]:
-                if distance[adjacent_vertex] > distance[vertex] + 1:
-                    distance[adjacent_vertex] = distance[vertex] + 1
-                    parent[adjacent_vertex] = vertex
-                    queue.append(adjacent_vertex)
-        return distance, parent
+                if adjacent_vertex in queue:
+                    new_distance = distance[vertex] + 1
+                    if new_distance < distance[adjacent_vertex]:
+                        distance[adjacent_vertex] = new_distance
+                        parent[adjacent_vertex] = vertex
+        path = []
+        vertex = end
+        while vertex is not None:
+            path.append(vertex)
+            vertex = parent[vertex]
+        return path[::-1]
 
     def bellman_ford(self, start: int) -> Tuple[Dict[int, int], Dict[int, int]]:
         """Bellman-Ford algorithm.
@@ -199,7 +207,7 @@ class Graph:
                     distance[edge[1]] = distance[edge[0]] + 1
                     parent[edge[1]] = edge[0]
         return distance, parent
-    
+
     def __str__(self) -> str:
         return str(self._adjacency_list)
 
