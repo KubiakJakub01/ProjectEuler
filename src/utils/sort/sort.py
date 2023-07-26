@@ -51,3 +51,14 @@ def insertion_sort(array):
             j -= 1
         array[j + 1] = key
     return array
+
+
+def selection_sort(array):
+    """Selection sort"""
+    for i in range(len(array)):
+        min_index = i
+        for j in range(i + 1, len(array)):
+            if array[min_index] > array[j]:
+                min_index = j
+        array[min_index], array[i] = array[i], array[min_index]
+    return array
