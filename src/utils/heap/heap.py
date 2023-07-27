@@ -46,3 +46,14 @@ def heap_push(array: np.ndarray, value: int) -> None:
     while i > 0 and array[i] > array[(i - 1) // 2]:
         array[i], array[(i - 1) // 2] = array[(i - 1) // 2], array[i]
         i = (i - 1) // 2
+
+
+def heap_pop(array: np.ndarray) -> int:
+    """Pop value from heap
+
+    Args:
+        array: heap"""
+    array[0], array[-1] = array[-1], array[0]
+    value = array.pop()
+    heapify(array, len(array), 0)
+    return value
