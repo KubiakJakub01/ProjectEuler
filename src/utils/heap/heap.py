@@ -2,8 +2,13 @@
 import numpy as np
 
 
-def heapify(array, n, i):
-    """Heapify"""
+def heapify(array: np.ndarray, n: int, i: int) -> None:
+    """Heapify
+    
+    Args:
+        array: array to heapify
+        n: size of heap
+        i: index of root"""
     largest = i
     left = 2 * i + 1
     right = 2 * i + 2
@@ -16,8 +21,11 @@ def heapify(array, n, i):
         heapify(array, n, largest)
 
 
-def heap_sort(array):
-    """Heap sort"""
+def heap_sort(array: np.ndarray) -> np.ndarray:
+    """Heap sort
+
+    Args:
+        array: array to sort"""
     n = len(array)
     for i in range(n // 2 - 1, -1, -1):
         heapify(array, n, i)
@@ -25,3 +33,16 @@ def heap_sort(array):
         array[i], array[0] = array[0], array[i]
         heapify(array, i, 0)
     return array
+
+
+def heap_push(array: np.ndarray, value: int) -> None:
+    """Push value to heap
+
+    Args:
+        array: heap
+        value: value to push"""
+    array.append(value)
+    i = len(array) - 1
+    while i > 0 and array[i] > array[(i - 1) // 2]:
+        array[i], array[(i - 1) // 2] = array[(i - 1) // 2], array[i]
+        i = (i - 1) // 2
