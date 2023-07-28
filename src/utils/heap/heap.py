@@ -57,3 +57,14 @@ def heap_pop(array: np.ndarray) -> int:
     value = array.pop()
     heapify(array, len(array), 0)
     return value
+
+
+def heap_replace(array: np.ndarray, value: int) -> int:
+    """Replace value in heap
+
+    Args:
+        array: heap
+        value: value to replace"""
+    array[0], value = value, array[0]
+    heapify(array, len(array), 0)
+    return value

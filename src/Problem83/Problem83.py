@@ -20,6 +20,8 @@ def solution():
     # read matrix from file
     matrix = np.loadtxt(MATRIX_FILE, delimiter=",", dtype=int)
 
+    print(matrix)
+
     # initialize variables
     size = len(matrix)
     min_path_sum = math.inf
@@ -27,7 +29,7 @@ def solution():
 
     # Dynamic Programming
     # We have to find minimum path sum from top left corner to bottom right corner
-    # We can move in all four directions
+    # We can move only up, down, left and right
     for i in range(size):
         min_matrix[i][0] = matrix[i][0]
 
@@ -43,20 +45,11 @@ def solution():
                 min_matrix[i][j], min_matrix[i + 1][j] + matrix[i][j]
             )
 
-    for j in range(size - 2, -1, -1):
-        for i in range(size):
-            min_matrix[i][j] = min(min_matrix[i][j], min_matrix[i][j + 1])
-        for i in range(1, size):
-            min_matrix[i][j] = min(
-                min_matrix[i][j], min_matrix[i - 1][j] + matrix[i][j]
-            )
-        for i in range(size - 2, -1, -1):
-            min_matrix[i][j] = min(
-                min_matrix[i][j], min_matrix[i + 1][j] + matrix[i][j]
-            )
-
     # find minimum path sum
-    min_path_sum = min_matrix[size - 1][size - 1]
+    for i in range(size):
+        min_path_sum = min(min_path_sum, min_matrix[i][size - 1])
+
+    return min_path_sum
 
     return min_path_sum
 
