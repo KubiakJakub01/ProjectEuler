@@ -79,3 +79,14 @@ class Heap:
         self.array[0], value = value, self.array[0]
         self.heapify(self.array, len(self.array), 0)
         return value
+
+    def heap_pushpop(self, value: int) -> int:
+        """Push and pop value in heap
+
+        Args:
+            array: heap
+            value: value to push and pop"""
+        if self.array[0] < value:
+            self.array[0], value = value, self.array[0]
+            self.heapify(self.array, len(self.array), 0)
+        return value
