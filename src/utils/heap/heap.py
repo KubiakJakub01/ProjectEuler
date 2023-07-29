@@ -90,3 +90,12 @@ class Heap:
             self.array[0], value = value, self.array[0]
             self.heapify(self.array, len(self.array), 0)
         return value
+
+    def heap_merge(self, heap: np.ndarray) -> None:
+        """Merge heaps
+
+        Args:
+            array: heap
+            heap: heap to merge"""
+        self.array = np.concatenate((self.array, heap))
+        self.heapify(self.array, len(self.array), 0)
