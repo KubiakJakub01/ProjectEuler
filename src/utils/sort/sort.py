@@ -70,3 +70,14 @@ def bubble_sort(array):
             if array[j + 1] < array[j]:
                 array[j + 1], array[j] = array[j], array[j + 1]
     return array
+
+
+
+if __name__ == "__main__":
+    array = np.random.randint(0, 100, 10)
+    print(f"Array: {array}")
+    print(f"Quick sort: {quick_sort(array)}")
+    print(f"Merge sort: {merge_sort(array)}")
+    print(f"Insertion sort: {insertion_sort(array)}")
+    print(f"Selection sort: {selection_sort(array)}")
+    print(f"Bubble sort: {bubble_sort(array)}")
