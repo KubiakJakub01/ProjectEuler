@@ -1,4 +1,6 @@
 """Module with sort utils"""
+import time
+
 import numpy as np
 
 
@@ -72,12 +74,17 @@ def bubble_sort(array):
     return array
 
 
+def run_sort(array, sort):
+    """Run sort"""
+    start_time = time.time()
+    sort(array)
+    return f"{time.time() - start_time:.4f} [s]"
+
 
 if __name__ == "__main__":
-    array = np.random.randint(0, 100, 10)
-    print(f"Array: {array}")
-    print(f"Quick sort: {quick_sort(array)}")
-    print(f"Merge sort: {merge_sort(array)}")
-    print(f"Insertion sort: {insertion_sort(array)}")
-    print(f"Selection sort: {selection_sort(array)}")
-    print(f"Bubble sort: {bubble_sort(array)}")
+    array = np.random.randint(0, 10**6, 10**4)
+    print(f"Quick sort: {run_sort(array, quick_sort)}")
+    print(f"Merge sort: {run_sort(array, merge_sort)}")
+    print(f"Insertion sort: {run_sort(array, insertion_sort)}")
+    print(f"Selection sort: {run_sort(array, selection_sort)}")
+    print(f"Bubble sort: {run_sort(array, bubble_sort)}")
