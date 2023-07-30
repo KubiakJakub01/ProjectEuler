@@ -63,4 +63,10 @@ def selection_sort(array):
         array[min_index], array[i] = array[i], array[min_index]
     return array
 
-
+def bubble_sort(array):
+    """Bubble sort"""
+    for i in range(len(array)):
+        for j in range(len(array) - i - 1):
+            if array[j + 1] < array[j]:
+                array[j + 1], array[j] = array[j], array[j + 1]
+    return array
