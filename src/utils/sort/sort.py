@@ -62,3 +62,5 @@ def selection_sort(array):
                 min_index = j
         array[min_index], array[i] = array[i], array[min_index]
     return array
+
+
