@@ -83,10 +83,15 @@ def run_sort(array, sort):
     return f"{time.time() - start_time:.4f} [s]"
 
 
-if __name__ == "__main__":
-    array = np.random.randint(0, 10 ** 6, 10 ** 4)
+def run_all_sorts(array):
+    """Run all sorts"""
     print(f"Quick sort: {run_sort(array, quick_sort)}")
     print(f"Merge sort: {run_sort(array, merge_sort)}")
     print(f"Insertion sort: {run_sort(array, insertion_sort)}")
     print(f"Selection sort: {run_sort(array, selection_sort)}")
     print(f"Bubble sort: {run_sort(array, bubble_sort)}")
+
+
+if __name__ == "__main__":
+    array = np.random.randint(0, 10 ** 6, 10 ** 4)
+    run_all_sorts(array)
