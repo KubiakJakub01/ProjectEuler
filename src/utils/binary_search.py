@@ -152,3 +152,41 @@ def binary_search_rightmost(
         return left
 
     raise ValueError(f"Value {value} is not in the array.")
+
+
+def binary_search_leftmost_iterative(
+    array: np.ndarray,
+    value: float,
+    left: Optional[int] = None,
+    right: Optional[int] = None,
+) -> int:
+    """Find index of the leftmost element in the sorted array.
+
+    Args:
+        array: sorted array.
+        value: value to search.
+        left: left bound of the search.
+        right: right bound of the search.
+
+    Returns:
+        index of the leftmost element in the array.
+
+    Raises:
+        ValueError: if the value is not in the array.
+    """
+    if left is None:
+        left = 0
+    if right is None:
+        right = len(array) - 1
+
+    while left <= right:
+        middle = (left + right) // 2
+        if array[middle] < value:
+            left = middle + 1
+        else:
+            right = middle - 1
+
+    if array[left] == value:
+        return left
+
+    raise ValueError(f"Value {value} is not in the array.")
