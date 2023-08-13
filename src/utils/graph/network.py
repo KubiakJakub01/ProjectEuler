@@ -28,3 +28,32 @@ class Network:
         """Return list of edges."""
         return self._edges
 
+    @property
+    def adjacency_list(self) -> Dict[int, List[int]]:
+        """Return adjacency list."""
+        return self._adjacency_list
+
+    def _build_adjacency_list(self) -> Dict[int, List[int]]:
+        adjacency_list = {vertex: [] for vertex in self._vertices}
+        for edge in self._edges:
+            adjacency_list[edge[0]].append(edge[1])
+            adjacency_list[edge[1]].append(edge[0])
+        return adjacency_list
+
+    def breadth_first_search(self, start: int) -> List[int]:
+        """Breadth first search algorithm.
+
+        Args:
+            start: start vertex.
+
+        Returns:
+            list of visited vertices.
+        """
+        visited = []
+        queue = [start]
+        while queue:
+            vertex = queue.pop(0)
+            if vertex not in visited:
+                visited.append(vertex)
+                queue.extend(self._adjacency_list[vertex])
+        return visited
