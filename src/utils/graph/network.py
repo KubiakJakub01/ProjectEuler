@@ -57,3 +57,21 @@ class Network:
                 visited.append(vertex)
                 queue.extend(self._adjacency_list[vertex])
         return visited
+
+    def depth_first_search(self, start: int) -> List[int]:
+        """Depth first search algorithm.
+
+        Args:
+            start: start vertex.
+
+        Returns:
+            list of visited vertices.
+        """
+        visited = []
+        stack = [start]
+        while stack:
+            vertex = stack.pop()
+            if vertex not in visited:
+                visited.append(vertex)
+                stack.extend(self._adjacency_list[vertex])
+        return visited
