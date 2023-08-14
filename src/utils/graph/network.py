@@ -94,3 +94,21 @@ class Network:
                 connected_components.append(connected_component)
                 visited.update(connected_component)
         return connected_components
+
+    def _get_connected_components_without_vertex(self, vertex: int) -> List[Set[int]]:
+        visited = set()
+        connected_components = []
+        for connected_component in self._get_connected_components():
+            if vertex not in connected_component:
+                connected_components.append(connected_component)
+                visited.update(connected_component)
+        return connected_components
+
+    def _get_connected_components_with_edge(self, edge: Tuple[int, int]) -> List[Set[int]]:
+        visited = set()
+        connected_components = []
+        for connected_component in self._get_connected_components():
+            if edge[0] in connected_component and edge[1] in connected_component:
+                connected_components.append(connected_component)
+                visited.update(connected_component)
+        return connected_components
