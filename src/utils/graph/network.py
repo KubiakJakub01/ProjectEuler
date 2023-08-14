@@ -75,3 +75,22 @@ class Network:
                 visited.append(vertex)
                 stack.extend(self._adjacency_list[vertex])
         return visited
+
+    def _get_connected_components(self) -> List[Set[int]]:
+        visited = set()
+        connected_components = []
+        for vertex in self._vertices:
+            if vertex not in visited:
+                connected_component = self.depth_first_search(vertex)
+                connected_components.append(connected_component)
+                visited.update(connected_component)
+        return connected_components
+
+    def _get_connected_components_with_vertex(self, vertex: int) -> List[Set[int]]:
+        visited = set()
+        connected_components = []
+        for connected_component in self._get_connected_components():
+            if vertex in connected_component:
+                connected_components.append(connected_component)
+                visited.update(connected_component)
+        return connected_components
