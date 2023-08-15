@@ -34,3 +34,7 @@ if __name__ == '__main__':
     start_time = time.time()
     print(solution())
     print("--- %s seconds ---" % (time.time() - start_time))
+
+"""
+--- 0.5236790180206299 seconds ---
+"""
