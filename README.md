@@ -6,6 +6,8 @@ My struggles with https://projecteuler.net/
 
 ## 2023:
 
+### August:
+- [Problem121](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem121.py) Disc game prize fund :white_check_mark:
 ### May:
 - [Problem89](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem89/Problem89.py) Roman numerals :white_check_mark:
 ### January:
