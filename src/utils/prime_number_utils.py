@@ -97,3 +97,19 @@ def get_rad_list(n):
     for i in range(2, n):
         rad_list.append(get_rad(i))
     return rad_list
+
+
+def get_totient(n):
+    """Return the totient of n"""
+    if n < 2:
+        return 0
+    if n == 2:
+        return 1
+    if n % 2 == 0:
+        return 2 * get_totient(n // 2)
+    k = 3
+    while k * k <= n:
+        if n % k == 0:
+            return (k - 1) * get_totient(n // k)
+        k += 2
+    return n - 1
