@@ -113,3 +113,11 @@ def get_totient(n):
             return (k - 1) * get_totient(n // k)
         k += 2
     return n - 1
+
+
+def get_totient_dict(n):
+    """Return a dictionary of totient values for all numbers less than n"""
+    totient_dict = {1: 1}
+    for i in range(2, n):
+        totient_dict[i] = get_totient(i)
+    return totient_dict
