@@ -97,3 +97,27 @@ def get_rad_list(n):
     for i in range(2, n):
         rad_list.append(get_rad(i))
     return rad_list
+
+
+def get_totient(n):
+    """Return the totient of n"""
+    if n < 2:
+        return 0
+    if n == 2:
+        return 1
+    if n % 2 == 0:
+        return 2 * get_totient(n // 2)
+    k = 3
+    while k * k <= n:
+        if n % k == 0:
+            return (k - 1) * get_totient(n // k)
+        k += 2
+    return n - 1
+
+
+def get_totient_dict(n):
+    """Return a dictionary of totient values for all numbers less than n"""
+    totient_dict = {1: 1}
+    for i in range(2, n):
+        totient_dict[i] = get_totient(i)
+    return totient_dict

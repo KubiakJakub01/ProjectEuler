@@ -208,6 +208,18 @@ class Graph:
                     parent[edge[1]] = edge[0]
         return distance, parent
 
+    def _get_adjacency_list(self, vertices: List[int], edges: List[Tuple[int, int]]) -> Dict[int, List[int]]:
+        adjacency_list = {vertex: [] for vertex in vertices}
+        for edge in edges:
+            adjacency_list[edge[0]].append(edge[1])
+        return adjacency_list
+
+    def _get_edges(self, vertices: List[int], edges: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
+        return [(edge[0], edge[1]) for edge in edges]
+
+    def __repr__(self) -> str:
+        return str(self._adjacency_list)
+
     def __str__(self) -> str:
         return str(self._adjacency_list)
 
