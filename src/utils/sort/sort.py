@@ -103,6 +103,7 @@ def run_all_sorts(array):
     print(f"Insertion sort: {run_sort(array, insertion_sort)}")
     print(f"Selection sort: {run_sort(array, selection_sort)}")
     print(f"Bubble sort: {run_sort(array, bubble_sort)}")
+    print(f"Counting sort: {run_sort(array, counting_sort)}")
 
 
 if __name__ == "__main__":
