@@ -76,6 +76,19 @@ def bubble_sort(array):
     return array
 
 
+def counting_sort(array):
+    """Counting sort"""
+    max_value = max(array)
+    min_value = min(array)
+    counting_array = [0] * (max_value - min_value + 1)
+    for i in array:
+        counting_array[i - min_value] += 1
+    array = []
+    for i in range(len(counting_array)):
+        array += [i + min_value] * counting_array[i]
+    return array
+
+
 def run_sort(array, sort):
     """Run sort"""
     start_time = time.time()
