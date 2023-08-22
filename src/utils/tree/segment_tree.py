@@ -54,6 +54,9 @@ class SegmentTree:
             + self.query_tree(root.right, mid + 1, end)
         )
 
+    def __str__(self):
+        return str(self.root)
+
     def __repr__(self):
         return f"SegmentTree({self.array})"
 
