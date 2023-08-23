@@ -80,3 +80,6 @@ class SegmentTree:
 
     def __contains__(self, item):
         return
+
+    def __eq__(self, other):
+        return self.array == other.array
