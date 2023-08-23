@@ -79,7 +79,7 @@ class SegmentTree:
         return reversed(self.array)
 
     def __contains__(self, item):
-        return
+        return item in self.array
 
     def __eq__(self, other):
         return self.array == other.array
