@@ -10,3 +10,13 @@ def timer(func):
         print(f"--- {time.time() - start_time} seconds ---")
         return result
     return wrapper
+
+
+if __name__ == "__main__":
+    @timer
+    def test():
+        """Test function"""
+        time.sleep(1)
+        return "test"
+
+    print(test())
