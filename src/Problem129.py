@@ -8,6 +8,7 @@ https://projecteuler.net/problem=129
 """
 import time
 
+from .utils.timer import timer
 
 def A(n):
     # Return the smallest number k such that R(k) is divisible by n
@@ -18,7 +19,7 @@ def A(n):
         k += 1
     return k
 
-
+@timer
 def solution():
     # Find the least value of n for which A(n) first exceeds 10^6
     n = 10**6
@@ -31,9 +32,7 @@ def solution():
 
 
 if __name__ == "__main__":
-    start_time = time.time()
-    print(solution())
-    print("--- %s seconds ---" % (time.time() - start_time))
+    solution()
 
 """
 --- 0.5236790180206299 seconds ---
