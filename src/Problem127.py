@@ -10,9 +10,12 @@ author: KubiakJakub01
 import math
 import time
 
+from .utils.timer import timer
+
 LIMIT = 120000
 
 # main solution function
+@timer
 def solution():
     LIMIT = 120000
 
@@ -38,6 +41,4 @@ def solution():
 
 
 if __name__ == "__main__":
-    start_time = time.time()
-    print(solution())
-    print("--- %s seconds ---" % (time.time() - start_time))
+    solution()
