@@ -15,9 +15,7 @@ Algorithm description:
     5. Print the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares
     6. END
 """
-
-# import libraries
-import time
+from .utils.timer import timer
 
 N = 10**8
 
@@ -40,6 +38,7 @@ def is_palindromic(n):
     return str(n) == str(n)[::-1]
 
 
+@timer
 def solution():
     # Create a list of powers of 2 where the sum of all numbers is less than N
     power_list = generate_powers()
@@ -63,9 +62,7 @@ def solution():
 
 
 if __name__ == "__main__":
-    start_time = time.time()
     solution()
-    print("--- %s seconds ---" % (time.time() - start_time))
 
 """
 --- 0.47824954986572266 seconds ---
