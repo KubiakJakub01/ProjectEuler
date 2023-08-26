@@ -8,7 +8,6 @@ author: KubiakJakub01
 """
 # import libraries
 import math
-import time
 
 from .utils.timer import timer
 
