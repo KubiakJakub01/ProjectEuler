@@ -92,3 +92,9 @@ class NarayTree:
 
     def __mul__(self, other):
         return self
+
+    def __rmul__(self, other):
+        return self.root.__rmul__(other)
+    
+    def __iadd__(self, other):
+        return self.root.__iadd__(other)
