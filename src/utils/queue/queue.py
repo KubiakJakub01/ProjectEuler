@@ -53,3 +53,35 @@ class PriorityQueue:
     def size(self):
         """Return priority queue size."""
         return len(self._queue)
+
+
+class Deque:
+    """Deque class."""
+
+    def __init__(self):
+        """Initialize deque."""
+        self._deque = deque()
+
+    def add_front(self, item):
+        """Add item to the front of the deque."""
+        self._deque.appendleft(item)
+
+    def add_rear(self, item):
+        """Add item to the rear of the deque."""
+        self._deque.append(item)
+
+    def remove_front(self):
+        """Remove item from the front of the deque."""
+        return self._deque.popleft()
+
+    def remove_rear(self):
+        """Remove item from the rear of the deque."""
+        return self._deque.pop()
+
+    def is_empty(self):
+        """Check if deque is empty."""
+        return len(self._deque) == 0
+
+    def size(self):
+        """Return deque size."""
+        return len(self._deque)
