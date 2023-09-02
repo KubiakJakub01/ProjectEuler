@@ -85,3 +85,41 @@ class Deque:
     def size(self):
         """Return deque size."""
         return len(self._deque)
+
+
+if __name__ == "__main__":
+    queue = Queue()
+    queue.enqueue(1)
+    queue.enqueue(2)
+    queue.enqueue(3)
+    print(queue.dequeue())
+    print(queue.dequeue())
+    print(queue.dequeue())
+    print(queue.is_empty())
+    print(queue.size())
+
+    print()
+
+    priority_queue = PriorityQueue()
+    priority_queue.enqueue(1)
+    priority_queue.enqueue(2)
+    priority_queue.enqueue(3)
+    print(priority_queue.dequeue())
+    print(priority_queue.dequeue())
+    print(priority_queue.dequeue())
+    print(priority_queue.is_empty())
+    print(priority_queue.size())
+
+    print()
+
+    deque = Deque()
+    deque.add_front(1)
+    deque.add_front(2)
+    deque.add_rear(3)
+    deque.add_rear(4)
+    print(deque.remove_front())
+    print(deque.remove_front())
+    print(deque.remove_rear())
+    print(deque.remove_rear())
+    print(deque.is_empty())
+    print(deque.size())
