@@ -73,3 +73,15 @@ def generate_palindromic_sums_2(n: int) -> Generator[int]:
                 if is_palindromic(suma):
                     yield suma
 
+
+def compute_solution(n: int) -> int:
+    """Compute the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares.
+
+    Args:
+        n (int): Number to check.
+
+    Returns:
+        int: Sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares.
+    """
+    palindrom_sum_list = list(generate_palindromic_sums(n))
+    return sum(palindrom_sum_list)
