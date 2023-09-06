@@ -1,6 +1,8 @@
 """Module for list utilities."""
 from typing import List, Union, Generator
 
+from tqdm import tqdm
+
 
 def is_palindromic(n: Union[int, str]) -> bool:
     """Check if a number is palindromic.
@@ -85,3 +87,18 @@ def compute_solution(n: int) -> int:
     """
     palindrom_sum_list = list(generate_palindromic_sums(n))
     return sum(palindrom_sum_list)
+
+
+def compute_list_with_progress_bar(n: int) -> List[int]:
+    """Compute the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares.
+
+    Args:
+        n (int): Number to check.
+
+    Returns:
+        int: Sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares.
+    """
+    palindrom_sum_list = []
+    for i in tqdm(range(n)):
+        palindrom_sum_list.append(compute_solution(i))
+    return palindrom_sum_list
