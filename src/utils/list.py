@@ -1,5 +1,5 @@
 """Module for list utilities."""
-from typing import List, Union, Generator
+from typing import List, Union, Generator, Callable
 
 from tqdm import tqdm
 
@@ -101,4 +101,22 @@ def compute_list_with_progress_bar(n: int) -> List[int]:
     palindrom_sum_list = []
     for i in tqdm(range(n)):
         palindrom_sum_list.append(compute_solution(i))
+    return palindrom_sum_list
+
+
+def compute_list(n: int, progress_bar: Callable = None) -> List[int]:
+    """Compute the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares.
+
+    Args:
+        n (int): Number to check.
+        progress_bar (Callable, optional): Progress bar function. Defaults to None.
+
+    Returns:
+        int: Sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares.
+    """
+    palindrom_sum_list = []
+    for i in range(n):
+        palindrom_sum_list.append(compute_solution(i))
+        if progress_bar is not None:
+            progress_bar(i, n)
     return palindrom_sum_list
