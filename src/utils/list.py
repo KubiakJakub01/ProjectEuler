@@ -120,3 +120,15 @@ def compute_list(n: int, progress_bar: Callable = None) -> List[int]:
         if progress_bar is not None:
             progress_bar(i, n)
     return palindrom_sum_list
+
+
+def write_to_file(n: int, file_name: str) -> None:
+    """Write the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares to a file.
+
+    Args:
+        n (int): Number to check.
+        file_name (str): Name of the file.
+    """
+    with open(file_name, "w") as file:
+        for i in range(n):
+            file.write(f"{compute_solution(i)}\n")
