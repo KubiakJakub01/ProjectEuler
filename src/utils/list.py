@@ -132,3 +132,16 @@ def write_to_file(n: int, file_name: str) -> None:
     with open(file_name, "w") as file:
         for i in range(n):
             file.write(f"{compute_solution(i)}\n")
+
+
+def load_from_file(file_name: str) -> List[int]:
+    """Load the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares from a file.
+
+    Args:
+        file_name (str): Name of the file.
+
+    Returns:
+        List[int]: List of sums.
+    """
+    with open(file_name, "r") as file:
+        return [int(line) for line in file.readlines()]
