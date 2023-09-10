@@ -145,3 +145,17 @@ def load_from_file(file_name: str) -> List[int]:
     """
     with open(file_name, "r") as file:
         return [int(line) for line in file.readlines()]
+
+
+def load_with_fn(file_name: str, fn: Callable) -> List[int]:
+    """Load the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares from a file.
+
+    Args:
+        file_name (str): Name of the file.
+        fn (Callable): Function to apply to each line.
+
+    Returns:
+        List[int]: List of sums.
+    """
+    with open(file_name, "r") as file:
+        return [fn(line) for line in file.readlines()]
