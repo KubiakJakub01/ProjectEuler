@@ -99,3 +99,11 @@ class Heap:
             heap: heap to merge"""
         self.array = np.concatenate((self.array, heap))
         self.heapify(self.array, len(self.array), 0)
+
+    def heap_nlargest(self, n: int) -> np.ndarray:
+        """Get n largest values from heap
+
+        Args:
+            array: heap
+            n: number of values"""
+        return self.heap_sort()[-n:]
