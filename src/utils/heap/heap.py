@@ -107,3 +107,11 @@ class Heap:
             array: heap
             n: number of values"""
         return self.heap_sort()[-n:]
+
+    def heap_nsmallest(self, n: int) -> np.ndarray:
+        """Get n smallest values from heap
+
+        Args:
+            array: heap
+            n: number of values"""
+        return self.heap_sort()[:n]
