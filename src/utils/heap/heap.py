@@ -115,3 +115,11 @@ class Heap:
             array: heap
             n: number of values"""
         return self.heap_sort()[:n]
+
+    def heap_max(self) -> int:
+        """Get max value from heap
+
+        Args:
+            array: heap"""
+        return self.array[0]
+    
