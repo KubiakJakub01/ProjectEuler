@@ -123,3 +123,9 @@ class Heap:
             array: heap"""
         return self.array[0]
     
+    def heap_min(self) -> int:
+        """Get min value from heap
+
+        Args:
+            array: heap"""
+        return self.array[-1]
