@@ -69,3 +69,14 @@ class PriorityHeap(Heap):
         self.array[0] = self.array.pop()
         self.heapify(self.array, len(self.array), 0)
         return root
+
+    def heap_replace(self, value: int) -> int:
+        """Replace value in heap
+
+        Args:
+            array: heap
+            value: value to replace"""
+        root = self.array[0]
+        self.array[0] = value
+        self.heapify(self.array, len(self.array), 0)
+        return root
