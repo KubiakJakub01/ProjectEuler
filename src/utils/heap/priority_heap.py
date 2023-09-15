@@ -55,3 +55,17 @@ class PriorityHeap(Heap):
         while i > 0 and self.array[i][0] > self.array[(i - 1) // 2][0]:
             self.array[i], self.array[(i - 1) // 2] = self.array[(i - 1) // 2], self.array[i]
             i = (i - 1) // 2
+
+    def heap_pop(self) -> int:
+        """Pop value from heap
+
+        Args:
+            array: heap"""
+        if len(self.array) == 0:
+            return None
+        if len(self.array) == 1:
+            return self.array.pop()
+        root = self.array[0]
+        self.array[0] = self.array.pop()
+        self.heapify(self.array, len(self.array), 0)
+        return root
