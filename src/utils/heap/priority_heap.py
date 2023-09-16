@@ -80,3 +80,12 @@ class PriorityHeap(Heap):
         self.array[0] = value
         self.heapify(self.array, len(self.array), 0)
         return root
+    
+    def heap_delete(self, i: int) -> None:
+        """Delete value from heap
+
+        Args:
+            array: heap
+            i: index of value to delete"""
+        self.heap_replace(self.array[i])
+        self.array.pop()
