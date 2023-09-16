@@ -89,3 +89,28 @@ class PriorityHeap(Heap):
             i: index of value to delete"""
         self.heap_replace(self.array[i])
         self.array.pop()
+
+    def heap_get(self) -> int:
+        """Get root of heap
+
+        Args:
+            array: heap"""
+        return self.array[0]
+    
+    def heap_set(self, value: int) -> None:
+        """Set root of heap
+
+        Args:
+            array: heap
+            value: value to set"""
+        self.array[0] = value
+        self.heapify(self.array, len(self.array), 0)
+
+    def heap_merge(self, heap: Heap) -> None:
+        """Merge heaps
+
+        Args:
+            array: heap
+            heap: heap to merge"""
+        self.array = np.concatenate((self.array, heap.array))
+        self.heap_sort()
