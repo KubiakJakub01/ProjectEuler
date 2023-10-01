@@ -89,6 +89,16 @@ def counting_sort(array):
     return array
 
 
+def radix_sort(array):
+    """Radix sort"""
+    max_value = max(array)
+    exp = 1
+    while max_value / exp > 0:
+        counting_sort(array, exp)
+        exp *= 10
+    return array
+
+
 def run_sort(array, sort):
     """Run sort"""
     start_time = time.time()
