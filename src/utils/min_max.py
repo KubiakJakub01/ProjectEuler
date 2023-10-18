@@ -15,3 +15,8 @@ def min_max_denormalize(array, min_value, max_value):
 def min_max_normalize_2d(array):
     """Min-max normalize 2d array."""
     return np.array([min_max_normalize(array[:, i]) for i in range(array.shape[1])]).T
+
+
+def min_max_solve(array, min_value, max_value):
+    """Min-max solve array."""
+    return min_max_denormalize(min_max_normalize(array), min_value, max_value)
