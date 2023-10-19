@@ -107,3 +107,17 @@ def print_tree(func):
         printTree(result)
         return result
     return wrapper
+
+
+def get_tree_height(root: TreeNode) -> int:
+    """Get the height of the tree.
+
+    Args:
+        root (TreeNode): The root of the tree.
+
+    Returns:
+        int: The height of the tree.
+    """
+    if not root:
+        return 0
+    return max(get_tree_height(root.left), get_tree_height(root.right)) + 1
