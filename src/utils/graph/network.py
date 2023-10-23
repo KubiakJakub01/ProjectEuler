@@ -112,3 +112,12 @@ class Network:
                 connected_components.append(connected_component)
                 visited.update(connected_component)
         return connected_components
+
+    def _get_connected_components_without_edge(self, edge: Tuple[int, int]) -> List[Set[int]]:
+        visited = set()
+        connected_components = []
+        for connected_component in self._get_connected_components():
+            if edge[0] not in connected_component or edge[1] not in connected_component:
+                connected_components.append(connected_component)
+                visited.update(connected_component)
+        return connected_components
