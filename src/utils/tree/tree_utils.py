@@ -85,3 +85,39 @@ def printTree(node: TreeNode, level=0):
         printTree(node.left, level + 1)
         print(' ' * 4 * level + '-> ' + str(node.value))
         printTree(node.right, level + 1)
+
+
+def print_tree(func):
+    """Print the tree.
+    Args:
+        func (typing.Callable): The function to be decorated.
+    Returns:
+        typing.Callable: The decorated function.
+    """
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        """Wrapper function.
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        Returns:
+            typing.Any: The result of the decorated function.
+        """
+        result = func(*args, **kwargs)
+        printTree(result)
+        return result
+    return wrapper
+
+
+def get_tree_height(root: TreeNode) -> int:
+    """Get the height of the tree.
+
+    Args:
+        root (TreeNode): The root of the tree.
+
+    Returns:
+        int: The height of the tree.
+    """
+    if not root:
+        return 0
+    return max(get_tree_height(root.left), get_tree_height(root.right)) + 1
