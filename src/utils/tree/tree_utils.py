@@ -145,3 +145,27 @@ def get_tree_height_iterative(root: TreeNode) -> int:
             if tree_node.right:
                 queue.append(tree_node.right)
     return height
+
+
+def get_tree_height_iterative_2(root: TreeNode) -> int:
+    """Get the height of the tree iteratively.
+
+    Args:
+        root (TreeNode): The root of the tree.
+
+    Returns:
+        int: The height of the tree.
+    """
+    if not root:
+        return 0
+    height = 0
+    queue = collections.deque([root])
+    while queue:
+        height += 1
+        for _ in range(len(queue)):
+            tree_node = queue.popleft()
+            if tree_node.left:
+                queue.append(tree_node.left)
+            if tree_node.right:
+                queue.append(tree_node.right)
+    return height
