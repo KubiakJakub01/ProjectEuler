@@ -224,6 +224,88 @@ class Graph:
         return str(self._adjacency_list)
 
 
+class DirectedGraph(Graph):
+    """Directed graph implementation."""
+
+    def __init__(self, vertices: List[int], edges: List[Tuple[int, int]]):
+        """Initialize directed graph.
+
+        Args:
+            vertices: list of vertices.
+            edges: list of edges.
+        """
+        super().__init__(vertices, edges)
+        self._adjacency_list = self._get_adjacency_list(vertices, edges)
+        self._edges = self._get_edges(vertices, edges)
+
+    def _get_adjacency_list(self, vertices: List[int], edges: List[Tuple[int, int]]) -> Dict[int, List[int]]:
+        adjacency_list = {vertex: [] for vertex in vertices}
+        for edge in edges:
+            adjacency_list[edge[0]].append(edge[1])
+        return adjacency_list
+
+    def _get_edges(self, vertices: List[int], edges: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
+        return edges
+
+    def _topological_sort_util(
+        self, vertex: int, visited: Set[int], stack: List[int]
+    ):
+        visited.add(vertex)
+        for adjacent_vertex in self._adjacency_list[vertex]:
+            if adjacent_vertex not in visited:
+                self._topological_sort_util(
+                    adjacent_vertex, visited, stack
+                )
+        stack.insert(0, vertex)
+
+    def topological_sort(self) -> Optional[List[int]]:
+        """Topological sort algorithm.
+
+        Returns:
+            list of sorted vertices.
+        """
+        visited = set()
+        stack = []
+        for vertex in self._vertices:
+            if vertex not in visited:
+                self._topological_sort_util(
+                    vertex, visited, stack
+                )
+        return stack[::-1]
+
+    def _is_cyclic_util(
+        self, vertex: int, visited: Set[int], stack: Set[int]
+    ) -> bool:
+        visited.add(vertex)
+        stack.add(vertex)
+        for adjacent_vertex in self._adjacency_list[vertex]:
+            if adjacent_vertex not in visited:
+                if self._is_cyclic_util(
+                    adjacent_vertex, visited, stack
+                ):
+                    return True
+            elif adjacent_vertex in stack:
+                return True
+        stack.remove(vertex)
+        return False
+    
+    def is_cyclic(self) -> bool:
+        """Check if graph is cyclic.
+
+        Returns:
+            True if graph is cyclic, False otherwise.
+        """
+        visited = set()
+        stack = set()
+        for vertex in self._vertices:
+            if vertex not in visited:
+                if self._is_cyclic_util(
+                    vertex, visited, stack
+                ):
+                    return True
+        return False
+
+
 if __name__ == "__main__":
     graph = Graph(
         [0, 1, 2, 3, 4, 5],
