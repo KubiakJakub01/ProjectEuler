@@ -306,6 +306,74 @@ class DirectedGraph(Graph):
         return False
 
 
+class WeightedGraph(Graph):
+    """Weighted graph implementation."""
+
+    def __init__(self, vertices: List[int], edges: List[Tuple[int, int, int]]):
+        """Initialize weighted graph.
+
+        Args:
+            vertices: list of vertices.
+            edges: list of edges.
+        """
+        super().__init__(vertices, edges)
+        self._adjacency_list = self._get_adjacency_list(vertices, edges)
+        self._edges = self._get_edges(vertices, edges)
+
+    def _get_adjacency_list(self, vertices: List[int], edges: List[Tuple[int, int, int]]) -> Dict[int, List[int]]:
+        adjacency_list = {vertex: [] for vertex in vertices}
+        for edge in edges:
+            adjacency_list[edge[0]].append((edge[1], edge[2]))
+            adjacency_list[edge[1]].append((edge[0], edge[2]))
+        return adjacency_list
+
+    def _get_edges(self, vertices: List[int], edges: List[Tuple[int, int, int]]) -> List[Tuple[int, int]]:
+        return [(edge[0], edge[1]) for edge in edges]
+
+    def dijkstra(self, start: int) -> Tuple[Dict[int, int], Dict[int, int]]:
+        """Dijkstra algorithm.
+
+        Args:
+            start: start vertex.
+
+        Returns:
+            tuple with distance and parent dictionaries.
+        """
+        distance = {vertex: np.inf for vertex in self._vertices}
+        parent = {vertex: None for vertex in self._vertices}
+        distance[start] = 0
+        queue = self._vertices.copy()
+        while queue:
+            vertex = min(queue, key=lambda vertex: distance[vertex])
+            queue.remove(vertex)
+            for adjacent_vertex, weight in self._adjacency_list[vertex]:
+                if adjacent_vertex in queue:
+                    new_distance = distance[vertex] + weight
+                    if new_distance < distance[adjacent_vertex]:
+                        distance[adjacent_vertex] = new_distance
+                        parent[adjacent_vertex] = vertex
+        return distance, parent
+
+    def bellman_ford(self, start: int) -> Tuple[Dict[int, int], Dict[int, int]]:
+        """Bellman-Ford algorithm.
+
+        Args:
+            start: start vertex.
+
+        Returns:
+            tuple with distance and parent dictionaries.
+        """
+        distance = {vertex: np.inf for vertex in self._vertices}
+        parent = {vertex : None for vertex in self._vertices}
+        distance[start] = 0
+        for _ in range(len(self._vertices) - 1):
+            for edge in self._edges:
+                if distance[edge[0]] + 1 < distance[edge[1]]:
+                    distance[edge[1]] = distance[edge[0]] + 1
+                    parent[edge[1]] = edge[0]
+        return distance, parent
+
+
 if __name__ == "__main__":
     graph = Graph(
         [0, 1, 2, 3, 4, 5],
