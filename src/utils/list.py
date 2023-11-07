@@ -159,3 +159,16 @@ def load_with_fn(file_name: str, fn: Callable) -> List[int]:
     """
     with open(file_name, "r") as file:
         return [fn(line) for line in file.readlines()]
+
+
+def graph_list(n: int, file_name: str) -> None:
+    """Graph the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares.
+
+    Args:
+        n (int): Number to check.
+        file_name (str): Name of the file.
+    """
+    import matplotlib.pyplot as plt
+    import numpy as np
+    plt.plot(np.arange(n), load_from_file(file_name))
+    plt.show()
