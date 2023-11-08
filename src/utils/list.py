@@ -172,3 +172,13 @@ def graph_list(n: int, file_name: str) -> None:
     import numpy as np
     plt.plot(np.arange(n), load_from_file(file_name))
     plt.show()
+
+
+def print_list(n: int, file_name: str) -> None:
+    """Print the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares.
+
+    Args:
+        n (int): Number to check.
+        file_name (str): Name of the file.
+    """
+    print(load_from_file(file_name))
