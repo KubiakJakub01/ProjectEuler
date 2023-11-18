@@ -121,3 +121,11 @@ def get_totient_dict(n):
     for i in range(2, n):
         totient_dict[i] = get_totient(i)
     return totient_dict
+
+
+def get_totient_list(n):
+    """Return a list of totient values for all numbers less than n"""
+    totient_list = [1]
+    for i in range(2, n):
+        totient_list.append(get_totient(i))
+    return totient_list
