@@ -1,6 +1,7 @@
 """
 Module for Fibonacci sequence
 """
+import time
 
 
 def fib(n: int) -> int:
@@ -84,3 +85,15 @@ def fib_recursive(n: int, result_dict: dict = None) -> int:
     else:
         result_dict[n] = fib_recursive(n - 1, result_dict) + fib_recursive(n - 2, result_dict)
         return result_dict[n]
+
+
+if __name__ == "__main__":
+    for n in range(10, 100, 10):
+        start = time.time()
+        fib(n)
+        end = time.time()
+        print(f"fib({n}) took {end - start} seconds")
+        start = time.time()
+        fib_recursive(n)
+        end = time.time()
+        print(f"fib_recursive({n}) took {end - start} seconds")
