@@ -51,3 +51,20 @@ def levenshtein_distance_matrix(strings):
             matrix[i, j] = levenshtein_distance(strings[i], strings[j])
             matrix[j, i] = matrix[i, j]
     return matrix
+
+
+def levenshtein_distance_matrix_fast(strings):
+    """Return the Levenshtein distance matrix between a list of strings.
+
+    Args:
+        strings (list): A list of strings
+
+    Returns:
+        np.array: The Levenshtein distance matrix
+    """
+    matrix = np.zeros((len(strings), len(strings)))
+    for i in range(len(strings)):
+        for j in range(i + 1, len(strings)):
+            matrix[i, j] = levenshtein(strings[i], strings[j])
+            matrix[j, i] = matrix[i, j]
+    return matrix
