@@ -1,5 +1,6 @@
 '''Script with the Levenshtein distance algorithm.'''
 import numpy as np
+from levenshtein import levenshtein
 
 
 def levenshtein_distance(string_1, string_2):
@@ -33,3 +34,20 @@ def levenshtein_distance(string_1, string_2):
                 )
         distances = new_distances
     return distances[-1]
+
+
+def levenshtein_distance_matrix(strings):
+    """Return the Levenshtein distance matrix between a list of strings.
+
+    Args:
+        strings (list): A list of strings
+
+    Returns:
+        np.array: The Levenshtein distance matrix
+    """
+    matrix = np.zeros((len(strings), len(strings)))
+    for i in range(len(strings)):
+        for j in range(i + 1, len(strings)):
+            matrix[i, j] = levenshtein_distance(strings[i], strings[j])
+            matrix[j, i] = matrix[i, j]
+    return matrix
