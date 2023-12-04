@@ -68,3 +68,18 @@ def levenshtein_distance_matrix_fast(strings):
             matrix[i, j] = levenshtein(strings[i], strings[j])
             matrix[j, i] = matrix[i, j]
     return matrix
+
+
+def remove_duplicates(strings):
+    """Return a list of strings without duplicates.
+
+    Args:
+        strings (list): A list of strings
+
+    Returns:
+        list: A list of strings without duplicates
+    """
+    strings = list(set(strings))
+    strings.sort()
+    return strings
+
