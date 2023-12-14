@@ -3,6 +3,8 @@ import time
 
 import numpy as np
 
+from ..heap import Heap, PriorityHeap
+
 
 def quick_sort(array):
     """Quick sort"""
@@ -96,6 +98,17 @@ def radix_sort(array):
     while max_value / exp > 0:
         counting_sort(array, exp)
         exp *= 10
+    return array
+
+
+def head_sort(array):
+    """Heap sort"""
+    heap = Heap()
+    for i in array:
+        heap.insert(i)
+    array = []
+    while not heap.is_empty():
+        array.append(heap.remove())
     return array
 
 
