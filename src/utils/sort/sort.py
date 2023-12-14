@@ -128,6 +128,7 @@ def run_all_sorts(array):
     print(f"Bubble sort: {run_sort(array, bubble_sort)}")
     print(f"Counting sort: {run_sort(array, counting_sort)}")
     print(f"Radix sort: {run_sort(array, radix_sort)}")
+    print(f"Heap sort: {run_sort(array, head_sort)}")
 
 
 if __name__ == "__main__":
