@@ -64,7 +64,7 @@ def cer(hyp, ref):
             jiwer.RemoveWhiteSpace(replace_by_space=True),
             jiwer.RemovePunctuation(),
             jiwer.Strip(),
-            jiwer.SentencesToListOfWords(word_delimiter=" "),
+            jiwer.ReduceToListOfListOfWords()
         ]
     )
 
