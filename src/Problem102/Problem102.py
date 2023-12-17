@@ -12,8 +12,9 @@ https://projecteuler.net/problem=102
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Rysowanie przykładowych trójkątków
-"""X = np.array([[-340,495], [-153,-910], [835, -947], [-175, 41], [-421, -714], [574, -645]])
+
+"""Plotting example
+X = np.array([[-340,495], [-153,-910], [835, -947], [-175, 41], [-421, -714], [574, -645]])
 Y = ['red', 'red', 'red', 'blue', 'blue', 'blue']
 
 plt.figure()
@@ -29,9 +30,8 @@ ax = plt.gca()
 ax.spines['top'].set_color('none')
 ax.spines['bottom'].set_position('zero')
 ax.spines['left'].set_position('zero')
-ax.spines['right'].set_color('none')"""
-
-# plt.show()
+ax.spines['right'].set_color('none')
+"""
 
 
 # Reading from file
@@ -45,14 +45,24 @@ with open(PATH_2_FILE) as p:
 
 
 def area(x1, y1, x2, y2, x3, y3):
-
     return abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0)
 
 
-# A function to check whether point P(x, y)
-# lies inside the triangle formed by
-# A(x1, y1), B(x2, y2) and C(x3, y3)
-def isInside(x1, y1, x2, y2, x3, y3, x, y):
+def is_inside(x1, y1, x2, y2, x3, y3, x, y):
+    '''Calculate area of triangle ABC
+    
+    Args:
+        x1: x coordinate of point A
+        y1: y coordinate of point A
+        x2: x coordinate of point B
+        y2: y coordinate of point B
+        x3: x coordinate of point C
+        y3: y coordinate of point C
+        x: x coordinate of point P
+        y: y coordinate of point P
+    Returns:
+        bool: True if point P lies inside the triangle ABC
+    '''
 
     # Calculate area of triangle ABC
     A = area(x1, y1, x2, y2, x3, y3)
@@ -88,7 +98,7 @@ def solution():
         x3 = int(triangle[4])
         y3 = int(triangle[5])
 
-        if isInside(x1, y1, x2, y2, x3, y3, x, y):
+        if is_inside(x1, y1, x2, y2, x3, y3, x, y):
             result += 1
 
     print(result)
