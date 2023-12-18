@@ -19,3 +19,14 @@ def read_file(path):
 
     with open(path) as p:
         return p.read().splitlines()
+
+
+def write_file(path, content):
+    """Write content to file
+
+    Args:
+        path (str): path to file
+        content (str): content to write
+    """
+    with open(path, "w") as p:
+        p.write(content)
