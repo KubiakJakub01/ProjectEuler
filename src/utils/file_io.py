@@ -1,5 +1,6 @@
 '''Utils for file I/O'''
 import os
+import csv
 import sys
 import logging
 
@@ -30,3 +31,31 @@ def write_file(path, content):
     """
     with open(path, "w") as p:
         p.write(content)
+
+
+def read_csv(path):
+    """Read csv file from given path
+
+    Args:
+        path (str): path to file
+
+    Returns:
+        list: list of rows
+    """
+    if not os.path.isfile(path):
+        logging.error("File does not exist")
+        sys.exit(1)
+
+    with open(path) as p:
+        return list(csv.reader(p))
+
+
+def write_csv(path, content):
+    """Write content to csv file
+
+    Args:
+        path (str): path to file
+        content (list): content to write
+    """
+    with open(path, "w") as p:
+        csv.writer(p).writerows(content)
