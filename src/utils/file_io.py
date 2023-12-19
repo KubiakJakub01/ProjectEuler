@@ -33,7 +33,7 @@ def write_file(path, content):
         p.write(content)
 
 
-def read_csv(path):
+def read_csv(path, columns=None):
     """Read csv file from given path
 
     Args:
@@ -47,7 +47,11 @@ def read_csv(path):
         sys.exit(1)
 
     with open(path) as p:
-        return list(csv.reader(p))
+        reader = csv.reader(p)
+        header = next(reader)
+        if columns:
+            header = columns
+        return [dict(zip(header, row)) for row in reader]
 
 
 def write_csv(path, content):
