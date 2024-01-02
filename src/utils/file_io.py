@@ -1,8 +1,9 @@
 '''Utils for file I/O'''
-import os
 import csv
-import sys
+import json
 import logging
+import os
+import sys
 
 
 def read_file(path):
@@ -63,3 +64,31 @@ def write_csv(path, content):
     """
     with open(path, "w") as p:
         csv.writer(p).writerows(content)
+
+
+def read_json(path):
+    """Read json file from given path
+
+    Args:
+        path (str): path to file
+
+    Returns:
+        dict: json object
+    """
+    if not os.path.isfile(path):
+        logging.error("File does not exist")
+        sys.exit(1)
+
+    with open(path) as p:
+        return json.load(p)
+
+
+def write_json(path, content):
+    """Write content to json file
+
+    Args:
+        path (str): path to file
+        content (dict): content to write
+    """
+    with open(path, "w") as p:
+        json.dump(content, p, indent=4)
