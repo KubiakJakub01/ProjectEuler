@@ -5,6 +5,8 @@ import logging
 import os
 import sys
 
+import yaml
+
 
 def read_file(path):
     """Read file from given path
@@ -92,3 +94,31 @@ def write_json(path, content):
     """
     with open(path, "w") as p:
         json.dump(content, p, indent=4)
+
+
+def read_yaml(path):
+    """Read yaml file from given path
+
+    Args:
+        path (str): path to file
+
+    Returns:
+        dict: yaml object
+    """
+    if not os.path.isfile(path):
+        logging.error("File does not exist")
+        sys.exit(1)
+
+    with open(path) as p:
+        return yaml.safe_load(p)
+
+
+def write_yaml(path, content):
+    """Write content to yaml file
+
+    Args:
+        path (str): path to file
+        content (dict): content to write
+    """
+    with open(path, "w") as p:
+        yaml.dump(content, p, default_flow_style=False)
