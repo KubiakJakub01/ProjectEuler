@@ -122,3 +122,20 @@ def write_yaml(path, content):
     """
     with open(path, "w") as p:
         yaml.dump(content, p, default_flow_style=False)
+
+
+def read_file_by_line(path):
+    """Read file from given path
+
+    Args:
+        path (str): path to file
+
+    Returns:
+        list: list of lines
+    """
+    if not os.path.isfile(path):
+        logging.error("File does not exist")
+        sys.exit(1)
+
+    with open(path) as p:
+        return p.readlines()
