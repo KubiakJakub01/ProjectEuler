@@ -4,20 +4,21 @@ import json
 import logging
 import os
 import sys
+from pathlib import Path
 
 import yaml
 
 
-def read_file(path):
+def read_file(path: Path):
     """Read file from given path
 
     Args:
-        path (str): path to file
+        path: path to file
 
     Returns:
         list: list of lines
     """
-    if not os.path.isfile(path):
+    if not path.is_file():
         logging.error("File does not exist")
         sys.exit(1)
 
@@ -25,27 +26,27 @@ def read_file(path):
         return p.read().splitlines()
 
 
-def write_file(path, content):
+def write_file(path: Path, content: str):
     """Write content to file
 
     Args:
-        path (str): path to file
-        content (str): content to write
+        path: path to file
+        content: content to write
     """
     with open(path, "w") as p:
         p.write(content)
 
 
-def read_csv(path, columns=None):
+def read_csv(path: Path, columns=None):
     """Read csv file from given path
 
     Args:
-        path (str): path to file
+        path: path to file
 
     Returns:
         list: list of rows
     """
-    if not os.path.isfile(path):
+    if not path.is_file():
         logging.error("File does not exist")
         sys.exit(1)
 
@@ -57,27 +58,27 @@ def read_csv(path, columns=None):
         return [dict(zip(header, row)) for row in reader]
 
 
-def write_csv(path, content):
+def write_csv(path: Path, content: list):
     """Write content to csv file
 
     Args:
-        path (str): path to file
-        content (list): content to write
+        path: path to file
+        content: content to write
     """
     with open(path, "w") as p:
         csv.writer(p).writerows(content)
 
 
-def read_json(path):
+def read_json(path: Path):
     """Read json file from given path
 
     Args:
-        path (str): path to file
+        path: path to file
 
     Returns:
         dict: json object
     """
-    if not os.path.isfile(path):
+    if not path.is_file():
         logging.error("File does not exist")
         sys.exit(1)
 
@@ -85,27 +86,27 @@ def read_json(path):
         return json.load(p)
 
 
-def write_json(path, content):
+def write_json(path: Path, content: dict):
     """Write content to json file
 
     Args:
-        path (str): path to file
-        content (dict): content to write
+        path: path to file
+        content: content to write
     """
     with open(path, "w") as p:
         json.dump(content, p, indent=4)
 
 
-def read_yaml(path):
+def read_yaml(path: Path):
     """Read yaml file from given path
 
     Args:
-        path (str): path to file
+        path: path to file
 
     Returns:
         dict: yaml object
     """
-    if not os.path.isfile(path):
+    if not path.is_file():
         logging.error("File does not exist")
         sys.exit(1)
 
@@ -113,27 +114,27 @@ def read_yaml(path):
         return yaml.safe_load(p)
 
 
-def write_yaml(path, content):
+def write_yaml(path: Path, content: dict):
     """Write content to yaml file
 
     Args:
-        path (str): path to file
-        content (dict): content to write
+        path: path to file
+        content: content to write
     """
     with open(path, "w") as p:
         yaml.dump(content, p, default_flow_style=False)
 
 
-def read_file_by_line(path):
+def read_file_by_line(path: Path):
     """Read file from given path
 
     Args:
-        path (str): path to file
+        path: path to file
 
     Returns:
         list: list of lines
     """
-    if not os.path.isfile(path):
+    if not path.is_file():
         logging.error("File does not exist")
         sys.exit(1)
 
