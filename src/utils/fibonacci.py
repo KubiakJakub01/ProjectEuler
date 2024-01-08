@@ -56,11 +56,6 @@ def fib_recursive(n: int, result_dict: dict = None) -> int:
         return result_dict[n]
 
 
-if __name__ == "__main__":
-    n = 10
-    print(f"The {n}th Fibonacci number is {fib(n)}")
-
-
 def fib_recursive(n: int, result_dict: dict = None) -> int:
     """Return the nth Fibonacci number:
     

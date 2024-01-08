@@ -82,4 +82,3 @@ def remove_duplicates(strings):
     strings = list(set(strings))
     strings.sort()
     return strings
-
