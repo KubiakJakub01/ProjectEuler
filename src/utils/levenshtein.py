@@ -82,3 +82,18 @@ def remove_duplicates(strings):
     strings = list(set(strings))
     strings.sort()
     return strings
+
+
+def remove_punctuation(string):
+    """Return a string without punctuation.
+
+    Args:
+        string (str): A string
+
+    Returns:
+        str: The string without punctuation
+    """
+    punctuation = [".", ",", ":", ";", "!", "?", '"', "'"]
+    for char in punctuation:
+        string = string.replace(char, "")
+    return string
