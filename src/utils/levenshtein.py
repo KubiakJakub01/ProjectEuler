@@ -97,3 +97,15 @@ def remove_punctuation(string):
     for char in punctuation:
         string = string.replace(char, "")
     return string
+
+
+def normalize(string):
+    """Return a string without punctuation and in lowercase.
+
+    Args:
+        string (str): A string
+
+    Returns:
+        str: The string without punctuation and in lowercase
+    """
+    return remove_punctuation(string).lower()
