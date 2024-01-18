@@ -109,3 +109,15 @@ def normalize(string):
         str: The string without punctuation and in lowercase
     """
     return remove_punctuation(string).lower()
+
+
+def normalize_list(strings):
+    """Return a list of strings without punctuation and in lowercase.
+
+    Args:
+        strings (list): A list of strings
+
+    Returns:
+        list: A list of strings without punctuation and in lowercase
+    """
+    return [normalize(string) for string in strings]
