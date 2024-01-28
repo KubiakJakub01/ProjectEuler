@@ -3,12 +3,12 @@ import numpy as np
 from levenshtein import levenshtein
 
 
-def levenshtein_distance(string_1, string_2):
+def levenshtein_distance(string_1: str, string_2: str):
     """Return the Levenshtein distance between two strings.
 
     Args:
-        string_1 (str): The first string
-        string_2 (str): The second string
+        string_1: The first string
+        string_2: The second string
 
     Returns:
         int: The Levenshtein distance between the two strings
@@ -36,11 +36,11 @@ def levenshtein_distance(string_1, string_2):
     return distances[-1]
 
 
-def levenshtein_distance_matrix(strings):
+def levenshtein_distance_matrix(strings: list[str]):
     """Return the Levenshtein distance matrix between a list of strings.
 
     Args:
-        strings (list): A list of strings
+        strings: A list of strings
 
     Returns:
         np.array: The Levenshtein distance matrix
@@ -53,11 +53,11 @@ def levenshtein_distance_matrix(strings):
     return matrix
 
 
-def levenshtein_distance_matrix_fast(strings):
+def levenshtein_distance_matrix_fast(strings: list[str]):
     """Return the Levenshtein distance matrix between a list of strings.
 
     Args:
-        strings (list): A list of strings
+        strings: A list of strings
 
     Returns:
         np.array: The Levenshtein distance matrix
@@ -70,11 +70,11 @@ def levenshtein_distance_matrix_fast(strings):
     return matrix
 
 
-def remove_duplicates(strings):
+def remove_duplicates(strings: list[str]):
     """Return a list of strings without duplicates.
 
     Args:
-        strings (list): A list of strings
+        strings: A list of strings
 
     Returns:
         list: A list of strings without duplicates
@@ -84,11 +84,11 @@ def remove_duplicates(strings):
     return strings
 
 
-def remove_punctuation(string):
+def remove_punctuation(string: str):
     """Return a string without punctuation.
 
     Args:
-        string (str): A string
+        string: A string
 
     Returns:
         str: The string without punctuation
@@ -99,11 +99,11 @@ def remove_punctuation(string):
     return string
 
 
-def normalize(string):
+def normalize(string: str):
     """Return a string without punctuation and in lowercase.
 
     Args:
-        string (str): A string
+        string: A string
 
     Returns:
         str: The string without punctuation and in lowercase
@@ -111,11 +111,11 @@ def normalize(string):
     return remove_punctuation(string).lower()
 
 
-def normalize_list(strings):
+def normalize_list(strings: list[str]):
     """Return a list of strings without punctuation and in lowercase.
 
     Args:
-        strings (list): A list of strings
+        strings: A list of strings
 
     Returns:
         list: A list of strings without punctuation and in lowercase
