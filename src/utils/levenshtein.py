@@ -121,3 +121,16 @@ def normalize_list(strings: list[str]):
         list: A list of strings without punctuation and in lowercase
     """
     return [normalize(string) for string in strings]
+
+
+def remove_stopwords(string: str, stopwords: list[str]):
+    """Return a string without stopwords.
+
+    Args:
+        string: A string
+        stopwords: A list of stopwords
+
+    Returns:
+        str: The string without stopwords
+    """
+    return " ".join([word for word in string.split() if word not in stopwords])
