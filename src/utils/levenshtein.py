@@ -134,3 +134,16 @@ def remove_stopwords(string: str, stopwords: list[str]):
         str: The string without stopwords
     """
     return " ".join([word for word in string.split() if word not in stopwords])
+
+
+def remove_stopwords_list(strings: list[str], stopwords: list[str]):
+    """Return a list of strings without stopwords.
+
+    Args:
+        strings: A list of strings
+        stopwords: A list of stopwords
+
+    Returns:
+        list: A list of strings without stopwords
+    """
+    return [remove_stopwords(string, stopwords) for string in strings]
