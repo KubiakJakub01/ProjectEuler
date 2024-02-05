@@ -147,3 +147,18 @@ def remove_stopwords_list(strings: list[str], stopwords: list[str]):
         list: A list of strings without stopwords
     """
     return [remove_stopwords(string, stopwords) for string in strings]
+
+
+def remove_duplicates_and_stopwords(strings: list[str], stopwords: list[str]):
+    """Return a list of strings without duplicates and stopwords.
+
+    Args:
+        strings: A list of strings
+        stopwords: A list of stopwords
+
+    Returns:
+        list: A list of strings without duplicates and stopwords
+    """
+    strings = remove_duplicates(strings)
+    strings = remove_stopwords_list(strings, stopwords)
+    return strings
