@@ -129,3 +129,9 @@ def get_totient_list(n):
     for i in range(2, n):
         totient_list.append(get_totient(i))
     return totient_list
+
+
+def get_totient_sum(n):
+    """Return the sum of totient values for all numbers less than n"""
+    return sum(get_totient_list(n))
+
