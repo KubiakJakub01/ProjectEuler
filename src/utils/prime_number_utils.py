@@ -135,3 +135,10 @@ def get_totient_sum(n):
     """Return the sum of totient values for all numbers less than n"""
     return sum(get_totient_list(n))
 
+
+def get_totient_sum_dict(n):
+    """Return a dictionary of the sum of totient values for all numbers less than n"""
+    totient_sum_dict = {1: 1}
+    for i in range(2, n):
+        totient_sum_dict[i] = sum(get_totient_list(i))
+    return totient_sum_dict
