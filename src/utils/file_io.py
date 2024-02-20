@@ -3,6 +3,7 @@ import csv
 import json
 import logging
 import sys
+import tarfile
 from pathlib import Path
 
 import yaml
