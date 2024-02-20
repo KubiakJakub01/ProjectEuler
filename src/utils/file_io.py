@@ -140,3 +140,16 @@ def read_file_by_line(path: Path):
 
     with open(path) as p:
         return p.readlines()
+
+
+def tar_files(tar_name: str, files: list):
+    """Tar files
+
+    Args:
+        tar_name: name of tar file
+        files: list of files to tar
+    """
+    with tarfile.open(tar_name, "w:gz") as tar:
+        for file in files:
+            tar.add(file)
+
