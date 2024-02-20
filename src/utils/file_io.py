@@ -153,3 +153,13 @@ def tar_files(tar_name: str, files: list):
         for file in files:
             tar.add(file)
 
+
+def untar_files(tar_name: str, dest: str):
+    """Untar files
+
+    Args:
+        tar_name: name of tar file
+        dest: destination to untar
+    """
+    with tarfile.open(tar_name, "r:gz") as tar:
+        tar.extractall(path=dest)
