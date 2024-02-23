@@ -142,3 +142,11 @@ def get_totient_sum_dict(n):
     for i in range(2, n):
         totient_sum_dict[i] = sum(get_totient_list(i))
     return totient_sum_dict
+
+
+def get_totient_sum_list(n):
+    """Return a list of the sum of totient values for all numbers less than n"""
+    totient_sum_list = [1]
+    for i in range(2, n):
+        totient_sum_list.append(sum(get_totient_list(i)))
+    return totient_sum_list
