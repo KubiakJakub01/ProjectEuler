@@ -3,3 +3,4 @@ matplotlib==3.8.1
 numpy==1.24.0
 pre-commit==3.6.2
 python-Levenshtein==0.23.0
+ruff==0.2.2
