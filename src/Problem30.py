@@ -18,7 +18,6 @@ Find the sum of all the numbers that can be written as the sum of fifth powers o
 
 
 def solution():
-
     wynik = 0
     numbers = []
     power_lib = [pow(x, 5) for x in range(0, 10)]

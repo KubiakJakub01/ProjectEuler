@@ -1,4 +1,4 @@
-'''Script with the Levenshtein distance algorithm.'''
+"""Script with the Levenshtein distance algorithm."""
 import numpy as np
 from levenshtein import levenshtein
 
@@ -164,9 +164,7 @@ def remove_duplicates_and_stopwords(strings: list[str], stopwords: list[str]):
     return strings
 
 
-def levenshtein_distance_matrix_normalized(
-    strings: list[str], stopwords: list[str]
-):
+def levenshtein_distance_matrix_normalized(strings: list[str], stopwords: list[str]):
     """Return the Levenshtein distance matrix between a list of strings.
 
     Args:

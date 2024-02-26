@@ -25,7 +25,6 @@ while (p * p) < max_n:
 
 
 def divCount(n):
-
     total = 1
     for p in range(2, n + 1):
         if hh[p] == 1:

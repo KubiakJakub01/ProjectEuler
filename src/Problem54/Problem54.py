@@ -46,6 +46,7 @@ con_2_num = {
     "A": 14,
 }
 
+
 # Checking Straight, Flush, Straight, Royal_Flush
 def check_is_straight_or_Flush(value, suit):
     if len(set(value)) == 5:

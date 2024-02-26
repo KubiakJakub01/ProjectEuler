@@ -26,7 +26,6 @@ dsums = [1] * limit
 
 
 def searching_amicable_chain(prev_values, num):
-
     # if value was checked or value is prime num
     if num == 1:
         # we denote all value in this path

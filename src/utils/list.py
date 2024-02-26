@@ -170,6 +170,7 @@ def graph_list(n: int, file_name: str) -> None:
     """
     import matplotlib.pyplot as plt
     import numpy as np
+
     plt.plot(np.arange(n), load_from_file(file_name))
     plt.show()
 
@@ -193,5 +194,6 @@ def plot_list(n: int, file_name: str) -> None:
     """
     import matplotlib.pyplot as plt
     import numpy as np
+
     plt.plot(np.arange(n), load_from_file(file_name))
     plt.show()

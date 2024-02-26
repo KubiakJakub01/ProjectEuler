@@ -27,13 +27,9 @@ def get_grid_min_path_sum(grid):
         for i in range(size):
             min_matrix[i][j] = min_matrix[i][j - 1] + grid[i][j]
         for i in range(1, size):
-            min_matrix[i][j] = min(
-                min_matrix[i][j], min_matrix[i - 1][j] + grid[i][j]
-            )
+            min_matrix[i][j] = min(min_matrix[i][j], min_matrix[i - 1][j] + grid[i][j])
         for i in range(size - 2, -1, -1):
-            min_matrix[i][j] = min(
-                min_matrix[i][j], min_matrix[i + 1][j] + grid[i][j]
-            )
+            min_matrix[i][j] = min(min_matrix[i][j], min_matrix[i + 1][j] + grid[i][j])
 
     # find minimum path sum
     for i in range(size):

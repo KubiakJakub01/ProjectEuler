@@ -6,7 +6,9 @@ import collections
 from node.tree_node import TreeNode
 
 
-def create_tree_node_list_from_list_of_values(values: typing.List[typing.Any]) -> typing.List[TreeNode]:
+def create_tree_node_list_from_list_of_values(
+    values: typing.List[typing.Any],
+) -> typing.List[TreeNode]:
     """Create a list of tree nodes from a list of values
 
     Args:
@@ -83,7 +85,7 @@ def printTree(node: TreeNode, level=0):
     """
     if node != None:
         printTree(node.left, level + 1)
-        print(' ' * 4 * level + '-> ' + str(node.value))
+        print(" " * 4 * level + "-> " + str(node.value))
         printTree(node.right, level + 1)
 
 
@@ -94,6 +96,7 @@ def print_tree(func):
     Returns:
         typing.Callable: The decorated function.
     """
+
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         """Wrapper function.
@@ -106,6 +109,7 @@ def print_tree(func):
         result = func(*args, **kwargs)
         printTree(result)
         return result
+
     return wrapper
 
 

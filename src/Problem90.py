@@ -24,6 +24,7 @@ ALLOWED_NUMBERS = set(range(10))
 REQUESTED_NUMBERS = set([0, 1, 2, 3, 4, 5, 6, 8])
 SEPARATE_PAIRS = [(0, 1), (0, 4), (0, 6), (1, 6), (2, 5), (3, 6), (4, 6), (8, 1)]
 
+
 # function to create a list of all possible combinations of 6 number in dice
 def create_dice_list():
     for dice in list(combinations(ALLOWED_NUMBERS, 6)):

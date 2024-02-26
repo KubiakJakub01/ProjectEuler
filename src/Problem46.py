@@ -17,7 +17,6 @@ def is_prime(n):
 
 
 def solution():
-
     prime_list = [2]
     flaga = True
 

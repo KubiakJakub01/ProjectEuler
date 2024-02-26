@@ -28,6 +28,7 @@ COEFFICIENTS = [1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1]
 TEST_COEFFICIENTS = [0, 0, 0, 1]
 N = len(TEST_COEFFICIENTS)
 
+
 # polunomial function
 def polynomial(x, coefficients):
     result = coefficients[0]

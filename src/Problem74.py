@@ -44,7 +44,6 @@ def new_factor(num):
 
 
 def solution():
-
     len_tab = []
     for number in range(1, 1000000):
         num_list = [number]

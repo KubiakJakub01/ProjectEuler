@@ -15,7 +15,7 @@ class Heap:
 
     def heapify(self, array: np.ndarray, n: int, i: int) -> None:
         """Heapify
-        
+
         Args:
             array: array to heapify
             n: size of heap
@@ -31,7 +31,6 @@ class Heap:
             array[i], array[largest] = array[largest], array[i]
             self.heapify(array, n, largest)
 
-
     def heap_sort(self) -> np.ndarray:
         """Heap sort
 
@@ -45,7 +44,6 @@ class Heap:
             self.heapify(self.array, i, 0)
         return self.array
 
-
     def heap_push(self, value: int) -> None:
         """Push value to heap
 
@@ -55,9 +53,11 @@ class Heap:
         self.array.append(value)
         i = len(self.array) - 1
         while i > 0 and self.array[i] > self.array[(i - 1) // 2]:
-            self.array[i], self.array[(i - 1) // 2] = self.array[(i - 1) // 2], self.array[i]
+            self.array[i], self.array[(i - 1) // 2] = (
+                self.array[(i - 1) // 2],
+                self.array[i],
+            )
             i = (i - 1) // 2
-
 
     def heap_pop(self) -> int:
         """Pop value from heap
@@ -68,7 +68,6 @@ class Heap:
         value = self.array.pop()
         self.heapify(self.array, len(self.array), 0)
         return value
-
 
     def heap_replace(self, value: int) -> int:
         """Replace value in heap
@@ -122,7 +121,7 @@ class Heap:
         Args:
             array: heap"""
         return self.array[0]
-    
+
     def heap_min(self) -> int:
         """Get min value from heap
 

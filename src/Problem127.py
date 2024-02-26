@@ -13,6 +13,7 @@ from .utils.timer import timer
 
 LIMIT = 120000
 
+
 # main solution function
 @timer
 def solution():
@@ -29,7 +30,7 @@ def solution():
 
     ans = 0
     for c in range(2, LIMIT):
-        for (rad, a) in sortedrads:
+        for rad, a in sortedrads:
             rad *= rads[c]
             if rad >= c:
                 break

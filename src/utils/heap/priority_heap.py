@@ -5,7 +5,6 @@ from src.utils.heap.heap import Heap
 
 
 class PriorityHeap(Heap):
-
     def __init__(self, array: np.ndarray) -> None:
         """Initialize heap
 
@@ -15,7 +14,7 @@ class PriorityHeap(Heap):
 
     def heapify(self, array: np.ndarray, n: int, i: int) -> None:
         """Heapify
-        
+
         Args:
             array: array to heapify
             n: size of heap
@@ -53,7 +52,10 @@ class PriorityHeap(Heap):
         self.array.append(value)
         i = len(self.array) - 1
         while i > 0 and self.array[i][0] > self.array[(i - 1) // 2][0]:
-            self.array[i], self.array[(i - 1) // 2] = self.array[(i - 1) // 2], self.array[i]
+            self.array[i], self.array[(i - 1) // 2] = (
+                self.array[(i - 1) // 2],
+                self.array[i],
+            )
             i = (i - 1) // 2
 
     def heap_pop(self) -> int:
@@ -80,7 +82,7 @@ class PriorityHeap(Heap):
         self.array[0] = value
         self.heapify(self.array, len(self.array), 0)
         return root
-    
+
     def heap_delete(self, i: int) -> None:
         """Delete value from heap
 
@@ -96,7 +98,7 @@ class PriorityHeap(Heap):
         Args:
             array: heap"""
         return self.array[0]
-    
+
     def heap_set(self, value: int) -> None:
         """Set root of heap
 

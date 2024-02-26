@@ -42,7 +42,7 @@ def solution():
             min_matrix[i][j] = min(
                 min_matrix[i][j], min_matrix[i + 1][j] + matrix[i][j]
             )
-  
+
     # find minimum path sum
     for i in range(size):
         min_path_sum = min(min_path_sum, min_matrix[i][size - 1])

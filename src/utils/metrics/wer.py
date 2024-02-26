@@ -36,7 +36,7 @@ def wer(hyp, ref, type: Literal["relaxed", "strict"] = "relaxed"):
                 jiwer.SentencesToListOfWords(word_delimiter=" "),
             ]
         )
-    
+
     hyp = transform(hyp)
     ref = transform(ref)
 
@@ -64,18 +64,14 @@ def cer(hyp, ref):
             jiwer.RemoveWhiteSpace(replace_by_space=True),
             jiwer.RemovePunctuation(),
             jiwer.Strip(),
-            jiwer.ReduceToListOfListOfWords()
+            jiwer.ReduceToListOfListOfWords(),
         ]
     )
 
     hyp = transform(hyp)
     ref = transform(ref)
 
-    cer = jiwer.cer(
-        ref,
-        hyp,
-        hypothesis_transform=jiwer.remove_empty_strings
-    )
+    cer = jiwer.cer(ref, hyp, hypothesis_transform=jiwer.remove_empty_strings)
 
     # Normalize CER
     if cer > 1:

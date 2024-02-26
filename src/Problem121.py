@@ -12,6 +12,7 @@ from itertools import combinations
 
 LIMIT = 15
 
+
 # main solution function
 def solution():
     products_sum = 0

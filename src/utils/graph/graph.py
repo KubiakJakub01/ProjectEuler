@@ -76,15 +76,11 @@ class Graph:
                 stack.extend(self._adjacency_list[vertex])
         return visited
 
-    def _topological_sort_util(
-        self, vertex: int, visited: Set[int], stack: List[int]
-    ):
+    def _topological_sort_util(self, vertex: int, visited: Set[int], stack: List[int]):
         visited.add(vertex)
         for adjacent_vertex in self._adjacency_list[vertex]:
             if adjacent_vertex not in visited:
-                self._topological_sort_util(
-                    adjacent_vertex, visited, stack
-                )
+                self._topological_sort_util(adjacent_vertex, visited, stack)
         stack.insert(0, vertex)
 
     def topological_sort(self) -> Optional[List[int]]:
@@ -97,27 +93,21 @@ class Graph:
         stack = []
         for vertex in self._vertices:
             if vertex not in visited:
-                self._topological_sort_util(
-                    vertex, visited, stack
-                )
+                self._topological_sort_util(vertex, visited, stack)
         return stack[::-1]
-    
-    def _is_cyclic_util(
-        self, vertex: int, visited: Set[int], stack: Set[int]
-    ) -> bool:
+
+    def _is_cyclic_util(self, vertex: int, visited: Set[int], stack: Set[int]) -> bool:
         visited.add(vertex)
         stack.add(vertex)
         for adjacent_vertex in self._adjacency_list[vertex]:
             if adjacent_vertex not in visited:
-                if self._is_cyclic_util(
-                    adjacent_vertex, visited, stack
-                ):
+                if self._is_cyclic_util(adjacent_vertex, visited, stack):
                     return True
             elif adjacent_vertex in stack:
                 return True
         stack.remove(vertex)
         return False
-    
+
     def is_cyclic(self) -> bool:
         """Check if graph is cyclic.
 
@@ -128,26 +118,20 @@ class Graph:
         stack = set()
         for vertex in self._vertices:
             if vertex not in visited:
-                if self._is_cyclic_util(
-                    vertex, visited, stack
-                ):
+                if self._is_cyclic_util(vertex, visited, stack):
                     return True
         return False
 
-    def _is_bipartite_util(
-        self, vertex: int, color: Dict[int, int]
-    ) -> bool:
+    def _is_bipartite_util(self, vertex: int, color: Dict[int, int]) -> bool:
         for adjacent_vertex in self._adjacency_list[vertex]:
             if adjacent_vertex not in color:
                 color[adjacent_vertex] = 1 - color[vertex]
-                if not self._is_bipartite_util(
-                    adjacent_vertex, color
-                ):
+                if not self._is_bipartite_util(adjacent_vertex, color):
                     return False
             elif color[adjacent_vertex] == color[vertex]:
                 return False
         return True
-    
+
     def is_bipartite(self) -> bool:
         """Check if graph is bipartite.
 
@@ -155,9 +139,7 @@ class Graph:
             True if graph is bipartite, False otherwise.
         """
         color = {self._vertices[0]: 0}
-        return self._is_bipartite_util(
-            self._vertices[0], color
-        )
+        return self._is_bipartite_util(self._vertices[0], color)
 
     def dijkstra(self, start: int, end: int) -> List[int]:
         """Dijkstra algorithm.
@@ -208,13 +190,17 @@ class Graph:
                     parent[edge[1]] = edge[0]
         return distance, parent
 
-    def _get_adjacency_list(self, vertices: List[int], edges: List[Tuple[int, int]]) -> Dict[int, List[int]]:
+    def _get_adjacency_list(
+        self, vertices: List[int], edges: List[Tuple[int, int]]
+    ) -> Dict[int, List[int]]:
         adjacency_list = {vertex: [] for vertex in vertices}
         for edge in edges:
             adjacency_list[edge[0]].append(edge[1])
         return adjacency_list
 
-    def _get_edges(self, vertices: List[int], edges: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
+    def _get_edges(
+        self, vertices: List[int], edges: List[Tuple[int, int]]
+    ) -> List[Tuple[int, int]]:
         return [(edge[0], edge[1]) for edge in edges]
 
     def __repr__(self) -> str:
@@ -238,24 +224,24 @@ class DirectedGraph(Graph):
         self._adjacency_list = self._get_adjacency_list(vertices, edges)
         self._edges = self._get_edges(vertices, edges)
 
-    def _get_adjacency_list(self, vertices: List[int], edges: List[Tuple[int, int]]) -> Dict[int, List[int]]:
+    def _get_adjacency_list(
+        self, vertices: List[int], edges: List[Tuple[int, int]]
+    ) -> Dict[int, List[int]]:
         adjacency_list = {vertex: [] for vertex in vertices}
         for edge in edges:
             adjacency_list[edge[0]].append(edge[1])
         return adjacency_list
 
-    def _get_edges(self, vertices: List[int], edges: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
+    def _get_edges(
+        self, vertices: List[int], edges: List[Tuple[int, int]]
+    ) -> List[Tuple[int, int]]:
         return edges
 
-    def _topological_sort_util(
-        self, vertex: int, visited: Set[int], stack: List[int]
-    ):
+    def _topological_sort_util(self, vertex: int, visited: Set[int], stack: List[int]):
         visited.add(vertex)
         for adjacent_vertex in self._adjacency_list[vertex]:
             if adjacent_vertex not in visited:
-                self._topological_sort_util(
-                    adjacent_vertex, visited, stack
-                )
+                self._topological_sort_util(adjacent_vertex, visited, stack)
         stack.insert(0, vertex)
 
     def topological_sort(self) -> Optional[List[int]]:
@@ -268,27 +254,21 @@ class DirectedGraph(Graph):
         stack = []
         for vertex in self._vertices:
             if vertex not in visited:
-                self._topological_sort_util(
-                    vertex, visited, stack
-                )
+                self._topological_sort_util(vertex, visited, stack)
         return stack[::-1]
 
-    def _is_cyclic_util(
-        self, vertex: int, visited: Set[int], stack: Set[int]
-    ) -> bool:
+    def _is_cyclic_util(self, vertex: int, visited: Set[int], stack: Set[int]) -> bool:
         visited.add(vertex)
         stack.add(vertex)
         for adjacent_vertex in self._adjacency_list[vertex]:
             if adjacent_vertex not in visited:
-                if self._is_cyclic_util(
-                    adjacent_vertex, visited, stack
-                ):
+                if self._is_cyclic_util(adjacent_vertex, visited, stack):
                     return True
             elif adjacent_vertex in stack:
                 return True
         stack.remove(vertex)
         return False
-    
+
     def is_cyclic(self) -> bool:
         """Check if graph is cyclic.
 
@@ -299,9 +279,7 @@ class DirectedGraph(Graph):
         stack = set()
         for vertex in self._vertices:
             if vertex not in visited:
-                if self._is_cyclic_util(
-                    vertex, visited, stack
-                ):
+                if self._is_cyclic_util(vertex, visited, stack):
                     return True
         return False
 
@@ -320,14 +298,18 @@ class WeightedGraph(Graph):
         self._adjacency_list = self._get_adjacency_list(vertices, edges)
         self._edges = self._get_edges(vertices, edges)
 
-    def _get_adjacency_list(self, vertices: List[int], edges: List[Tuple[int, int, int]]) -> Dict[int, List[int]]:
+    def _get_adjacency_list(
+        self, vertices: List[int], edges: List[Tuple[int, int, int]]
+    ) -> Dict[int, List[int]]:
         adjacency_list = {vertex: [] for vertex in vertices}
         for edge in edges:
             adjacency_list[edge[0]].append((edge[1], edge[2]))
             adjacency_list[edge[1]].append((edge[0], edge[2]))
         return adjacency_list
 
-    def _get_edges(self, vertices: List[int], edges: List[Tuple[int, int, int]]) -> List[Tuple[int, int]]:
+    def _get_edges(
+        self, vertices: List[int], edges: List[Tuple[int, int, int]]
+    ) -> List[Tuple[int, int]]:
         return [(edge[0], edge[1]) for edge in edges]
 
     def dijkstra(self, start: int) -> Tuple[Dict[int, int], Dict[int, int]]:
@@ -364,7 +346,7 @@ class WeightedGraph(Graph):
             tuple with distance and parent dictionaries.
         """
         distance = {vertex: np.inf for vertex in self._vertices}
-        parent = {vertex : None for vertex in self._vertices}
+        parent = {vertex: None for vertex in self._vertices}
         distance[start] = 0
         for _ in range(len(self._vertices) - 1):
             for edge in self._edges:
@@ -388,24 +370,24 @@ class DirectedWeightedGraph(WeightedGraph):
         self._adjacency_list = self._get_adjacency_list(vertices, edges)
         self._edges = self._get_edges(vertices, edges)
 
-    def _get_adjacency_list(self, vertices: List[int], edges: List[Tuple[int, int, int]]) -> Dict[int, List[int]]:
+    def _get_adjacency_list(
+        self, vertices: List[int], edges: List[Tuple[int, int, int]]
+    ) -> Dict[int, List[int]]:
         adjacency_list = {vertex: [] for vertex in vertices}
         for edge in edges:
             adjacency_list[edge[0]].append((edge[1], edge[2]))
         return adjacency_list
 
-    def _get_edges(self, vertices: List[int], edges: List[Tuple[int, int, int]]) -> List[Tuple[int, int]]:
+    def _get_edges(
+        self, vertices: List[int], edges: List[Tuple[int, int, int]]
+    ) -> List[Tuple[int, int]]:
         return [(edge[0], edge[1]) for edge in edges]
 
-    def _topological_sort_util(
-        self, vertex: int, visited: Set[int], stack: List[int]
-    ):
+    def _topological_sort_util(self, vertex: int, visited: Set[int], stack: List[int]):
         visited.add(vertex)
         for adjacent_vertex in self._adjacency_list[vertex]:
             if adjacent_vertex not in visited:
-                self._topological_sort_util(
-                    adjacent_vertex, visited, stack
-                )
+                self._topological_sort_util(adjacent_vertex, visited, stack)
         stack.insert(0, vertex)
 
     def topological_sort(self) -> Optional[List[int]]:
@@ -418,44 +400,35 @@ class DirectedWeightedGraph(WeightedGraph):
         stack = []
         for vertex in self._vertices:
             if vertex not in visited:
-                self._topological_sort_util(
-                    vertex, visited, stack
-                )
+                self._topological_sort_util(vertex, visited, stack)
         return stack[::-1]
 
-    def _is_cyclic_util(
-        self, vertex: int, visited: Set[int], stack: Set[int]
-    ) -> bool:
+    def _is_cyclic_util(self, vertex: int, visited: Set[int], stack: Set[int]) -> bool:
         visited.add(vertex)
         stack.add(vertex)
         for adjacent_vertex in self._adjacency_list[vertex]:
             if adjacent_vertex not in visited:
-                if self._is_cyclic_util(
-                    adjacent_vertex, visited, stack
-                ):
+                if self._is_cyclic_util(adjacent_vertex, visited, stack):
                     return True
             elif adjacent_vertex in stack:
                 return True
         stack.remove(vertex)
         return False
-    
+
     def is_cyclic(self) -> bool:
         """Check if graph is cyclic"""
         visited = set()
         stack = set()
         for vertex in self._vertices:
             if vertex not in visited:
-                if self._is_cyclic_util(
-                    vertex, visited, stack
-                ):
+                if self._is_cyclic_util(vertex, visited, stack):
                     return True
         return False
 
 
 if __name__ == "__main__":
     graph = Graph(
-        [0, 1, 2, 3, 4, 5],
-        [(0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (3, 4), (4, 5)]
+        [0, 1, 2, 3, 4, 5], [(0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (3, 4), (4, 5)]
     )
     print(graph)
     print(graph.breadth_first_search(0))

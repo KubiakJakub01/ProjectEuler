@@ -38,6 +38,7 @@ K = 10000
 number_rad_dict = defaultdict(list)
 number_rad_dict[1] = [1]
 
+
 # main solution function
 def solution():
     # get primes up to MAX_N

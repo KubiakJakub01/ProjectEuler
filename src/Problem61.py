@@ -63,7 +63,6 @@ def solution():
 
 
 def find_num(searching_num="", nums=[], remaining_numbers=dict()):
-
     # print('nums: {} remaining keys: {}'.format(nums, remaining_numbers.keys()))
 
     # Check if we already have found our numbers

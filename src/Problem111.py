@@ -23,6 +23,7 @@ from itertools import permutations, combinations_with_replacement
 n = 10
 N = 10**11
 
+
 # Sieve of Eratosthenes
 def sieve_of_eratosthenes(n):
     primes = [True] * (n + 1)

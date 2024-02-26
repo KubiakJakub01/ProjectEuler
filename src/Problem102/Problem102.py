@@ -49,8 +49,8 @@ def area(x1, y1, x2, y2, x3, y3):
 
 
 def is_inside(x1, y1, x2, y2, x3, y3, x, y):
-    '''Calculate area of triangle ABC
-    
+    """Calculate area of triangle ABC
+
     Args:
         x1: x coordinate of point A
         y1: y coordinate of point A
@@ -62,7 +62,7 @@ def is_inside(x1, y1, x2, y2, x3, y3, x, y):
         y: y coordinate of point P
     Returns:
         bool: True if point P lies inside the triangle ABC
-    '''
+    """
 
     # Calculate area of triangle ABC
     A = area(x1, y1, x2, y2, x3, y3)

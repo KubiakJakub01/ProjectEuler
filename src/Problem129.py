@@ -8,6 +8,7 @@ https://projecteuler.net/problem=129
 """
 from .utils.timer import timer
 
+
 def A(n):
     # Return the smallest number k such that R(k) is divisible by n
     k = 1
@@ -16,6 +17,7 @@ def A(n):
         R = (R * 10 + 1) % n
         k += 1
     return k
+
 
 @timer
 def solution():

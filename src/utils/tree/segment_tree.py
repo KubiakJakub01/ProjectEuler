@@ -5,8 +5,10 @@ import numpy as np
 
 from node.tree_node import TreeNode
 
+
 class SegmentTree:
     """Segment tree class"""
+
     def __init__(self, array):
         self.array = array
         self.root = self.build_tree(0, len(array) - 1)
@@ -49,9 +51,8 @@ class SegmentTree:
             return self.query_tree(root.left, start, end)
         if start > mid:
             return self.query_tree(root.right, start, end)
-        return (
-            self.query_tree(root.left, start, mid)
-            + self.query_tree(root.right, mid + 1, end)
+        return self.query_tree(root.left, start, mid) + self.query_tree(
+            root.right, mid + 1, end
         )
 
     def __str__(self):

@@ -132,5 +132,5 @@ def run_all_sorts(array):
 
 
 if __name__ == "__main__":
-    array = np.random.randint(0, 10 ** 6, 10 ** 4)
+    array = np.random.randint(0, 10**6, 10**4)
     run_all_sorts(array)

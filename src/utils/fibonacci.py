@@ -28,15 +28,15 @@ def fib(n: int) -> int:
         for _ in range(n - 1):
             a, b = b, a + b
         return b
-    
+
 
 def fib_recursive(n: int, result_dict: dict = None) -> int:
     """Return the nth Fibonacci number:
-    
+
     Args:
         n (int): The index of the Fibonacci number to return
         result_dict (dict): A dictionary to store already calculated results
-    
+
     Returns:
         int: The nth Fibonacci number"""
     if n < 0:
@@ -52,17 +52,19 @@ def fib_recursive(n: int, result_dict: dict = None) -> int:
         result_dict[n] = 1
         return 1
     else:
-        result_dict[n] = fib_recursive(n - 1, result_dict) + fib_recursive(n - 2, result_dict)
+        result_dict[n] = fib_recursive(n - 1, result_dict) + fib_recursive(
+            n - 2, result_dict
+        )
         return result_dict[n]
 
 
 def fib_recursive(n: int, result_dict: dict = None) -> int:
     """Return the nth Fibonacci number:
-    
+
     Args:
         n (int): The index of the Fibonacci number to return
         result_dict (dict): A dictionary to store already calculated results
-    
+
     Returns:
         int: The nth Fibonacci number"""
     if n < 0:
@@ -78,7 +80,9 @@ def fib_recursive(n: int, result_dict: dict = None) -> int:
         result_dict[n] = 1
         return 1
     else:
-        result_dict[n] = fib_recursive(n - 1, result_dict) + fib_recursive(n - 2, result_dict)
+        result_dict[n] = fib_recursive(n - 1, result_dict) + fib_recursive(
+            n - 2, result_dict
+        )
         return result_dict[n]
 
 

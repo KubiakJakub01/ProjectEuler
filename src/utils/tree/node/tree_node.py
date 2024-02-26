@@ -5,8 +5,12 @@ import typing
 class TreeNode:
     """Class representing a tree node"""
 
-    def __init__(self, value: typing.Any, left: typing.Optional["TreeNode"] = None,
-                 right: typing.Optional["TreeNode"] = None):
+    def __init__(
+        self,
+        value: typing.Any,
+        left: typing.Optional["TreeNode"] = None,
+        right: typing.Optional["TreeNode"] = None,
+    ):
         """Initialize a tree node
 
         Args:
@@ -38,8 +42,12 @@ class TreeNode:
 class BinaryNode(TreeNode):
     """Class representing a binary tree node"""
 
-    def __init__(self, value: typing.Any, left: typing.Optional["BinaryNode"] = None,
-                 right: typing.Optional["BinaryNode"] = None):
+    def __init__(
+        self,
+        value: typing.Any,
+        left: typing.Optional["BinaryNode"] = None,
+        right: typing.Optional["BinaryNode"] = None,
+    ):
         """Initialize a binary tree node
 
         Args:

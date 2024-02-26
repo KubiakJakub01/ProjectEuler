@@ -27,7 +27,6 @@ matrix = [x.strip().split(",") for x in matrix]
 
 
 def solution():
-
     min_path_matrix = np.zeros((size, size))
     rek(x=0, y=0, suma=0, min_path_matrix=min_path_matrix)
     print(min_path_matrix[-1][-1])

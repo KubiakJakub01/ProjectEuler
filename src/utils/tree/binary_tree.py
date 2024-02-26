@@ -84,7 +84,7 @@ class BinaryTree(Tree):
             bool: Whether the tree contains a node with the given value.
         """
         return self.contains(item)
-    
+
     def size(self) -> int:
         """Return the number of nodes in the tree.
 
@@ -109,7 +109,7 @@ class BinaryTree(Tree):
         count = self._size(node.left, count)
         count = self._size(node.right, count)
         return count
-    
+
     def add(self, item: Any) -> None:
         """Add a node with the given value to the tree.
 
@@ -185,7 +185,7 @@ class BinaryTree(Tree):
         while node.left is not None:
             node = node.left
         return node
-    
+
     def contains(self, item: Any) -> bool:
         """Return whether the tree contains a node with the given value.
 
@@ -196,7 +196,7 @@ class BinaryTree(Tree):
             bool: Whether the tree contains a node with the given value.
         """
         return self._contains(self.root, item)
-    
+
     def _contains(self, node: Optional[BinaryNode], item: Any) -> bool:
         """Return whether the tree contains a node with the given value.
 
@@ -212,7 +212,7 @@ class BinaryTree(Tree):
         if node.value == item:
             return True
         return self._contains(node.left, item) or self._contains(node.right, item)
-    
+
     def height(self) -> int:
         """Return the height of the tree.
 
@@ -220,8 +220,8 @@ class BinaryTree(Tree):
             int: The height of the tree.
         """
         return self._height(self.root)
-    
-    def _height(self, node: Optional[BinaryNode]= None) -> int:
+
+    def _height(self, node: Optional[BinaryNode] = None) -> int:
         """Return the height of the tree.
 
         Args:
@@ -233,7 +233,7 @@ class BinaryTree(Tree):
         if node is None:
             return 0
         return 1 + max(self._height(node.left), self._height(node.right))
-    
+
     def is_balanced(self) -> bool:
         """Return whether the tree is balanced.
 
@@ -241,7 +241,7 @@ class BinaryTree(Tree):
             bool: Whether the tree is balanced.
         """
         return self._is_balanced(self.root)
-    
+
     def _is_balanced(self, node: Optional[BinaryNode] = None) -> bool:
         """Return whether the tree is balanced.
 
@@ -258,7 +258,7 @@ class BinaryTree(Tree):
         if abs(left_height - right_height) > 1:
             return False
         return self._is_balanced(node.left) and self._is_balanced(node.right)
-    
+
     def is_full(self) -> bool:
         """Return whether the tree is full.
 
@@ -266,7 +266,7 @@ class BinaryTree(Tree):
             bool: Whether the tree is full.
         """
         return self._is_full(self.root)
-    
+
     def _is_full(self, node: Optional[BinaryNode] = None) -> bool:
         """Return whether the tree is full.
 
@@ -283,7 +283,7 @@ class BinaryTree(Tree):
         if node.left is not None and node.right is not None:
             return self._is_full(node.left) and self._is_full(node.right)
         return False
-    
+
     def is_perfect(self) -> bool:
         """Return whether the tree is perfect.
 
@@ -291,8 +291,8 @@ class BinaryTree(Tree):
             bool: Whether the tree is perfect.
         """
         return self._is_perfect(self.root)
-    
-    def _is_perfect(self, node: Optional[BinaryNode]= None) -> bool:
+
+    def _is_perfect(self, node: Optional[BinaryNode] = None) -> bool:
         """Return whether the tree is perfect.
 
         Args:
@@ -316,7 +316,7 @@ class BinaryTree(Tree):
             bool: Whether the tree is complete.
         """
         return self._is_complete(self.root)
-    
+
     def _is_complete(self, node: Optional[BinaryNode] = None) -> bool:
         """Return whether the tree is complete.
 
@@ -345,7 +345,7 @@ class BinaryTree(Tree):
             bool: Whether the tree is degenerate.
         """
         return self._is_degenerate(self.root)
-    
+
     def _is_degenerate(self, node: Optional[BinaryNode] = None) -> bool:
         """Return whether the tree is degenerate.
 
@@ -362,7 +362,7 @@ class BinaryTree(Tree):
         if node.left is not None and node.right is not None:
             return False
         return self._is_degenerate(node.left) or self._is_degenerate(node.right)
-    
+
     def clear(self) -> None:
         """Clear the tree."""
         self.root = None

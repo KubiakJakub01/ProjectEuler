@@ -12,7 +12,6 @@ import math
 
 
 def solution():
-
     blue = 85
     red = 35
 

@@ -20,6 +20,7 @@ Algoritm description:
 # import libraries
 import time
 
+
 # main solution function
 def solution():
     power_number = 1

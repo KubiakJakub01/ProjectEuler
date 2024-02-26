@@ -17,6 +17,7 @@ Algoritm description:
 # import libraries
 import time
 
+
 # main solution function
 def solution():
     result = 0

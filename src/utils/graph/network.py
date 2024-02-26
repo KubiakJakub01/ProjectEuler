@@ -104,7 +104,9 @@ class Network:
                 visited.update(connected_component)
         return connected_components
 
-    def _get_connected_components_with_edge(self, edge: Tuple[int, int]) -> List[Set[int]]:
+    def _get_connected_components_with_edge(
+        self, edge: Tuple[int, int]
+    ) -> List[Set[int]]:
         visited = set()
         connected_components = []
         for connected_component in self._get_connected_components():
@@ -113,7 +115,9 @@ class Network:
                 visited.update(connected_component)
         return connected_components
 
-    def _get_connected_components_without_edge(self, edge: Tuple[int, int]) -> List[Set[int]]:
+    def _get_connected_components_without_edge(
+        self, edge: Tuple[int, int]
+    ) -> List[Set[int]]:
         visited = set()
         connected_components = []
         for connected_component in self._get_connected_components():
@@ -122,7 +126,9 @@ class Network:
                 visited.update(connected_component)
         return connected_components
 
-    def _get_connected_components_with_vertices(self, vertices: List[int]) -> List[Set[int]]:
+    def _get_connected_components_with_vertices(
+        self, vertices: List[int]
+    ) -> List[Set[int]]:
         visited = set()
         connected_components = []
         for connected_component in self._get_connected_components():

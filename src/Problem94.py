@@ -28,6 +28,7 @@ triangle 2: (126500417.0 126500417.0 126500416.0) h: 109552575
 
 import math
 
+
 # Square equesion solver
 def square_equesion_solver(a, b, c):
     delta = b**2 - (4 * a * c)
@@ -49,7 +50,6 @@ def square_equesion_solver(a, b, c):
 
 
 def solution():
-
     N = 10**9
 
     max_x = N / 2

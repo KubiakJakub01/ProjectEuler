@@ -24,6 +24,8 @@ import time
 import numpy as np
 
 SUDOKU_PATH = "Problem96\sudoku.txt"
+
+
 # function to read the file
 def read_file():
     with open(SUDOKU_PATH) as f:
