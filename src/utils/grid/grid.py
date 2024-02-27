@@ -36,3 +36,28 @@ def get_grid_min_path_sum(grid):
         min_path_sum = min(min_path_sum, min_matrix[i][size - 1])
 
     return min_path_sum
+
+
+def get_grid_max_path(grid):
+    """Get grid maximum path"""
+    size = get_grid_size(grid)
+    max_path = np.zeros(size, dtype=int)
+    max_path[0] = 0
+
+    for j in range(1, size):
+        for i in range(size):
+            max_path[i] = max(max_path[i], grid[i][j - 1])
+
+        for i in range(size):
+            if i == 0:
+                grid[i][j] += max(max_path[i], max_path[i + 1])
+            elif i == size - 1:
+                grid[i][j] += max(max_path[i], max_path[i - 1])
+            else:
+                grid[i][j] += max(max_path[i], max(max_path[i - 1], max_path[i + 1]))
+
+    max_path_sum = 0
+    for i in range(size):
+        max_path_sum = max(max_path_sum, grid[i][size - 1])
+
+    return max_path_sum
