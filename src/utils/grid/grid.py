@@ -61,3 +61,28 @@ def get_grid_max_path(grid):
         max_path_sum = max(max_path_sum, grid[i][size - 1])
 
     return max_path_sum
+
+
+def get_grid_max_path_sum(grid):
+    """Get grid maximum path sum"""
+    size = get_grid_size(grid)
+    max_path_sum = np.zeros((size, size), dtype=int)
+
+    for i in range(size):
+        max_path_sum[i][0] = grid[i][0]
+
+    for j in range(1, size):
+        for i in range(size):
+            max_path_sum[i][j] = grid[i][j] + max(max_path_sum[i][j - 1], max_path_sum[i][j])
+
+        for i in range(1, size):
+            max_path_sum[i][j] = max(max_path_sum[i][j], max_path_sum[i - 1][j] + grid[i][j])
+
+        for i in range(size - 2, -1, -1):
+            max_path_sum[i][j] = max(max_path_sum[i][j], max_path_sum[i + 1][j] + grid[i][j])
+
+    max_path_sum_result = 0
+    for i in range(size):
+        max_path_sum_result = max(max_path_sum_result, max_path_sum[i][size - 1])
+
+    return max_path_sum_result
