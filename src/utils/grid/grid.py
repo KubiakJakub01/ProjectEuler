@@ -86,3 +86,8 @@ def get_grid_max_path_sum(grid):
         max_path_sum_result = max(max_path_sum_result, max_path_sum[i][size - 1])
 
     return max_path_sum_result
+
+
+def create_grid(size):
+    """Create grid"""
+    return np.zeros((size, size), dtype=int)
