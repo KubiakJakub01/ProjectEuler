@@ -176,3 +176,11 @@ def zip_files_and_directories(source_path, target_zip_path):
                 zipf.write(file, file.relative_to(source_path.parent))
         else:
             zipf.write(source_path, source_path.name)
+
+
+def unzip_files(zip_path, target_dir):
+    zip_path = Path(zip_path)
+    target_dir = Path(target_dir)
+    
+    with zipfile.ZipFile(zip_path, 'r') as zipf:
+        zipf.extractall(target_dir)
