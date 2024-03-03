@@ -4,6 +4,7 @@ import json
 import logging
 import sys
 import tarfile
+import zipfile
 from pathlib import Path
 
 import yaml
@@ -163,3 +164,15 @@ def untar_files(tar_name: str, dest: str):
     """
     with tarfile.open(tar_name, "r:gz") as tar:
         tar.extractall(path=dest)
+
+
+def zip_files_and_directories(source_path, target_zip_path):
+    source_path = Path(source_path)
+    target_zip_path = Path(target_zip_path)
+    
+    with zipfile.ZipFile(target_zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        if source_path.is_dir():
+            for file in source_path.rglob('*'):
+                zipf.write(file, file.relative_to(source_path.parent))
+        else:
+            zipf.write(source_path, source_path.name)
