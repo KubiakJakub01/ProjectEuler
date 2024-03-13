@@ -8,6 +8,7 @@ import zipfile
 from pathlib import Path
 
 import yaml
+from pypdf import PdfReader
 
 
 def read_file(path: Path):
@@ -184,3 +185,20 @@ def unzip_files(zip_path, target_dir):
     
     with zipfile.ZipFile(zip_path, 'r') as zipf:
         zipf.extractall(target_dir)
+
+
+def read_pdf(path: Path):
+    """Read pdf file from given path
+
+    Args:
+        path: path to file
+
+    Returns:
+        list: list of pages
+    """
+    if not path.is_file():
+        logging.error("File does not exist")
+        sys.exit(1)
+
+    reader = PdfReader(path)
+    return [page.extract_text() for page in reader.pages]
