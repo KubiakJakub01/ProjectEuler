@@ -30,3 +30,10 @@ def min_max_denormalize_2d(array, min_values, max_values):
             for i in range(array.shape[1])
         ]
     ).T
+
+
+def min_max_normalize_3d(array):
+    """Min-max normalize 3d array."""
+    return np.array(
+        [min_max_normalize_2d(array[:, :, i]) for i in range(array.shape[2])]
+    ).T
