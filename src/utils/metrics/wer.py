@@ -121,3 +121,34 @@ def wer_corpus(hyps, refs, type: Literal["relaxed", "strict"] = "relaxed"):
     if wer > 1:
         wer = 1
     return wer
+
+
+def cer_corpus(hyps, refs):
+    """
+    Computes the CER score between a corpus of hypotheses and references.
+    Arguments:
+        hyps (list): list of hypotheses
+        refs (list): list of references
+    Returns:
+        int: the CER score
+    """
+    transform = jiwer.Compose(
+        [
+            jiwer.ToLowerCase(),
+            jiwer.RemoveMultipleSpaces(),
+            jiwer.RemoveWhiteSpace(replace_by_space=True),
+            jiwer.RemovePunctuation(),
+            jiwer.Strip(),
+            jiwer.ReduceToListOfListOfWords(),
+        ]
+    )
+
+    hyps = [transform(hyp) for hyp in hyps]
+    refs = [transform(ref) for ref in refs]
+
+    cer = jiwer.cer(refs, hyps, hypothesis_transform=jiwer.remove_empty_strings)
+
+    # Normalize CER
+    if cer > 1:
+        cer = 1
+    return cer
