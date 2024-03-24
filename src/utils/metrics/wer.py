@@ -152,3 +152,47 @@ def cer_corpus(hyps, refs):
     if cer > 1:
         cer = 1
     return cer
+
+
+def wer_sentence(hyp, ref, type: Literal["relaxed", "strict"] = "relaxed"):
+    """
+    Computes the WER score between a hypothesis and a reference.
+    Arguments:
+        hyp (string): hypothesis
+        ref (string): reference
+        type (string): type of WER computation. relaxed or strict
+    Returns:
+        int: the WER score
+    """
+    if type == "relaxed":
+        transform = jiwer.Compose(
+            [
+                jiwer.ToLowerCase(),
+                jiwer.RemoveMultipleSpaces(),
+                jiwer.RemoveWhiteSpace(replace_by_space=True),
+                jiwer.RemovePunctuation(),
+                jiwer.Strip(),
+                jiwer.SentencesToListOfWords(word_delimiter=" "),
+            ]
+        )
+    elif type == "strict":
+        transform = jiwer.Compose(
+            [
+                jiwer.ToLowerCase(),
+                jiwer.RemoveMultipleSpaces(),
+                jiwer.RemoveWhiteSpace(replace_by_space=True),
+                jiwer.RemovePunctuation(),
+                jiwer.Strip(),
+                jiwer.SentencesToListOfWords(word_delimiter=" "),
+            ]
+        )
+
+    hyp = transform(hyp)
+    ref = transform(ref)
+
+    wer = jiwer.wer(ref, hyp)
+
+    # Normalize WER
+    if wer > 1:
+        wer = 1
+    return wer
