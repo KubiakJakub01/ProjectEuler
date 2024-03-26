@@ -37,3 +37,13 @@ def min_max_normalize_3d(array):
     return np.array(
         [min_max_normalize_2d(array[:, :, i]) for i in range(array.shape[2])]
     ).T
+
+
+def min_max_with_limits(array, min_values, max_values):
+    """Min-max normalize array with limits."""
+    return np.array(
+        [
+            min_max_solve(array[:, i], min_values[i], max_values[i])
+            for i in range(array.shape[1])
+        ]
+    ).T
