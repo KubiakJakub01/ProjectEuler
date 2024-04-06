@@ -170,10 +170,10 @@ def untar_files(tar_name: str, dest: str):
 def zip_files_and_directories(source_path, target_zip_path):
     source_path = Path(source_path)
     target_zip_path = Path(target_zip_path)
-    
-    with zipfile.ZipFile(target_zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+
+    with zipfile.ZipFile(target_zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
         if source_path.is_dir():
-            for file in source_path.rglob('*'):
+            for file in source_path.rglob("*"):
                 zipf.write(file, file.relative_to(source_path.parent))
         else:
             zipf.write(source_path, source_path.name)
@@ -182,8 +182,8 @@ def zip_files_and_directories(source_path, target_zip_path):
 def unzip_files(zip_path, target_dir):
     zip_path = Path(zip_path)
     target_dir = Path(target_dir)
-    
-    with zipfile.ZipFile(zip_path, 'r') as zipf:
+
+    with zipfile.ZipFile(zip_path, "r") as zipf:
         zipf.extractall(target_dir)
 
 
@@ -202,3 +202,14 @@ def read_pdf(path: Path):
 
     reader = PdfReader(path)
     return [page.extract_text() for page in reader.pages]
+
+
+def write_pdf(path: Path, content: list):
+    """Write content to pdf file
+
+    Args:
+        path: path to file
+        content: content to write
+    """
+    with open(path, "w") as p:
+        p.write(content)
