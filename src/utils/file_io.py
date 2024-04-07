@@ -213,3 +213,20 @@ def write_pdf(path: Path, content: list):
     """
     with open(path, "w") as p:
         p.write(content)
+
+
+def read_pdf_by_page(path: Path):
+    """Read pdf file from given path
+
+    Args:
+        path: path to file
+
+    Returns:
+        list: list of pages
+    """
+    if not path.is_file():
+        logging.error("File does not exist")
+        sys.exit(1)
+
+    reader = PdfReader(path)
+    yield from reader.pages
