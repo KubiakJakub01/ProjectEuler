@@ -17,17 +17,11 @@ Algoritm description:
     7. Get Kth element
     8. END
 """
-
-# import libraries
-import time
-
-# import default dictionary
 from collections import defaultdict
 
 import numpy as np
 
-# import utils
-from utils import prime_number_utils as pnu
+from .utils import pnu, timer
 
 # Constants
 MAX_N = 100000
@@ -39,7 +33,7 @@ number_rad_dict = defaultdict(list)
 number_rad_dict[1] = [1]
 
 
-# main solution function
+@timer
 def solution():
     # get primes up to MAX_N
     primes = pnu.eratos(MAX_N)
@@ -68,9 +62,7 @@ def solution():
 
 
 if __name__ == "__main__":
-    start_time = time.time()
     solution()
-    print("--- %s seconds ---" % (time.time() - start_time))
 
 """
 --- 6.523653507232666 seconds ---
