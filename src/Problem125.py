@@ -15,22 +15,10 @@ Algorithm description:
     5. Print the sum of all the numbers that are both palindromic and can be written as the sum of consecutive squares
     6. END
 """
-from .utils.timer import timer
+from .utils import generate_powers, timer
 
 N = 10**8
 
-
-def generate_powers():
-    # Create a list of powers of 2 where the sum of last two numbers is less than N
-    power_list = []
-    suma_last_two = 0
-    i = 1
-    while suma_last_two < N:
-        power = i**2
-        i += 1
-        power_list.append(power)
-        suma_last_two = power + i**2
-    return power_list
 
 
 def is_palindromic(n):
@@ -41,7 +29,7 @@ def is_palindromic(n):
 @timer
 def solution():
     # Create a list of powers of 2 where the sum of all numbers is less than N
-    power_list = generate_powers()
+    power_list = generate_powers(N)
 
     # Create a list of palindromes that are the sum of consecutive squares
     palindrom_sum_list = []
