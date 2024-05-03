@@ -8,16 +8,14 @@ https://projecteuler.net/problem=118
 @author: kuba
 """
 
-from itertools import combinations
 
-
-def SieveOfEratosthenes(n):
+def sieve_of_eratosthenes(n):
     prime = [True for i in range(n + 1)]
     p = 2
     while p * p <= n:
         # If prime[p] is not
         # changed, then it is a prime
-        if prime[p] == True:
+        if prime[p]:
             # Update all multiples of p
             for i in range(p * p, n + 1, p):
                 prime[i] = False
@@ -37,7 +35,7 @@ result = 0
 
 def solution():
     n = 10**5
-    prime = SieveOfEratosthenes(n)
+    prime = sieve_of_eratosthenes(n)
     for i, p in enumerate(prime):
         availability[p] = [
             x for x in prime[i:] if len(set(p).intersection(set(x))) == 0
@@ -45,11 +43,11 @@ def solution():
     prime.clear()
 
     for item, value in availability.items():
-        findingPandigitalPrimeSets(value=item, curr_set=[], intersection=set(value))
+        finding_pandigital_prime_sets(value=item, curr_set=[], intersection=set(value))
     print(result)
 
 
-def findingPandigitalPrimeSets(value, curr_set, intersection):
+def finding_pandigital_prime_sets(value, curr_set, intersection):
     curr_set.append(value)
 
     if sum(len(s) for s in curr_set) == 9:
@@ -62,7 +60,7 @@ def findingPandigitalPrimeSets(value, curr_set, intersection):
         next_intersection = intersection.intersection(set(availability[next_value]))
         # if len(curr_set)>=4:
         # print(f'curr_set: {curr_set} value: {value} next val: {next_value} intersection: {intersection} next_itersection: {next_intersection}')
-        findingPandigitalPrimeSets(
+        finding_pandigital_prime_sets(
             value=next_value, curr_set=curr_set.copy(), intersection=next_intersection
         )
 
