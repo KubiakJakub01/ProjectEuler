@@ -4,6 +4,11 @@ My struggles with https://projecteuler.net/
 
 ## Recent works
 
+## 2024
+
+### May
+- [Problem130](https://github.com/KubiakJakub01/ProjectEuler/blob/main/src/Problem130.py) Composites with Prime Repunit Property :white_check_mark:
+
 ## 2023:
 
 ### August:
