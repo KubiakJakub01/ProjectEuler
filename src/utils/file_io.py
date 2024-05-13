@@ -230,3 +230,16 @@ def read_pdf_by_page(path: Path):
 
     reader = PdfReader(path)
     yield from reader.pages
+
+
+def write_pdf_by_page(path: Path, content: list):
+    """Write content to pdf file
+
+    Args:
+        path: path to file
+        content: content to write
+    """
+    with open(path, "w") as p:
+        for page in content:
+            p.write(page)
+            p.write("\n")
