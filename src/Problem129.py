@@ -6,7 +6,7 @@ https://projecteuler.net/problem=129
 
 @author: KubiakJakub01
 """
-from .utils.timer import timer
+from .utils import timer
 
 
 def A(n):

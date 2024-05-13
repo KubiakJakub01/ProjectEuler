@@ -9,16 +9,13 @@ author: KubiakJakub01
 # import libraries
 import math
 
-from .utils.timer import timer
+from .utils import timer
 
 LIMIT = 120000
 
 
-# main solution function
 @timer
 def solution():
-    LIMIT = 120000
-
     rads = [0] + [1] * (LIMIT - 1)
     for i in range(2, len(rads)):
         if rads[i] == 1:
