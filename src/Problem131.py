@@ -1,13 +1,21 @@
 """
 Created on 04.05.2024
 
-Problem 130: Prime Cube Partnership
+Problem 131: Prime Cube Partnership
 https://projecteuler.net/problem=131
 
 @author: KubiakJakub01
 
 Algorithm description:
-    TODO
+    1. Generate prime numbers up to N = 10^6.
+    2. Initialize the count variable.
+    3. Initialize x = 1.
+    4. Iterate while True.
+    5. Calculate the polynomial function f(x) = 3 * x^2 - 3 * x + 1.
+    6. If the value of f(x) is greater or equal to N, break the loop.
+    7. If the value of f(x) is a prime number, increment the count variable.
+    8. Increment x by 1.
+    9. Print the count variable.
 """
 from .utils import pnu, timer
 
