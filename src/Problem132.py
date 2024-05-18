@@ -16,18 +16,18 @@ N = 10**6
 K = 10**9
 
 
-def prime_factors(n, primes):
+def prime_factors_of_repunit(primes, limit=40):
     factors = []
+    k = 10**9
+    repunit_modulus = (10**k - 1) // 9
+
     for prime in primes:
-        while n % prime == 0:
+        while repunit_modulus % prime == 0:
             factors.append(prime)
-            n //= prime
-            if len(factors) >= 40:
+            repunit_modulus //= prime
+            if len(factors) >= limit:
                 return factors
-        if prime * prime > n:
-            break
-    if n > 1:
-        factors.append(n)
+
     return factors
 
 
@@ -40,9 +40,7 @@ def solution():
     primes = pnu.eratos(N)
 
     factors = []
-    current_number = (
-        10**9
-    )  # Since we use R(10^9) as (10^10^9 - 1) / 9, we just use 10^9 here
+    current_number = 10**9
     for prime in primes:
         if len(factors) >= 40:
             break
