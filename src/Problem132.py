@@ -10,50 +10,29 @@ Algorithm description:
 @author: KubiakJakub01
 """
 
-from .utils import timer, pnu
+from .utils import timer
 
-N = 10**6
-K = 10**9
-
-
-def prime_factors_of_repunit(primes, limit=40):
-    factors = []
-    k = 10**9
-    repunit_modulus = (10**k - 1) // 9
-
-    for prime in primes:
-        while repunit_modulus % prime == 0:
-            factors.append(prime)
-            repunit_modulus //= prime
-            if len(factors) >= limit:
-                return factors
-
-    return factors
+from sympy.ntheory import factorint
 
 
-def repunit_length_k(k):
+def repunit(k):
     return (10**k - 1) // 9
 
 
 @timer
 def solution():
-    primes = pnu.eratos(N)
+    R_10_9 = repunit(10**9)
+    factors = factorint(R_10_9)
+    primes = sorted(factors.keys())
+    first_40_primes = primes[:40]
+    sum_first_40_primes = sum(first_40_primes)
 
-    factors = []
-    current_number = 10**9
-    for prime in primes:
-        if len(factors) >= 40:
-            break
-        while current_number % prime == 0:
-            factors.append(prime)
-            current_number //= prime
-            if len(factors) >= 40:
-                break
-
-    sum_of_prime_factors = sum(factors[:40])
-
-    print(sum_of_prime_factors)
+    return sum_first_40_primes
 
 
 if __name__ == "__main__":
-    solution()
+    # Get the sum
+    sum_of_first_40_primes = solution()
+    print(
+        "The sum of the first 40 prime factors of R(10^9) is:", sum_of_first_40_primes
+    )
