@@ -21,18 +21,16 @@ def repunit(k):
 
 @timer
 def solution():
-    R_10_9 = repunit(10**9)
-    factors = factorint(R_10_9)
-    primes = sorted(factors.keys())
-    first_40_primes = primes[:40]
-    sum_first_40_primes = sum(first_40_primes)
-
-    return sum_first_40_primes
+    primes = []
+    n = 10**9
+    k = 1
+    while len(primes) < 40:
+        if pow(10, n, 9 * repunit(k)) == 1:
+            if factorint(repunit(k)).keys() == [3]:
+                primes.append(repunit(k))
+        k += 1
+    return sum(primes)
 
 
 if __name__ == "__main__":
-    # Get the sum
-    sum_of_first_40_primes = solution()
-    print(
-        "The sum of the first 40 prime factors of R(10^9) is:", sum_of_first_40_primes
-    )
+    print(solution())
