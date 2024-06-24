@@ -243,3 +243,20 @@ def write_pdf_by_page(path: Path, content: list):
         for page in content:
             p.write(page)
             p.write("\n")
+
+
+def read_tar(path: Path):
+    """Read tar file from given path
+
+    Args:
+        path: path to file
+
+    Returns:
+        list: list of files
+    """
+    if not path.is_file():
+        logging.error("File does not exist")
+        sys.exit(1)
+
+    with tarfile.open(path, "r:gz") as tar:
+        return tar.getnames()
