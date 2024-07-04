@@ -1,12 +1,14 @@
 import jiwer
 
 
-def bleu(hyp, ref):
+def bleu(hyp: str, ref: str) -> int:
     """
     Computes the BLEU score between a hypothesis and a reference.
-    Arguments:
-        hyp (string): space-separated sentence
-        ref (string): space-separated sentence
+
+    Args:
+        hyp: space-separated sentence
+        ref: space-separated sentence
+
     Returns:
         int: the BLEU score
     """
@@ -24,17 +26,19 @@ def bleu(hyp, ref):
     hyp = transform(hyp)
     ref = transform(ref)
 
-    bleu = jiwer.sentence_bleu(ref, hyp)
+    bleu = jiwer.bleu(ref, hyp)
 
     return bleu
 
 
-def bleu_corpus(hyps, refs):
+def bleu_corpus(hyps: list[str], refs: list[str]) -> int:
     """
     Computes the BLEU score between a corpus of hypotheses and references.
-    Arguments:
-        hyps (list): list of hypotheses
-        refs (list): list of references
+
+    Args:
+        hyps: list of hypotheses
+        refs: list of references
+
     Returns:
         int: the BLEU score
     """
@@ -52,6 +56,6 @@ def bleu_corpus(hyps, refs):
     hyps = [transform(hyp) for hyp in hyps]
     refs = [transform(ref) for ref in refs]
 
-    bleu = jiwer.corpus_bleu(refs, hyps)
+    bleu = jiwer.bleu(refs, hyps)
 
     return bleu
