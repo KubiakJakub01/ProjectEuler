@@ -1,8 +1,6 @@
 """Module with timer utils"""
 import time
 
-from tqdm import tqdm
-
 
 def timer(func):
     """Timer decorator"""
@@ -26,14 +24,3 @@ def tqdm_timer(func):
         return result
 
     return wrapper
-
-
-if __name__ == "__main__":
-
-    @timer
-    def test():
-        """Test function"""
-        time.sleep(1)
-        return "test"
-
-    print(test())
