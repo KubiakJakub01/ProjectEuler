@@ -177,3 +177,20 @@ def levenshtein_distance_matrix_normalized(strings: list[str], stopwords: list[s
     strings = remove_duplicates_and_stopwords(strings, stopwords)
     strings = normalize_list(strings)
     return levenshtein_distance_matrix(strings)
+
+
+def levenshtein_distance_matrix_normalized_fast(
+    strings: list[str], stopwords: list[str]
+):
+    """Return the Levenshtein distance matrix between a list of strings.
+
+    Args:
+        strings: A list of strings
+        stopwords: A list of stopwords
+
+    Returns:
+        np.array: The Levenshtein distance matrix
+    """
+    strings = remove_duplicates_and_stopwords(strings, stopwords)
+    strings = normalize_list(strings)
+    return levenshtein_distance_matrix_fast(strings)
