@@ -150,3 +150,13 @@ def get_totient_sum_list(n):
     for i in range(2, n):
         totient_sum_list.append(sum(get_totient_list(i)))
     return totient_sum_list
+
+
+def get_totient_sum_matrix(n):
+    """Return a matrix of the sum of totient values for all numbers less than n"""
+    totient_sum_matrix = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i + 1, n):
+            totient_sum_matrix[i, j] = get_totient_sum(i)
+            totient_sum_matrix[j, i] = totient_sum_matrix[i, j]
+    return totient_sum_matrix
