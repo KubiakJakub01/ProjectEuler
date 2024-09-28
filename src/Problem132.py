@@ -12,8 +12,6 @@ Algorithm description:
 
 from .utils import timer
 
-from sympy.ntheory import factorint
-
 
 def repunit(k):
     return (10**k - 1) // 9
@@ -21,15 +19,14 @@ def repunit(k):
 
 @timer
 def solution():
-    primes = []
     n = 10**9
-    k = 1
-    while len(primes) < 40:
-        if pow(10, n, 9 * repunit(k)) == 1:
-            if factorint(repunit(k)).keys() == [3]:
-                primes.append(repunit(k))
-        k += 1
-    return sum(primes)
+    prime_factors = []
+    for p in range(2, n):
+        if 10**n % p == 1:
+            prime_factors.append(p)
+        if len(prime_factors) == 40:
+            break
+    return sum(prime_factors)
 
 
 if __name__ == "__main__":
